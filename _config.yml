@@ -17,34 +17,34 @@ author:
   avatar           : "profile.png" # Place your photo in /images/profile.png
   name             : "Yashwanth Pandi"
   pronouns         : 
-  bio              : "Researcher & Developer"
-  location         : "Earth"
-  employer         : "University/Organization Name"
+  bio              : "Data Scientist & Engineer"
+  location         : "San Francisco"
+  employer         : "California Lutheran University"
   uri              : 
   email            : "pandiyashwanth@gmail.com" 
 
-  # Academic websites
-  googlescholar    : "" # Add your scholar ID here
-  orcid            : "" # Add your ORCID URL
-  researchgate     : ""
+  # # Academic websites
+  # googlescholar    : "" # Add your scholar ID here
+  # orcid            : "" # Add your ORCID URL
+  # researchgate     : ""
 
   # Repositories and software development
   github           : "yashwanthpandi" # Your GitHub username
   stackoverflow    : ""    
 
-  # Social media
-  linkedin         : "" # Your LinkedIn username
-  twitter          : ""
-  instagram        : ""
+  # # Social media
+  # linkedin         : "" # Your LinkedIn username
+  # twitter          : ""
+  # instagram        : ""
 
-# Publication Category Headings
-publication_category:
-  books:
-    title: 'Books'
-  manuscripts:
-    title: 'Journal Articles'    
-  conferences:
-    title: 'Conference Papers'
+# # Publication Category Headings
+# publication_category:
+#   books:
+#     title: 'Books'
+#   manuscripts:
+#     title: 'Journal Articles'    
+#   conferences:
+#     title: 'Conference Papers'
 
 # Site Settings
 teaser                   : 
