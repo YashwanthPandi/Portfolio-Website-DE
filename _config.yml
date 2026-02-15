@@ -8,9 +8,9 @@ title                    : "Yashwanth Pandi"
 title_separator          : "-"
 name                     : &name "Yashwanth Pandi"
 description              : &description "Academic portfolio and personal website of Yashwanth Pandi."
-url                      : "https://yashwanth-pandi.github.io" # Change 'yashwanth-pandi' to your actual username
+url                      : "https://yashwanth.co.in" # Change 'yashwanth-pandi' to your actual username
 baseurl                  : "" 
-repository               : "yashwanth-pandi/yashwanth-pandi.github.io"
+repository               : "https://github.com/YashwanthPandi/PrivateWebsite/"
 
 # Site Author - Sidebar Configuration
 author:
@@ -21,7 +21,7 @@ author:
   location         : "Earth"
   employer         : "University/Organization Name"
   uri              : 
-  email            : "your-email@example.com" 
+  email            : "pandiyashwanth@gmail.com" 
 
   # Academic websites
   googlescholar    : "" # Add your scholar ID here
@@ -29,11 +29,11 @@ author:
   researchgate     : ""
 
   # Repositories and software development
-  github           : "yashwanth-pandi" # Your GitHub username
+  github           : "yashwanthpandi" # Your GitHub username
   stackoverflow    : ""    
 
   # Social media
-  linkedin         : "yashwanth-pandi" # Your LinkedIn username
+  linkedin         : "" # Your LinkedIn username
   twitter          : ""
   instagram        : ""
 
