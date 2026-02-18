@@ -17,11 +17,11 @@ main:
   - title: "Home"
     url: /    
     
-  - title: "Portfolio"
-    url: /portfolio/
+  - title: "Projects"
+    url: /projects/
         
   - title: "Blog Posts"
-    url: /year-archive/
+    url: /blog/
     
   - title: "Resume"
     url: /resume/
