@@ -180,6 +180,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
+  - jekyll-admin
 
 # HTML Compression
 compress_html:

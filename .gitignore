@@ -1,7 +1,8 @@
 # Ignore the contents of the _site directory and other cache directories
 _site/
 .sass-cache/
-
+.jekyll-metadata
+.jekyll-cache/
 # Ignore the directory for local files during development
 local/
 
@@ -21,3 +22,8 @@ package-lock.json
 
 # Ignore files created by MacOS
 .DS_Store
+Gemfile
+_config.yml
+Gemfile
+.gitignore
+_config.yml
