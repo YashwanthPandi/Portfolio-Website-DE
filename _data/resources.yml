@@ -1,11 +1,76 @@
-- name: "Research on Data Pipelines"
-  desc: "A deep dive into distributed systems and data consistency."
-  link: "https://arxiv.org/..."
-  tag: "ArXiv"
-  icon: "ai-arxiv"  # This triggers the Academicon
 
-- name: "Personal Portfolio"
-  desc: "My project gallery and technical blog."
-  link: "/"
-  tag: "Project"
-  # image: "/assets/images/logo.png" # This triggers the standard image
+  - name: "The Data Warehouse Toolkit"
+    desc: "The definitive guide to dimensional modeling. Essential for anyone designing stable, readable analytics tables."
+    link: "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-toolkit/"
+    tag: "Book"
+    icon: "ai-book"
+
+  - name: "Streaming Systems"
+    desc: "A deep dive into how streaming systems reason about time, watermarks, and windowing. Ideal for real-time DE."
+    link: "https://www.oreilly.com/library/view/streaming-systems/9781492037095/"
+    tag: "Book"
+    icon: "ai-book"
+
+  # --- NEXT-GEN TOOLING (2026) ---
+  - name: "Apache Iceberg"
+    desc: "The high-performance open table format that brings SQL-like reliability to data lakes. A core part of the modern Lakehouse."
+    link: "https://iceberg.apache.org/"
+    tag: "Lakehouse"
+    icon: "ai-database"
+
+  - name: "DataFusion (Rust-based)"
+    desc: "An extensible query execution framework written in Rust. Fast, memory-efficient, and increasingly used in next-gen data tools."
+    link: "https://datafusion.apache.org/"
+    tag: "Engine"
+    icon: "ai-code"
+
+  - name: "Dagster"
+    desc: "A cloud-native orchestrator for the whole development lifecycle—focusing on assets rather than just tasks."
+    link: "https://dagster.io/"
+    tag: "Orchestration"
+    icon: "ai-settings"
+
+  # --- THOUGHT LEADERS & VOICES ---
+  - name: "Seattle Data Guy (Ben Rogojan)"
+    desc: "The premier source for realistic career advice, tool comparisons, and data engineering case studies."
+    link: "https://www.youtube.com/@SeattleDataGuy"
+    tag: "Influencer"
+    icon: "ai-video"
+
+  - name: "Joe Reis (Data Nerd)"
+    desc: "Co-author of 'Fundamentals of DE'. Follow him for 'no-nonsense' takes on data architecture and industry trends."
+    link: "https://www.linkedin.com/in/josephreis/"
+    tag: "Influencer"
+    icon: "ai-community"
+
+  - name: "Benn Stancil"
+    desc: "Provocative and insightful essays on the intersection of data science, analytics, and engineering."
+    link: "https://benn.substack.com/"
+    tag: "Newsletter"
+    icon: "ai-mail"
+
+  # --- HANDS-ON PROJECTS ---
+  - name: "RideStream Portfolio Project"
+    desc: "A project idea: Build a real-time ride analytics platform using Kafka, Spark Streaming, and a Lakehouse architecture."
+    link: "https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_6_streaming"
+    tag: "Project"
+    icon: "ai-code-branch"
+
+  - name: "Crypto Data Warehouse (GCP)"
+    desc: "End-to-end pipeline project: API ingestion -> Cloud Storage -> BigQuery -> Looker."
+    link: "https://github.com/topics/data-engineering-project"
+    tag: "Project"
+    icon: "ai-code-branch"
+
+  # --- RESEARCH & TRENDS ---
+  - name: "Modernizing Data Engineering (2025 Paper)"
+    desc: "Research on leveraging distributed frameworks, hybrid storage, and ML-driven architectures."
+    link: "https://doi.org/10.37745/ejcsit.2013/vol13n171226"
+    tag: "ArXiv"
+    icon: "ai-arxiv"
+
+  - name: "Future of Large-Scale Distributed Systems"
+    desc: "Explores trends like edge computing, serverless architectures, and sustainable data engineering."
+    link: "https://www.researchgate.net/publication/390714723"
+    tag: "Research"
+    icon: "ai-arxiv"
