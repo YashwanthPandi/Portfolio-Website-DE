@@ -8,88 +8,88 @@ author_profile: true
 {% include base_path %}
 
 <style>
-  /* Reduce space between Page Title and first list item */
+  /* Container Alignment */
   .post-list-minimal {
-    margin-top: 0.5rem; /* Reduced from 2rem */
-    max-width: 900px;
+    margin-top: 1rem;
+    max-width: 100%;
   }
 
-  /* One-Liner Row */
+  /* Structural Row - Using CSS Grid for better alignment than Flex */
   .post-row {
-    display: flex;
-    align-items: baseline;
-    padding: 8px 0; /* Tightened from 12px */
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    padding: 0.6rem 0;
     text-decoration: none !important;
-    border-bottom: 1px solid #f2f2f2;
-    transition: all 0.15s ease;
+    border-bottom: 1px solid var(--border-color, #eee);
+    transition: opacity 0.2s ease;
   }
 
   .post-row:hover {
-    background-color: #fafafa;
-    padding-left: 5px;
+    opacity: 0.7; /* Minimalist hover effect instead of color change */
   }
 
+  /* Date Column */
   .post-date {
-    flex: 0 0 80px; /* Slimmer date column */
-    font-family: var(--sans-serif); /* Aligning with theme font */
-    font-size: 0.8rem;
-    color: #999;
+    font-size: 0.85rem;
+    color: var(--light-text-color, #888);
+    font-variant-numeric: tabular-nums;
   }
 
+  /* Title - Inherits global link/text styles */
   .post-title {
-    flex-grow: 1;
     font-size: 1rem;
-    color: #333;
-    font-weight: 500;
+    font-weight: 400;
     margin: 0;
+    color: var(--text-color, #333);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .post-row:hover .post-title {
-    color: #007bff;
-    text-decoration: none !important;
-  }
-
+  /* Tag/Category Style */
   .post-tag {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    color: #bbb;
-    margin-left: 15px;
-    font-weight: 600;
+    color: var(--light-text-color, #bbb);
+    margin-left: 1rem;
+    letter-spacing: 0.5px;
   }
 
-  /* Compact Year Marker */
+  /* Year Marker */
   .year-marker {
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: #bbb;
-    margin-top: 1.5rem; /* Reduced from 2.5rem */
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 2rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--text-color);
+    display: inline-block;
   }
 
-  /* Remove border from the very last item */
   .post-row:last-child {
     border-bottom: none;
+  }
+
+  /* Mobile adjustment */
+  @media (max-width: 600px) {
+    .post-tag { display: none; }
+    .post-row { grid-template-columns: 70px 1fr; }
   }
 </style>
 
 <div class="post-list-minimal">
-  {% capture written_year %}'None'{% endcapture %}
+  {% assign written_year = "" %}
   {% for post in site.posts %}
     {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
     
     {% if year != written_year %}
       <div class="year-marker">{{ year }}</div>
-      {% capture written_year %}{{ year }}{% endcapture %}
+      {% assign written_year = year %}
     {% endif %}
 
     <a href="{{ post.url | relative_url }}" class="post-row">
       <span class="post-date">{{ post.date | date: "%b %d" }}</span>
-      <h3 class="post-title">{{ post.title }}</h3>
+      <span class="post-title">{{ post.title }}</span>
       
       {% if post.categories.first %}
         <span class="post-tag">{{ post.categories.first }}</span>
