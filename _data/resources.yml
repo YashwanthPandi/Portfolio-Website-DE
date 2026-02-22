@@ -8,4 +8,4 @@
   desc: "My project gallery and technical blog."
   link: "/"
   tag: "Project"
-  image: "/assets/images/logo.png" # This triggers the standard image
+  # image: "/assets/images/logo.png" # This triggers the standard image
