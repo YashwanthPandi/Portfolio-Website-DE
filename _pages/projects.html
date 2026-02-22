@@ -7,8 +7,100 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+  /* Container Grid */
+  .project-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+  /* Bootstrap-style Rectangle Card */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: 1px solid currentColor; /* Monochrome border */
+    border-radius: 0.375rem; /* Bootstrap default radius */
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+  }
 
+  /* Hover State: Bootstrap Blue only for the Box */
+  .project-card:hover {
+    border-color: #0d6efd !important;
+    box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.15);
+    transform: translateY(-3px);
+  }
+
+  /* Card Body */
+  .card-body {
+    padding: 1.25rem;
+    flex: 1 1 auto;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: inherit;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Card Footer (View Project Area) */
+  .card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(128, 128, 128, 0.05);
+    border-top: 1px solid currentColor;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-footer::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .project-card:hover .card-footer {
+    color: #0d6efd;
+    border-top-color: #0d6efd;
+  }
+
+  .project-card:hover .card-footer::after {
+    transform: translateX(5px);
+  }
+
+  /* Clean Jekyll Overrides */
+  .list__item { display: none !important; }
+</style>
+
+<div class="project-row">
+  {% for post in site.portfolio %}
+    <a href="{{ post.url | relative_url }}" class="project-card">
+      <div class="card-body">
+        <h2 class="card-title">{{ post.title }}</h2>
+        {% if post.excerpt %}
+          <p class="card-text">
+            {{ post.excerpt | strip_html | truncate: 110 }}
+          </p>
+        {% endif %}
+      </div>
+      
+      <div class="card-footer">
+        View Project
+      </div>
+    </a>
+  {% endfor %}
+</div>

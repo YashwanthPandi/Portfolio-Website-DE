@@ -5,11 +5,6 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
-<!--
-# 
-### Data Engineer | Pipeline Architect | Infrastructure Enthusiast
-
-<!-- [LinkedIn](YourLink) | [GitHub](YourLink) | [Email](YourLink) -->
 
 I build automated systems that ensure data is **high-quality, accessible, and ready for scale.** Transitioning from Web Development, I focus on the "plumbing" of the data world: creating idempotent ETL pipelines, implementing data observability, and designing cost-effective cloud architectures. I believe that a data platform is only as good as its worst failure—so I build for reliability.
 
