@@ -1,19 +1,99 @@
 ---
 layout: archive
 permalink: /blog/
-title: "Blog posts"
+title: "Blogs"
 author_profile: true
-redirect_from:
-  - /wordpress/blog-posts/
 ---
 
 {% include base_path %}
-{% capture written_year %}'None'{% endcapture %}
-{% for post in site.posts %}
-  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-  {% if year != written_year %}
-    <h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
-    {% capture written_year %}{{ year }}{% endcapture %}
-  {% endif %}
-  {% include archive-single.html %}
-{% endfor %}
+
+<style>
+  /* Reduce space between Page Title and first list item */
+  .post-list-minimal {
+    margin-top: 0.5rem; /* Reduced from 2rem */
+    max-width: 900px;
+  }
+
+  /* One-Liner Row */
+  .post-row {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 0; /* Tightened from 12px */
+    text-decoration: none !important;
+    border-bottom: 1px solid #f2f2f2;
+    transition: all 0.15s ease;
+  }
+
+  .post-row:hover {
+    background-color: #fafafa;
+    padding-left: 5px;
+  }
+
+  .post-date {
+    flex: 0 0 80px; /* Slimmer date column */
+    font-family: var(--sans-serif); /* Aligning with theme font */
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  .post-title {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .post-row:hover .post-title {
+    color: #007bff;
+    text-decoration: none !important;
+  }
+
+  .post-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-left: 15px;
+    font-weight: 600;
+  }
+
+  /* Compact Year Marker */
+  .year-marker {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #bbb;
+    margin-top: 1.5rem; /* Reduced from 2.5rem */
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Remove border from the very last item */
+  .post-row:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<div class="post-list-minimal">
+  {% capture written_year %}'None'{% endcapture %}
+  {% for post in site.posts %}
+    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+    
+    {% if year != written_year %}
+      <div class="year-marker">{{ year }}</div>
+      {% capture written_year %}{{ year }}{% endcapture %}
+    {% endif %}
+
+    <a href="{{ post.url | relative_url }}" class="post-row">
+      <span class="post-date">{{ post.date | date: "%b %d" }}</span>
+      <h3 class="post-title">{{ post.title }}</h3>
+      
+      {% if post.categories.first %}
+        <span class="post-tag">{{ post.categories.first }}</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>
