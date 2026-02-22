@@ -1,0 +1,17 @@
+- name: "Bootstrap"
+  desc: "The world's most popular framework for building responsive, mobile-first sites."
+  link: "https://getbootstrap.com"
+  image: "https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-social.png"
+  tag: "CSS Framework"
+
+- name: "Jekyll"
+  desc: "Transform your plain text into static websites and blogs."
+  link: "https://jekyllrb.com"
+  image: "https://jekyllrb.com/img/logo-2x.png"
+  tag: "Static Site"
+
+- name: "GitHub"
+  desc: "Where the world builds software. Great for hosting Jekyll sites."
+  link: "https://github.com"
+  image: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  tag: "Hosting"
