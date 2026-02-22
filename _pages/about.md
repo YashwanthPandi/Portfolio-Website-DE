@@ -5,8 +5,8 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
-
-# Yashwanth Pandi 
+<!--
+# 
 ### Data Engineer | Pipeline Architect | Infrastructure Enthusiast
 
 <!-- [LinkedIn](YourLink) | [GitHub](YourLink) | [Email](YourLink) -->
