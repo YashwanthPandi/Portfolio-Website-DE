@@ -1,16 +1,21 @@
-<!-- start custom footer snippets -->
 
-<a href="/sitemap/">Sitemap</a>
+<footer style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-family: sans-serif; font-size: 0.9em;">
+    
+    <div>
+        <a href="/" style="margin-right: 15px;">Home</a>
+        <a href="/about/" style="margin-right: 15px;">About</a>
+        <a href="/sitemap/" style="margin-right: 15px;">Sitemap</a>
+        <!-- <a href="/contact/">Contact</a> -->
+    </div>
 
-<!-- Support for MatJax -->
+
+</footer>
+
 <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
 
-<!-- Support for Mermaid -->
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({startOnLoad:true, theme:'default'});
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
-
-<!-- end custom footer snippets -->

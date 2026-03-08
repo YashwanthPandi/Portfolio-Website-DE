@@ -1,0 +1,168 @@
+---
+layout: archive
+title: "Blogs"
+permalink: /blog/
+author_profile: true
+---
+
+{% include base_path %}
+
+<div class="res-filter-container">
+  <!-- <button class="filter-btn active" onclick="filterBlogs('all')">All</button>
+  {% assign categories = site.posts | map: 'categories' | flatten | uniq | sort %}
+  {% for category in categories %}
+    <button class="filter-btn" onclick="filterBlogs('{{ category }}')">{{ category }}</button>
+  {% endfor %} -->
+</div>
+
+<div class="post-list-minimal">
+  {% assign written_year = "" %}
+  {% for post in site.posts %}
+    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+    
+    {% if year != written_year %}
+      <div class="year-marker" data-year="{{ year }}">{{ year }}</div>
+      {% assign written_year = year %}
+    {% endif %}
+
+    <a href="{{ post.url | relative_url }}" 
+       class="res-item blog-post-item" 
+       data-category="{{ post.categories | join: ',' }}">
+      
+      <div class="res-info">
+        <div class="res-meta">
+          <span class="post-date-pill">{{ post.date | date: "%b %d" }}</span>
+          <span class="res-name">{{ post.title }}</span>
+          {% if post.categories.first %}
+            <span class="res-tag">{{ post.categories.first }}</span>
+          {% endif %}
+        </div>
+        {% if post.excerpt %}
+          <p class="res-desc">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+        {% endif %}
+      </div>
+      
+      <div class="res-arrow">→</div>
+    </a>
+  {% endfor %}
+</div>
+
+<script>
+function filterBlogs(category) {
+  const items = document.querySelectorAll('.blog-post-item');
+  const buttons = document.querySelectorAll('.filter-btn');
+  const yearMarkers = document.querySelectorAll('.year-marker');
+
+  // Update button active state
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.innerText.toLowerCase() === category.toLowerCase());
+  });
+
+  items.forEach(item => {
+    const itemCategories = item.getAttribute('data-category').split(',');
+    if (category === 'all' || itemCategories.includes(category)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  // Hide year markers if no posts are visible under them
+  yearMarkers.forEach(marker => {
+    let next = marker.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('year-marker')) {
+      if (next.style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+    marker.style.display = hasVisible ? 'block' : 'none';
+  });
+}
+</script>
+
+<style>
+  /* Reuse Resource Styles & Adjust for Blog */
+  .post-list-minimal { display: flex; flex-direction: column; gap: 0.5rem; }
+  
+  .year-marker {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 2rem 0 1rem 0;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-color, #007bff);
+    width: fit-content;
+    padding-right: 1rem;
+  }
+
+  .post-date-pill {
+    font-family: var(--monospace-font, monospace);
+    font-size: 0.8rem;
+    background: rgba(128, 128, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--light-text-color, #666);
+  }
+
+  /* Filter Styling (Consistent with Resources) */
+  .res-filter-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+/* 
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border-color, rgba(128,128,128,0.3));
+    background: transparent;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: inherit;
+    opacity: 0.7;
+  } */
+
+  .filter-btn:hover, .filter-btn.active {
+    opacity: 1;
+    border-color: var(--primary-color, #007bff);
+  }
+
+  .filter-btn.active {
+    background: var(--primary-color, #007bff);
+    color: white;
+  }
+
+  /* Shared List Item Style */
+  .res-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    text-decoration: none !important;
+    border: 1px solid var(--border-color, rgba(128,128,128,0.15));
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: inherit !important;
+  }
+
+  .res-item:hover {
+    background: rgba(128, 128, 128, 0.04);
+    border-color: var(--primary-color, #007bff);
+    transform: translateX(5px);
+  }
+
+  .res-info { flex-grow: 1; }
+  .res-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
+  .res-name { font-weight: 600; font-size: 1.05rem; }
+  .res-tag { font-size: 0.65rem; text-transform: uppercase; opacity: 0.5; font-weight: bold; }
+  .res-desc { margin: 0; font-size: 0.85rem; opacity: 0.7; }
+  .res-arrow { margin-left: 1rem; opacity: 0.2; font-weight: bold; }
+  .res-item:hover .res-arrow { opacity: 1; color: var(--primary-color, #007bff); }
+
+  @media (max-width: 600px) {
+    .res-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
