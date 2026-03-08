@@ -1,176 +1,168 @@
 ---
 layout: archive
-title: "Blog"
+title: "Blogs"
 permalink: /blog/
 author_profile: true
 ---
 
 {% include base_path %}
-  <header class="archive-header">
-    <p class="archive-intro">
-      Articles, notes, and thoughts.
-    </p>
-  </header>
 
-  <div class="post-list">
-    {% assign written_year = "" %}
+<div class="res-filter-container">
+  <!-- <button class="filter-btn active" onclick="filterBlogs('all')">All</button>
+  {% assign categories = site.posts | map: 'categories' | flatten | uniq | sort %}
+  {% for category in categories %}
+    <button class="filter-btn" onclick="filterBlogs('{{ category }}')">{{ category }}</button>
+  {% endfor %} -->
+</div>
 
-    {% for post in site.posts %}
-      {% capture year %}{{ post.date | date: "%Y" }}{% endcapture %}
+<div class="post-list-minimal">
+  {% assign written_year = "" %}
+  {% for post in site.posts %}
+    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+    
+    {% if year != written_year %}
+      <div class="year-marker" data-year="{{ year }}">{{ year }}</div>
+      {% assign written_year = year %}
+    {% endif %}
 
-      {% if year != written_year %}
-        <h2 class="year-heading" id="year-{{ year }}">{{ year }}</h2>
-        {% assign written_year = year %}
-      {% endif %}
-
-      <article class="post-card" itemscope itemtype="https://schema.org/BlogPosting">
-
-        <a href="{{ post.url | relative_url }}" class="post-link" itemprop="url">
-
-          <div class="post-meta">
-            <time
-              datetime="{{ post.date | date_to_xmlschema }}"
-              class="post-date"
-              itemprop="datePublished">
-              {{ post.date | date: "%b %d" }}
-            </time>
-
-            <h3 class="post-title" itemprop="headline">
-              {{ post.title }}
-            </h3>
-
-            {% if post.categories.first %}
-              <span class="post-category">
-                {{ post.categories.first }}
-              </span>
-            {% endif %}
-          </div>
-
-          {% if post.excerpt %}
-          <p class="post-excerpt" itemprop="description">
-            {{ post.excerpt | strip_html | truncate: 140 }}
-          </p>
+    <a href="{{ post.url | relative_url }}" 
+       class="res-item blog-post-item" 
+       data-category="{{ post.categories | join: ',' }}">
+      
+      <div class="res-info">
+        <div class="res-meta">
+          <span class="post-date-pill">{{ post.date | date: "%b %d" }}</span>
+          <span class="res-name">{{ post.title }}</span>
+          {% if post.categories.first %}
+            <span class="res-tag">{{ post.categories.first }}</span>
           {% endif %}
+        </div>
+        {% if post.excerpt %}
+          <p class="res-desc">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+        {% endif %}
+      </div>
+      
+      <div class="res-arrow">→</div>
+    </a>
+  {% endfor %}
+</div>
 
-        </a>
+<script>
+function filterBlogs(category) {
+  const items = document.querySelectorAll('.blog-post-item');
+  const buttons = document.querySelectorAll('.filter-btn');
+  const yearMarkers = document.querySelectorAll('.year-marker');
 
-      </article>
+  // Update button active state
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.innerText.toLowerCase() === category.toLowerCase());
+  });
 
-    {% endfor %}
-  </div>
-</section>
+  items.forEach(item => {
+    const itemCategories = item.getAttribute('data-category').split(',');
+    if (category === 'all' || itemCategories.includes(category)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  // Hide year markers if no posts are visible under them
+  yearMarkers.forEach(marker => {
+    let next = marker.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('year-marker')) {
+      if (next.style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+    marker.style.display = hasVisible ? 'block' : 'none';
+  });
+}
+</script>
 
 <style>
-
-/* Layout */
-
-.blog-archive {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.archive-header {
-  margin-bottom: 2rem;
-}
-
-.archive-header h1 {
-  margin-bottom: .3rem;
-}
-
-.archive-intro {
-  opacity: .7;
-  font-size: .95rem;
-}
-
-/* Year heading */
-
-.year-heading {
-  margin: 2rem 0 1rem;
-  font-size: 1.3rem;
-  font-weight: 700;
-  border-bottom: 2px solid var(--primary-color, #2563eb);
-  display: inline-block;
-  padding-right: 1rem;
-}
-
-/* Post card */
-
-.post-card {
-  border: 1px solid var(--border-color, rgba(0,0,0,0.08));
-  border-radius: 10px;
-  margin-bottom: .6rem;
-  transition: all .2s ease;
-}
-
-.post-card:hover {
-  border-color: var(--primary-color, #2563eb);
-  transform: translateX(4px);
-}
-
-/* Link wrapper */
-
-.post-link {
-  display: block;
-  padding: .9rem 1rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Meta row */
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-  margin-bottom: .35rem;
-}
-
-/* Date */
-
-.post-date {
-  font-family: monospace;
-  font-size: .75rem;
-  background: rgba(120,120,120,.1);
-  padding: 3px 6px;
-  border-radius: 4px;
-  opacity: .8;
-}
-
-/* Title */
-
-.post-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* Category */
-
-.post-category {
-  font-size: .65rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  opacity: .45;
-}
-
-/* Excerpt */
-
-.post-excerpt {
-  font-size: .85rem;
-  opacity: .7;
-  margin: 0;
-}
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-  .post-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
+  /* Reuse Resource Styles & Adjust for Blog */
+  .post-list-minimal { display: flex; flex-direction: column; gap: 0.5rem; }
+  
+  .year-marker {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 2rem 0 1rem 0;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-color, #007bff);
+    width: fit-content;
+    padding-right: 1rem;
   }
 
-}
+  .post-date-pill {
+    font-family: var(--monospace-font, monospace);
+    font-size: 0.8rem;
+    background: rgba(128, 128, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--light-text-color, #666);
+  }
 
+  /* Filter Styling (Consistent with Resources) */
+  .res-filter-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+/* 
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border-color, rgba(128,128,128,0.3));
+    background: transparent;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: inherit;
+    opacity: 0.7;
+  } */
+
+  .filter-btn:hover, .filter-btn.active {
+    opacity: 1;
+    border-color: var(--primary-color, #007bff);
+  }
+
+  .filter-btn.active {
+    background: var(--primary-color, #007bff);
+    color: white;
+  }
+
+  /* Shared List Item Style */
+  .res-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    text-decoration: none !important;
+    border: 1px solid var(--border-color, rgba(128,128,128,0.15));
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: inherit !important;
+  }
+
+  .res-item:hover {
+    background: rgba(128, 128, 128, 0.04);
+    border-color: var(--primary-color, #007bff);
+    transform: translateX(5px);
+  }
+
+  .res-info { flex-grow: 1; }
+  .res-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
+  .res-name { font-weight: 600; font-size: 1.05rem; }
+  .res-tag { font-size: 0.65rem; text-transform: uppercase; opacity: 0.5; font-weight: bold; }
+  .res-desc { margin: 0; font-size: 0.85rem; opacity: 0.7; }
+  .res-arrow { margin-left: 1rem; opacity: 0.2; font-weight: bold; }
+  .res-item:hover .res-arrow { opacity: 1; color: var(--primary-color, #007bff); }
+
+  @media (max-width: 600px) {
+    .res-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
 </style>
