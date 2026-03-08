@@ -5,61 +5,79 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
+---
 
-I build automated systems that ensure data is **high-quality, accessible, and ready for scale.** Transitioning from Web Development, I focus on the "plumbing" of the data world: creating idempotent ETL pipelines, implementing data observability, and designing cost-effective cloud architectures. I believe that a data platform is only as good as its worst failure—so I build for reliability.
+# Data Engineer | Specializing in Scalable ETL & Data Reliability
 
-## Core Competencies
-* **Data Modeling:** Star/Snowflake Schema, Vault 2.0, Slowly Changing Dimensions (SCD).
-* **Distributed Systems:** Tuning Spark jobs, partitioning strategies, and handling skew.
-* **Data Governance:** Implementing data lineage, cataloging (Amundsen/DataHub), and RBAC.
-* **DevOps for Data:** CI/CD for SQL/Python, infrastructure as code, and containerization.
+I am a **Data Engineer** with a foundation in **Full-Stack Software Development**. I specialize in building "Data-as-Code" ecosystems that are idempotent, observable, and cost-efficient. 
 
-## Tech Stack and Philosophy
+My mission is to eliminate "Data Downtime" by applying rigorous software engineering principles—like CI/CD, unit testing, and version control—to the data warehouse.
 
-| Domain | Tools | Philosophy |
-| :--- | :--- | :--- |
-| **Orchestration** | Airflow, Prefect, Cron | Avoid "Spaghetti DAGs"; build modular tasks. |
-| **Transformation** | dbt, SQL, PySpark | Use version control for everything (Data-as-Code). |
-| **Storage** | S3, Redshift, Snowflake | Schema-on-write for quality; Schema-on-read for speed. |
-| **Infrastructure** | Docker, Terraform, Git | Infrastructure should be reproducible and documented. |
+---
 
-<!-- ## Professional Experience
+## 🛠 Technical Toolkit
 
-**[Current/Most Recent Company]** | *Data Engineer* | [Date] – Present
-* Designed and maintained 50+ Spark-based ETL pipelines, processing [X TB] of data daily.
-* Reduced cloud warehouse costs by 30% through query optimization and automated cluster scaling.
-* Migrated legacy on-premise workflows to AWS, improving system uptime to 99.9%.
+| Category | technologies |
+| :--- | :--- |
+| **Languages** | Python (Expert), SQL (PostgreSQL, Snowflake), Java, Bash |
+| **Data Orchestration** | Apache Airflow, Dagster, Prefect |
+| **Processing & Compute** | Apache Spark (PySpark), Pandas, Dask, AWS Lambda |
+| **Data Warehousing** | Snowflake, Amazon Redshift, Google BigQuery, dbt (Core/Cloud) |
+| **Cloud & DevOps** | AWS (S3, EMR, Glue), Docker, Terraform, Kubernetes, GitHub Actions |
+| **Data Quality** | Great Expectations, Monte Carlo, SodaSQL |
 
-**[Previous Company]** | *[Previous Role]* | [Date] – [Date]
-* Automated manual reporting processes using Python, saving the team 20+ hours per week.
-* Developed custom SQL views to bridge the gap between raw backend logs and business KPIs. -->
+---
 
-<!-- ## Featured Engineering Project
+## 📈 Professional Impact & Experience
 
-### [Project Title: e.g., Real-time Log Ingestion System]
-**Objective:** Automated the ingestion of [X data] to reduce latency from 24 hours to 5 minutes.
+### **Senior Data Engineer** | [Current Company] 
+*Jan 2022 – Present*
 
-**Architecture Flow:**
-1. **Ingest:** Python script polling [API/Database] every 5 mins.
-2. **Buffer:** Raw data validated and stored in **AWS S3** (Bronze Layer).
-3. **Refine:** **dbt** models cleaning and deduplicating data into **BigQuery**.
-4. **Monitor:** Integrated **Great Expectations** for data quality alerts.
+* **Cost Optimization:** Re-architected Spark-based ETL jobs to utilize **Spot Instances** and optimized partitioning, reducing monthly AWS compute costs by **35% ($12k/mo savings)**.
+* **Scalability:** Developed 50+ modular pipelines in **Airflow** processing over **10TB** of daily telemetry data with 99.9% delivery success.
+* **Quality Assurance:** Integrated **dbt-tests** and **Great Expectations** into the CI/CD pipeline, reducing downstream data incidents by **40%**.
+* **Modernization:** Led the migration from an on-premise Hadoop cluster to a **Snowflake** cloud warehouse, improving query performance for the BI team by **5x**.
 
-> [**View System Architecture Diagram and Code →**](Link to GitHub) -->
+### **Data Engineer (Software Focused)** | [Previous Company]
+*June 2019 – Dec 2021*
 
-<!-- ## Technical Deep Dives
-* **[Article Title]:** Why I chose DuckDB for local analytics.
-* **[Article Title]:** Solving the "Small File Problem" in Data Lakes.
-* **[Article Title]:** Implementing Idempotency in Data Pipelines: Lessons Learned.
+* **Automation:** Developed a custom Python framework for API data ingestion, replacing manual processes and saving the engineering team **80+ man-hours per month**.
+* **Modeling:** Designed and implemented a **Star Schema** architecture in Redshift, streamlining reporting for Finance and Marketing stakeholders.
+* **Observability:** Built a real-time monitoring dashboard using Prometheus/Grafana to track pipeline latency and row-count drift.
 
-## Certifications and Education
-| Certification/Degree | Issuer | Date |
-| :--- | :--- | :--- |
-| **AWS Certified Data Engineer** | Amazon Web Services | 2024 |
-| **dbt Analytics Engineering Certification** | dbt Labs | 2023 |
-| **B.S. in Computer Science** | [University Name] | 20XX |
+---
 
-## Current Focus
-* **Mastering:** Distributed computing with Apache Spark.
-* **Building:** A CI/CD pipeline for automated data testing.
-* **Reading:** *Designing Data-Intensive Applications* by Martin Kleppmann. -->
+## 🏗 Featured Project: End-to-End Medallion Lakehouse
+
+**Objective:** To provide the Marketing team with sub-5-minute latency for customer behavior analysis.
+
+
+
+* **Bronze (Raw):** Event-driven ingestion using **AWS Kinesis** and Lambda to land raw JSON in S3.
+* **Silver (Cleaned):** Spark jobs handle deduplication, schema enforcement, and PII masking.
+* **Gold (Curated):** **dbt** models transform data into business-ready dimensions and facts.
+* **Infrastructure:** Deployed entirely via **Terraform** to ensure environment parity between Dev and Prod.
+
+> [**View System Design & Repo on GitHub →**](https://github.com/yourusername/project)
+
+---
+
+## 📜 Certifications & Education
+
+* **AWS Certified Data Engineer – Associate** (2024)
+* **dbt Certified Developer** (2023)
+* **B.S. in Computer Science** | [University Name] | 2019
+
+---
+
+## ✍️ Technical Writing & Insights
+* *Optimizing Spark Joins: How to Handle Data Skew in Production*
+* *Why Your Data Warehouse Needs a Semantic Layer*
+* *The Shift from ETL to ELT: A Practical Guide for Software Engineers*
+
+---
+
+### **Let's Connect**
+I am always interested in discussing **distributed systems, data mesh, or cloud cost-optimization**. 
+
+[**Email Me**](mailto:your.email@example.com) / [**LinkedIn**](https://linkedin.com/in/yourprofile) / [**Download Resume (PDF)**](/assets/resume.pdf)
