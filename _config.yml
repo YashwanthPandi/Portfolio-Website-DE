@@ -8,43 +8,25 @@ title                    : "Yashwanth Pandi"
 title_separator          : "-"
 name                     : &name "Yashwanth Pandi"
 description              : &description "Academic portfolio and personal website of Yashwanth Pandi."
-url                      : "https://yashwanth.co.in" # Change 'yashwanth-pandi' to your actual username
+url                      : "https://yashwanth.co.in" 
 baseurl                  : "" 
 repository               : "https://github.com/YashwanthPandi/PrivateWebsite/"
 
+# Server Settings
+port: 4001 # Fixes the "Address already in use" error by defaulting to 4001
+
 # Site Author - Sidebar Configuration
 author:
-  avatar           : "profile.png" # Place your photo in /images/profile.png
+  avatar           : "profile.png"
   name             : "Yashwanth Pandi"
   pronouns         : 
   bio              : "Data Scientist & Engineer"
-  location         : "San Francisco, CA "
+  location         : "San Francisco, CA"
   employer         : "California Lutheran University"
   uri              : 
   email            : "pandiyashwanth@gmail.com" 
-
-  # # Academic websites
-  # googlescholar    : "" # Add your scholar ID here
-  # orcid            : "" # Add your ORCID URL
-  # researchgate     : ""
-
-  # Repositories and software development
-  github           : "yashwanthpandi" # Your GitHub username
+  github           : "yashwanthpandi"
   stackoverflow    : ""    
-
-  # # Social media
-  # linkedin         : "" # Your LinkedIn username
-  # twitter          : ""
-  # instagram        : ""
-
-# # Publication Category Headings
-# publication_category:
-#   books:
-#     title: 'Books'
-#   manuscripts:
-#     title: 'Journal Articles'    
-#   conferences:
-#     title: 'Conference Papers'
 
 # Site Settings
 teaser                   : 
@@ -70,22 +52,10 @@ exclude:
   - assets/js/_main.js
   - assets/js/plugins
   - assets/js/vendor
-  - CHANGELOG
-  - Capfile
-  - config
-  - Dockerfile
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - local
-  - log
   - node_modules
-  - package.json*
-  - Rakefile
-  - README
-  - tmp
   - vendor
+  - Gemfile
+  - Gemfile.lock
 keep_files:
   - .git
   - .svn
@@ -109,7 +79,7 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-# Collections (Portfolios, Talks, Publications)
+# Collections
 collections:
   teaching:
     output: true
@@ -144,33 +114,14 @@ defaults:
       author_profile: true
   - scope:
       path: ""
-      type: teaching
     values:
       layout: single
-      author_profile: true
-  - scope:
-      path: ""
-      type: publications
-    values:
-      layout: single
-      author_profile: true
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
       author_profile: true
 
 # Sass/SCSS
 sass:
-  sass_dir: _sass
   style: compressed
+  quiet_deps: true # This silences the "@import is deprecated" warnings
 
 # Plugins
 plugins:

@@ -17,3 +17,4 @@ end
 group :development do
   gem "webrick", "~> 1.8"
 end
+gem "faraday-retry", "~> 2.4"
