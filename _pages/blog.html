@@ -38,7 +38,9 @@ author_profile: true
           {% endif %}
         </div>
         {% if post.excerpt %}
-          <p class="res-desc">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          <p class="res-desc">
+            {{ post.description | default: post.excerpt | strip_html | truncate: 120 }}
+          </p>
         {% endif %}
       </div>
       
