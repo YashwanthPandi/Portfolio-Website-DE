@@ -206,7 +206,17 @@
 
     @include breakpoint($medium) {
       justify-content: center; /* center on tablet/mobile */
-    }
+      /* push the first non‑persistent link to a new row, so home/projects/etc
+         always sit on a second line when screen is narrow */
+      > li:not(.persist):first-of-type {
+        flex-basis: 100%;
+      }
+
+      /* make non-persistent links take full row width and center their contents */
+      > li:not(.persist) {
+        flex: 1 1 auto;
+        text-align: center;
+      }    }
 
     li {
       display: inline-block;
