@@ -60,7 +60,7 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button class="navicon" type="button"><span class="visually-hidden">Menu</span></button>
+        <button class="navicon hidden" type="button"><span class="visually-hidden">Menu</span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist">
             <a href="{{ base_path }}/">{{ site.title }}</a>
@@ -80,10 +80,12 @@
             <a role="button"><i id="theme-icon" class="fa-solid fa-sun"></i></a>
           </li>
 
-          <li class="masthead__menu-item persist">
+          <li class="masthead__menu-item persist tail">
             <a id="open-popup-button" class="neetocal-nav-btn" role="button">Schedule a Call</a>
           </li>
         </ul>
+        <!-- container for overflowed links; populated by greedy-navigation script -->
+        <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>

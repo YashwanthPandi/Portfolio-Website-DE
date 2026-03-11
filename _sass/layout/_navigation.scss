@@ -202,6 +202,10 @@
     z-index: 100;
   }
 
+  @include breakpoint($medium) {
+    button.navicon.hidden { display: block; }
+  }
+
   .visible-links {
     display: table;
 
@@ -271,6 +275,26 @@
     background: var(--global-bg-color);
     box-shadow: 0 0 10px rgba(#000, 0.25);
 
+    @include breakpoint($medium) {
+      /* on mobile/tablet have the overflow menu stretch full width */
+      position: static;
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin-top: 0;
+      border-radius: 0;
+      box-shadow: none;
+      display: none; /* hidden until nav is open */
+    }
+
+    /* when nav is open act more like bootstrap collapse */
+    @include breakpoint($medium) {
+      .greedy-nav.open & {
+        display: block;
+      }
+    }
+
+
     a {
       margin: 0;
       padding: 10px 20px;
@@ -293,6 +317,10 @@
       border-color: var(--global-border-color) transparent;
       display: block;
       z-index: 0;
+
+      @include breakpoint($medium) {
+        display: none;
+      }
     }
 
     &:after {
@@ -306,6 +334,10 @@
       border-color: var(--global-bg-color) transparent;
       display: block;
       z-index: 1;
+
+      @include breakpoint($medium) {
+        display: none;
+      }
     }
 
     li {

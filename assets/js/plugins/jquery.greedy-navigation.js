@@ -11,6 +11,10 @@ var $vlinks = $('#site-nav .visible-links');
 var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
 var $hlinks = $('#site-nav .hidden-links');
 
+// accessibility helpers
+$btn.attr('aria-expanded', 'false');
+$hlinks.attr('aria-hidden', 'true');
+
 var breaks = [];
 
 function updateNav() {
@@ -52,6 +56,9 @@ function updateNav() {
       $btn.addClass('hidden');
       $btn.removeClass('close');
       $hlinks.addClass('hidden');
+      // update accessibility
+      $btn.attr('aria-expanded', 'false');
+      $hlinks.attr('aria-hidden', 'true');
     }
   }
 
@@ -79,8 +86,11 @@ screen.orientation.addEventListener("change", function () {
 });
 
 $btn.on('click', function () {
-  $hlinks.toggleClass('hidden');
+  var isOpen = $hlinks.toggleClass('hidden').hasClass('hidden') === false;
   $(this).toggleClass('close');
+  $nav.toggleClass('open', isOpen);
+  $btn.attr('aria-expanded', isOpen);
+  $hlinks.attr('aria-hidden', !isOpen);
 });
 
 updateNav();
