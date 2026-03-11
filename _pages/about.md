@@ -7,24 +7,35 @@ redirect_from:
 ---
 ---
 
-# Data Engineer | Specializing in Scalable ETL & Data Reliability
+# Data Engineering Leader & Software‑Driven Problem Solver
 
-I am a **Data Engineer** with a foundation in **Full-Stack Software Development**. I specialize in building "Data-as-Code" ecosystems that are idempotent, observable, and cost-efficient. 
+Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
 
-My mission is to eliminate "Data Downtime" by applying rigorous software engineering principles—like CI/CD, unit testing, and version control—to the data warehouse.
+My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
 
 ---
 
-## 🛠 Technical Toolkit
+## � What Recruiters & Hiring Managers Care About
 
-| Category | technologies |
-| :--- | :--- |
-| **Languages** | Python (Expert), SQL (PostgreSQL, Snowflake), Java, Bash |
-| **Data Orchestration** | Apache Airflow, Dagster, Prefect |
-| **Processing & Compute** | Apache Spark (PySpark), Pandas, Dask, AWS Lambda |
-| **Data Warehousing** | Snowflake, Amazon Redshift, Google BigQuery, dbt (Core/Cloud) |
-| **Cloud & DevOps** | AWS (S3, EMR, Glue), Docker, Terraform, Kubernetes, GitHub Actions |
-| **Data Quality** | Great Expectations, Monte Carlo, SodaSQL |
+- **End‑to‑end pipeline ownership:** from ingestion through transformation, to warehouse and downstream access.  Comfortable in Python, SQL, Airflow, Spark, dbt, and the AWS ecosystem.  
+- **Cloud‑first focus:** 5+ years in AWS (S3, EMR, Glue, Lambda), Snowflake/Redshift, GCP (BigQuery) and infrastructure as code with Terraform.
+- **Cost & performance optimization:** expertise with spot instances, partitioning strategies, and workload isolation; have reduced compute bills by >30% in production.
+- **Reliability & observability:** integrated automated tests, metrics, and alerting (Prometheus/Grafana, Great Expectations) to achieve 99.9% pipeline SLAs.
+- **Cross‑functional collaboration:** worked closely with BI, analytics, and data science teams; strong communicator who can present technical trade‑offs to non‑technical audiences.
+- **Team growth:** hired and coached junior engineers, conducted code reviews, and led technical design sessions in Agile/Scrum environments.
+
+---
+
+## 🛠 Technical Toolbox
+
+| Category | Technologies |
+|:---------|:-------------|
+| **Languages** | Python (expert), SQL (PostgreSQL, Snowflake, BigQuery), Bash, Java |
+| **Orchestration** | Apache Airflow, Dagster, Prefect |
+| **Compute** | Apache Spark (PySpark), Pandas, Dask, AWS Lambda |
+| **Warehousing** | Snowflake, Redshift, BigQuery, dbt (Core/Cloud) |
+| **Cloud & Infra** | AWS (S3, EMR, Glue), GCP, Docker, Terraform, Kubernetes, GitHub Actions |
+| **Quality/Monitoring** | Great Expectations, SodaSQL, Prometheus, Grafana |
 
 ---
 
