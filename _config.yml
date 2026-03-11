@@ -13,7 +13,7 @@ baseurl                  : ""
 repository               : "https://github.com/YashwanthPandi/PrivateWebsite/"
 
 # Server Settings
-port: 4001 # Fixes the "Address already in use" error by defaulting to 4001
+port: 4000 # Fixes the "Address already in use" error by defaulting to 4001
 
 # Site Author - Sidebar Configuration
 author:

@@ -1,40 +1,58 @@
-{% include base_path %}
-
 <style>
-  /* 1. Glassmorphism & Dropdown Styling */
+  /* 1. Spotify Dropdown & Glassmorphism */
   .spotify-dropdown {
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
-    /* Glass Effect */
     background: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
   .spotify-dropdown.is-open {
-    max-height: 120px; /* Adjust based on embed height */
+    max-height: 120px;
     padding: 10px 0;
   }
-
   .spotify-container {
-    max-width: 1280px; /* Matches standard Masthead width */
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 1em;
   }
-
-  /* 2. Button Styling */
   #spotify-toggle i {
-    color: #1DB954; /* Spotify Green */
+    color: #1DB954; 
     transition: transform 0.2s ease;
     cursor: pointer;
   }
+  #spotify-toggle:hover i { transform: scale(1.1); filter: brightness(1.2); }
 
-  #spotify-toggle:hover i {
-    transform: scale(1.1);
-    filter: brightness(1.2);
+  /* 2. NeetoCal Button Styling - NO UNDERLINE */
+  .neetocal-nav-btn {
+    background-color: #1DB954 !important; /* Spotify Green */
+    color: white !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    font-weight: bold !important;
+    font-size: 0.8em !important;
+    text-transform: uppercase;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    /* This removes the underline */
+    text-decoration: none !important; 
+    border: none !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Force remove underline on hover */
+  .neetocal-nav-btn:hover, 
+  .neetocal-nav-btn:focus,
+  .neetocal-nav-btn:active,
+  .visible-links .masthead__menu-item a.neetocal-nav-btn:hover {
+    text-decoration: none !important;
+    filter: brightness(1.1);
+    color: white !important;
+    outline: none;
   }
 </style>
 
@@ -42,40 +60,35 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><span class="navicon"></span></button>
+        <button class="navicon" type="button"><span class="visually-hidden">Menu</span></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
+          <li class="masthead__menu-item masthead__menu-item--lg persist">
             <a href="{{ base_path }}/">{{ site.title }}</a>
           </li>
+
           {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign domain = '' %}
-            {% else %}
-              {% assign domain = base_path %}
-            {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
-              <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+            <li class="masthead__menu-item">
+              <a href="{{ base_path }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
 
           <li id="spotify-toggle" class="masthead__menu-item persist">
-            <a role="button" aria-label="Toggle Spotify Player">
-              <i class="fa-brands fa-spotify" aria-hidden="true"></i>
-            </a>
+            <a role="button"><i class="fa-brands fa-spotify"></i></a>
           </li>
 
-          <li id="theme-toggle" class="masthead__menu-item persist tail">
-            <a role="button" aria-labelledby="theme-icon">
-              <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i>
-            </a>
+          <li id="theme-toggle" class="masthead__menu-item persist">
+            <a role="button"><i id="theme-icon" class="fa-solid fa-sun"></i></a>
+          </li>
+
+          <li class="masthead__menu-item persist">
+            <a id="open-popup-button" class="neetocal-nav-btn" role="button">Schedule a Call</a>
           </li>
         </ul>
-        <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 
-  <div id="spotify-drawer" class="spotify-dropdown">
+ <div id="spotify-drawer" class="spotify-dropdown">
     <div class="spotify-container">
       <iframe 
         style="border-radius:12px" 
@@ -91,15 +104,29 @@
   </div>
 </div>
 
-<script>
-  // 3. Simple Toggle Logic
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('spotify-toggle');
-    const drawer = document.getElementById('spotify-drawer');
+<script>window.neetoCal = window.neetoCal || { embed: function(){(neetoCal.q=neetoCal.q||[]).push(arguments)} };</script>
+<script async src="https://cdn.neetocal.com/javascript/embed.js"></script>
 
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      drawer.classList.toggle('is-open');
-    });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.neetoCal) {
+      neetoCal.embed({
+        type: "elementClick",
+        id: "ecca8270-0daf-44ba-b85b-95ee9b4a3b57",
+        organization: "yashwanth-pandi",
+        elementSelector: "#open-popup-button",
+        kind: "introPage",
+        isImageAndTitleHidden: "false"
+      });
+    }
+
+    const spotifyBtn = document.getElementById('spotify-toggle');
+    const drawer = document.getElementById('spotify-drawer');
+    if (spotifyBtn && drawer) {
+      spotifyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        drawer.classList.toggle('is-open');
+      });
+    }
   });
 </script>
