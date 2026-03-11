@@ -1,4 +1,50 @@
-{% include base_path %}
+<style>
+  .blur-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .sidebar-image {
+    display: block;
+    width: 100%;
+    transition: filter 0.3s ease;
+  }
+  .sidebar-image.is-blurred {
+    filter: blur(20px);
+    cursor: pointer;
+  }
+  .blur-icon-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 5;
+    transition: opacity 0.3s;
+  }
+  /* Hide icon when unblurred */
+  .unblurred .blur-icon-btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .splash-regular {
+  font-family: "Splash", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
 
 {% if page.author_profile or layout.author_profile or page.sidebar %}
   <div class="sidebar sticky">
@@ -6,20 +52,36 @@
   {% if page.sidebar %}
     {% for s in page.sidebar %}
       {% if s.image %}
-        <img src=
-        {% if s.image contains "://" %}
-          "{{ s.image }}"
-        {% else %}
-          "{{ s.image | prepend: "/images/" | prepend: base_path }}"
-        {% endif %}
-        alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
+        <div class="blur-wrapper" id="img-wrapper-{{ forloop.index }}">
+          <img src=
+          {% if s.image contains "://" %}
+            "{{ s.image }}"
+          {% else %}
+            "{{ s.image | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="{{ s.image_alt | default: '' }}"
+          class="sidebar-image is-blurred">
+          
+          <button class="blur-icon-btn" onclick="unblur('img-wrapper-{{ forloop.index }}')">
+            <span>👁️</span>
+          </button>
+        </div>
       {% endif %}
-      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
+      
+      {% if s.title %}<h3 class="splash-regular">{{ s.title }}</h3>{% endif %}
       {% if s.text %}{{ s.text | markdownify }}{% endif %}
     {% endfor %}
-    {% if page.sidebar.nav %}
-      {% include nav_list nav=page.sidebar.nav %}
-    {% endif %}
   {% endif %}
   </div>
 {% endif %}
+
+<script>
+  function unblur(id) {
+    const wrapper = document.getElementById(id);
+    const img = wrapper.querySelector('.sidebar-image');
+    
+    // Toggle classes
+    img.classList.remove('is-blurred');
+    wrapper.classList.add('unblurred');
+  }
+</script>
