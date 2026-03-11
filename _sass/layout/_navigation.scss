@@ -179,7 +179,7 @@
 
   a {
     display: block;
-    margin: 0 1rem;
+    margin: 0;
     padding: 0.5rem 0;
     color: var(--global-masthead-link-color);
     text-decoration: none;
@@ -189,17 +189,9 @@
     }
   }
 
+  /* toggle removed; hide any leftover button just in case */
   button {
-    position: absolute;
-    height: 2.5rem;
-    right: 0;
-    padding: 0 0.5rem;
-    border: 0;
-    outline: none;
-    background-color: var(--global-bg-color);
-    color: var(--global-text-color);
-    cursor: pointer;
-    z-index: 100;
+    display: none;
   }
 
   @include breakpoint($medium) {
@@ -207,11 +199,19 @@
   }
 
   .visible-links {
-    display: table;
+    display: flex;
+    flex-wrap: wrap; /* allow wrapping instead of hiding */
+    align-items: center;
+    justify-content: space-between; /* spread links across full width */
+
+    @include breakpoint($medium) {
+      justify-content: center; /* center on tablet/mobile */
+    }
 
     li {
-      display: table-cell;
+      display: inline-block;
       vertical-align: middle;
+      margin: 0 0.75rem; /* spacing between links */
 
       &:first-child {
         font-weight: bold;

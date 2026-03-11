@@ -6,7 +6,12 @@
 */
 
 var $nav = $('#site-nav');
+// if the toggle button has been removed don't run the greedy algorithm
 var $btn = $('#site-nav button');
+if ($btn.length === 0) {
+  // fallback: make links wrap via CSS; nothing else to do
+  return;
+}
 var $vlinks = $('#site-nav .visible-links');
 var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
 var $hlinks = $('#site-nav .hidden-links');
