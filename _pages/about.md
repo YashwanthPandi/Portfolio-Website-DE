@@ -13,7 +13,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## � What Recruiters & Hiring Managers Care About
+## What Recruiters & Hiring Managers Care About
 
 - **End‑to‑end pipeline ownership:** from ingestion through transformation, to warehouse and downstream access.  Comfortable in Python, SQL, Airflow, Spark, dbt, and the AWS ecosystem.  
 - **Cloud‑first focus:** 5+ years in AWS (S3, EMR, Glue, Lambda), Snowflake/Redshift, GCP (BigQuery) and infrastructure as code with Terraform.
@@ -24,7 +24,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## 🛠 Technical Toolbox
+## Technical Toolbox
 
 | Category | Technologies |
 |:---------|:-------------|
@@ -37,7 +37,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## 📈 Professional Impact & Experience
+## Professional Impact & Experience
 
 ### **Senior Data Engineer** | [Current Company] 
 *Jan 2022 – Present*
@@ -56,7 +56,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## 🏗 Featured Project: End-to-End Medallion Lakehouse
+## Featured Project: End-to-End Medallion Lakehouse
 
 **Objective:** To provide the Marketing team with sub-5-minute latency for customer behavior analysis.
 
@@ -71,7 +71,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## 📜 Certifications & Education
+## Certifications & Education
 
 * **AWS Certified Data Engineer – Associate** (2024)
 * **dbt Certified Developer** (2023)
@@ -79,7 +79,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ---
 
-## ✍️ Technical Writing & Insights
+## Technical Writing & Insights
 * *Optimizing Spark Joins: How to Handle Data Skew in Production*
 * *Why Your Data Warehouse Needs a Semantic Layer*
 * *The Shift from ETL to ELT: A Practical Guide for Software Engineers*
@@ -89,4 +89,4 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 ### **Let's Connect**
 I am always interested in discussing **distributed systems, data mesh, or cloud cost-optimization**. 
 
-[**Email Me**](mailto:your.email@example.com) / [**LinkedIn**](https://linkedin.com/in/yourprofile) / [**Download Resume (PDF)**](/assets/resume.pdf)
+[**Email Me**](mailto:me@yashwanth.co.in) / [**LinkedIn**](https://linkedin.com/in/yashwanthpandi) / [**Download Resume (PDF)**](/assets/resume.pdf)
