@@ -11,6 +11,7 @@ description              : "Academic portfolio and personal website of Yashwanth
 url                      : "https://yashwanth.co.in" 
 baseurl                  : "" 
 repository               : "https://github.com/YashwanthPandi/PrivateWebsite/"
+timezone                 : "America/Los_Angeles"
 
 # Server Settings
 port: 4000 # Fixes the "Address already in use" error by defaulting to 4001

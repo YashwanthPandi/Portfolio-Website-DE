@@ -94,3 +94,23 @@
     }
   }
 }
+
+/* new footer column layout */
+.footer__columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
+  align-items: center;
+}
+
+.footer__column {
+  flex: 1 1 0;
+
+  &--right {
+    font-size: 0.9em;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+  }
+}

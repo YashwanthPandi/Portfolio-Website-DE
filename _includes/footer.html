@@ -1,17 +1,17 @@
-
-<div class="page__footer-copyright" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; text-align: left;">
-  
-  <div style="flex: 1;">
-    Updated {{ "now" | date: "%A, %B %d, %Y %I:%M:%S %p %Z" }}
-    <br />
-    <br />&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. All
-    rights reserved by Yashwanth.co.in
-  </div>
-
-  <div style="flex: 1; font-size: 0.9em; border-left: 1px solid #ccc; padding-left: 20px;">
-    <em>Disclaimer:</em> No part of this publication may be reproduced,
-    distributed, or transmitted in any form or by any means without prior written 
-    permission. The information provided is for general purposes only and does not
-    constitute professional advice.
+<div class="page__footer-copyright">
+  <div class="footer__columns">
+    <div class="footer__column footer__column--left">
+      Updated {{ "now" | date: "%A, %B %d, %Y %I:%M:%S %p %Z" }}
+      <br> {% if
+      site.commit_hash %} ID: <code>{{ site.commit_hash | slice: 0, 7 }}</code>
+      {% endif %} (_pages/about.md) <br>
+      © {{ "now" | date: "%Y" }} Yashwanth Pandi. All rights reserved by Yashwanth.co.in
+    </div>
+    <div class="footer__column footer__column--right">
+      <em>Disclaimer:</em> No part of this publication may be reproduced,
+      distributed, or transmitted in any form or by any means without prior
+      written permission. The information provided is for general purposes only
+      and does not constitute professional advice.
+    </div>
   </div>
 </div>
