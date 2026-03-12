@@ -2,9 +2,14 @@
   <div class="footer__columns">
     <div class="footer__column footer__column--left">
       Updated {{ "now" | date: "%A, %B %d, %Y %I:%M:%S %p %Z" }}
-      <br> {% if
-      site.commit_hash %} ID: <code>{{ site.commit_hash | slice: 0, 7 }}</code>
-      {% endif %} (_pages/about.md) <br>
+      <br> 
+      {% if site.commit_hash %} 
+        ID: <code>{{ site.commit_hash | slice: 0, 7 }}</code>
+      {% else %}
+        ID: <code>Local-Dev</code>
+      {% endif %} 
+      ({{ page.path }}) 
+      <br>
       © {{ "now" | date: "%Y" }} Yashwanth Pandi. All rights reserved by Yashwanth.co.in
     </div>
     <div class="footer__column footer__column--right">
