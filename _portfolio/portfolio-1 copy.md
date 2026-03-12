@@ -1,28 +1,31 @@
 ---
-title: 'Resilient Data Serving: Implementing a Multi-AZ Three-Tier Architecture on AWS.'
-author_profile: false
-breadcrumbs: true
-categories:
-- AWS 
-comments: true
-date: 2026-03-11
-excerpt: Demonstration of AWS Project features and components.
-header:
-  caption: AWS demonstration
-  overlay_filter: 0.3
-  overlay_image: /assets/images/hero.jpg
+title: "Building a Good Data Architecture"
 layout: splash
+header:
+  overlay_image: /assets/images/hero.jpg
+  overlay_filter: 0.3
+  caption: "AWS demonstration"
+  actions:
+    - label: "View on GitHub"
+      url: "https://github.com/your-username/your-repo"
+    - label: "Download Slides"
+      url: "/assets/files/sample-slides.pdf"
+excerpt: "Demonstration of AWS Project features and components."
+actions:
+  - label: "View GitHub Repo"
+    url: "/about.html"
+  - label: "Download Slides"
+    url: "/about.html"
 modified: 2026-03-08
 read_time: true
 related: true
 share: true
 slidesurl: /assets/files/sample-slides.pdf
 tags:
-- AWS
-- Secuity Groups
-- AWS Monitoring 
-- Scaling VM's 
-title: Building a Good Data Architecture
+  - AWS
+  - Security Groups
+  - AWS Monitoring
+  - Scaling VM's
 type: Mini Project
 venue: Virtual
 ---
@@ -37,15 +40,29 @@ traffic to your web application. You will perform these tasks through the princi
 By going through this Project, you will gain an understanding of the primitive resources available on AWS, so that you can later apply 
 this understanding when you architect your data pipelines as a Data Engineer.
 
+
+Table of Contents        
+---------------
+  - [Introduction](#1)     
+  - [Getting the Address of the Web Application](#2)
+  - [Monitoring CPU Usage and Networking Activity](#3)  
+  - [Enhancing Security](#4)
+  - [Checking EC2 Availability](#5)
+  - [Performing Auto Scaling](#6)
+     - [Using Resources Efficiently](#6-1)
+     - [Performing Auto Scaling](#6-2)
+
+
+<!-- 
 # Table of Contents
-- [1 - Introduction](#1)
-- [2 - Getting the Address of the Web Application](#2)
-- [3 - Monitoring CPU Usage and Networking Activity](#3)
-- [4 - Enhancing Security](#4)
-- [5 - Checking EC2 Availability](#5)
-- [6 - Performing Auto Scaling](#6)
-    - [6.1 - Using Resources Efficiently](#6-1)
-    - [6.2 - Performing Auto Scaling](#6-2)
+- 
+- 
+- 
+- 
+- 
+-  -->
+   
+    
 
 ---
 
