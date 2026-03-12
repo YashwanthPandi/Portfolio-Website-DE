@@ -5,8 +5,6 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
----
-
 # Data Engineering Leader & Software‑Driven Problem Solver
 
 Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
