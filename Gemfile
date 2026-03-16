@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3"
-gem "minima", "~> 2.5"
+gem "jekyll"
+gem "minima"
 
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-seo-tag", "~> 2.8"
-  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-feed"
+  gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
   gem "jekyll-gist"
   gem "jekyll-paginate"
   gem "jekyll-redirect-from"
@@ -15,6 +15,6 @@ group :jekyll_plugins do
 end
 
 group :development do
-  gem "webrick", "~> 1.8"
+  gem "webrick"
 end
-gem "faraday-retry", "~> 2.4"
+gem "faraday-retry"
