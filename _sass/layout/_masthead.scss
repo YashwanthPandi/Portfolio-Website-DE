@@ -79,3 +79,12 @@
   border-bottom: 2px solid var(--global-text-color);
   /* No need to repeat pointer-events and cursor here */
 }
+
+.site-logo {
+  height: 4.5em;
+  max-height: 210px;
+  max-width: 900px;
+  width: auto;
+  vertical-align: middle;
+  display: inline-block;
+}
