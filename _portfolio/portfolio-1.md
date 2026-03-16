@@ -4,7 +4,7 @@ author_profile: false
 bibtexurl: /assets/files/sample.bib
 breadcrumbs: true
 categories:
-- documentation
+- Documentation
 citation: Doe, J. (2026). Example Research Paper.
 comments: true
 date: 2026-03-08
