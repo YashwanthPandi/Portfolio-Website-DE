@@ -6,7 +6,7 @@ author_profile: true
 # redirect_from:
 #   - /resume
 ---
-{% include base_path %}
+<!-- {% include base_path %}
 
 Education
 ======
@@ -49,4 +49,4 @@ Service and leadership
 * Developed data dictionaries and governance documentation following ITIL best practices for three business units.
 * Led cross-functional workshops with operations and procurement teams to enhance forecasting practices and accuracy.
 
-
+ -->
