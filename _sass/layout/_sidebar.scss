@@ -140,6 +140,17 @@
    Author profile and links
    ========================================================================== */
 
+.author-card {
+  @include breakpoint($large) {
+    background: var(--global-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-radius: $border-radius;
+    padding: 1.25rem 1rem 1rem;
+    box-shadow: $box-shadow;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .author__avatar {
   display: table-cell;
   vertical-align: top;
@@ -157,7 +168,7 @@
     width: 36px;
     height: 36px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 10px;
 
     @include breakpoint($large) {
       width: 175px;
