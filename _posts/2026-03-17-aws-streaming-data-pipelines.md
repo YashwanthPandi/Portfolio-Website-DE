@@ -316,4 +316,3 @@ Your job as a data engineer isn't to build the fanciest streaming pipeline. It's
 
 Now go build something real-time.
 
-
