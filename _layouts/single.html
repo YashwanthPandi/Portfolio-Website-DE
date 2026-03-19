@@ -106,21 +106,21 @@ layout: default
         <div class="page__downloads">
 
           {% if page.paperurl %}
-          <a class="btn btn--primary" href="{{ page.paperurl }}">
+          <button class="btn btn--primary" onclick="window.open('{{ page.paperurl }}', '_blank')">
             Paper
-          </a>
+          </button>
           {% endif %}
 
           {% if page.slidesurl %}
-          <a class="btn btn--primary" href="{{ page.slidesurl }}">
+          <button class="btn btn--primary" onclick="window.open('{{ page.slidesurl }}', '_blank')">
             Slides
-          </a>
+          </button>
           {% endif %}
 
           {% if page.bibtexurl %}
-          <a class="btn btn--primary" href="{{ page.bibtexurl }}">
+          <button class="btn btn--primary" onclick="window.open('{{ page.bibtexurl }}', '_blank')">
             BibTeX
-          </a>
+          </button>
           {% endif %}
 
         </div>
@@ -131,9 +131,9 @@ layout: default
 
       {% if page.link %}
       <div class="page__external">
-        <a href="{{ page.link }}" class="btn btn--inverse">
+        <button class="btn btn--inverse" onclick="window.open('{{ page.link }}', '_blank')">
           {{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}
-        </a>
+        </button>
       </div>
       {% endif %}
 

@@ -6,7 +6,8 @@
    Default button
    ========================================================================== */
 
-.btn {
+.btn,
+button.btn {
   /* default button */
   display: inline-block;
   margin-bottom: 0.25em;
@@ -16,7 +17,7 @@
   font-size: $type-size-6;
   font-weight: bold;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   background-color: var(--global-base-color);
   border: 0 !important;
   border-radius: $border-radius;
@@ -24,6 +25,7 @@
 
   &:hover {
     background-color: mix(white, #000, 20%);
+    text-decoration: none !important;
   }
 
   .icon {
@@ -64,6 +66,66 @@
     border: 1px solid #fff !important; /* override*/
     background-color: transparent;
   }
+
+  /* primary */
+
+  &--primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.65em 1.5em;
+    background-color: $primary-color;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: mix(#000, $primary-color, 20%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-decoration: none !important;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.25);
+    }
+  }
+}
+
+button.btn--primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.65em 1.5em;
+  background-color: $primary-color;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: mix(#000, $primary-color, 20%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.25);
+  }
+}
+
+.btn {
 
   /* information */
 
