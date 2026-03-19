@@ -30,6 +30,35 @@ type: Mini Project
 venue: Virtual
 ---
 
+<!-- ---
+title: 
+layout: 
+date: 
+modified: 
+excerpt: 
+author_profile: 
+breadcrumbs: 
+share: 
+related: 
+comments: 
+read_time: 
+categories:
+  - 
+tags:
+  - 
+header:
+  overlay_image: 
+  overlay_filter: 
+  caption: 
+type: 
+venue: 
+link: 
+paperurl: 
+slidesurl: 
+bibtexurl: 
+citation: 
+--- -->
+
 # Building a Good Data Architecture
 
 In this Project, you will explore and assess the security, performance, reliability, and scalability aspects of a 

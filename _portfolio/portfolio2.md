@@ -1,48 +1,34 @@
 ---
-title: "Building End-to-End Batch and Streaming Pipelines"
-collection: portfolio
+title: "Thinking Like a Data Engineer: Building a Production-Grade Recommendation Pipeline"
 layout: splash
-date: 2026-03-08
-last_updated: 2026-03-19
-modified: 2026-03-08
-read_time: true
-related: true
-share: true
-permalink: /portfolio/aws-data-architecture/
 header:
   overlay_image: /assets/images/hero.jpg
   overlay_filter: 0.3
-  caption: "AWS Infrastructure & Data Architecture"
+  caption: "AWS demonstration"
   actions:
     - label: "View on GitHub"
       url: "https://github.com/your-username/your-repo"
     - label: "Download Slides"
       url: "/assets/files/sample-slides.pdf"
-excerpt: "Designing scalable, secure, and cost-effective AWS infrastructure for data systems with proper monitoring and auto-scaling."
+excerpt: "A comprehensive guide to reconciling batch and real-time streaming architectures for high-scale product recommendations."
 actions:
   - label: "View GitHub Repo"
     url: "/about.html"
   - label: "Download Slides"
     url: "/about.html"
+modified: 2026-03-08
+read_time: true
+related: true
+share: true
 slidesurl: /assets/files/sample-slides.pdf
 tags:
   - AWS
-  - Security Groups
-  - AWS Monitoring
-  - Auto-scaling
-  - Infrastructure Design
-  - Data Architecture
-  - CloudWatch
-  - EC2
+  - Python
+  - Apache Spark
+  - Kinesis
+  - Vector Databases
 type: Mini Project
 venue: Virtual
-Technologies:
-  - AWS EC2
-  - Security Groups
-  - CloudWatch
-  - Auto Scaling Groups
-  - Application Load Balancer
-  - AWS Systems Manager
 ---
 
 ## Project Overview
@@ -360,7 +346,6 @@ graph TB
 ```
 
 ## Challenges & Solutions
-
 | Challenge | Solution | Outcome |
 |-----------|----------|---------|
 | **Cold Start Problem** | Content-based filtering for new users | 60% coverage for day-1 users |
