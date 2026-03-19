@@ -13,7 +13,7 @@ header:
   caption: Feature demonstration
   overlay_filter: 0.3
   overlay_image: /assets/images/hero.jpg
-layout: single
+layout: archive
 link: "https://example.com"
 modified: 2026-03-08
 paperurl: /assets/files/sample-paper.pdf
@@ -26,7 +26,7 @@ tags:
 - minimal-mistakes
 - layout
 - guide
-title: Layout Feature Guide
+title: End to End ETL Pipeline both Batch and Streaming Data
 type: Lecture
 venue: Example Conference
 ---
