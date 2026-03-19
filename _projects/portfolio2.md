@@ -11,6 +11,9 @@ header:
     - label: "Download Slides"
       url: "/assets/files/sample-slides.pdf"
 excerpt: "A comprehensive guide to reconciling batch and real-time streaming architectures for high-scale product recommendations."
+external_url: "https://github.com/your-username/your-repo"
+download_url: "/assets/files/sample-slides.pdf"
+internal_url: "/about.html"
 actions:
   - label: "View GitHub Repo"
     url: "/about.html"

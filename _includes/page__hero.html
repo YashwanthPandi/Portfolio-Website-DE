@@ -44,6 +44,32 @@
       {% if page.header.cta_url %}
         <p><a href="{{ cta_path }}" class="btn btn--light-outline btn--large">{{ page.header.cta_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
       {% endif %}
+      
+      <!-- Action Buttons for Project Links -->
+      {% if page.external_url or page.download_url or page.internal_url %}
+      <div class="page__hero-actions">
+        {% if page.external_url %}
+          <a href="{{ page.external_url }}" target="_blank" class="hero-action-btn external-btn" title="Visit External Page">
+            <span class="btn-icon">🔗</span>
+            <span class="btn-text">External</span>
+          </a>
+        {% endif %}
+        
+        {% if page.download_url %}
+          <a href="{{ page.download_url }}" download class="hero-action-btn download-btn" title="Download Asset">
+            <span class="btn-icon">⬇️</span>
+            <span class="btn-text">Download</span>
+          </a>
+        {% endif %}
+        
+        {% if page.internal_url %}
+          <a href="{{ page.internal_url | relative_url }}" class="hero-action-btn internal-btn" title="View Details">
+            <span class="btn-icon">📄</span>
+            <span class="btn-text">Details</span>
+          </a>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
   {% else %}
     <img src="{{ img_path }}" alt="{{ page.title }}" class="page__hero-image">

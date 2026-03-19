@@ -9,14 +9,14 @@ author_profile: true
 
 <div class="res-filter-container">
   <button class="filter-btn active" onclick="filterProjects('all')">All</button>
-  {% assign categories = site.portfolio | map: 'categories' | flatten | uniq | sort %}
+  {% assign categories = site.projects | map: 'categories' | flatten | uniq | sort %}
   {% for category in categories %}
     <button class="filter-btn" onclick="filterProjects('{{ category }}')">{{ category }}</button>
   {% endfor %}
 </div>
 
 <div class="project-grid" id="project-list">
-  {% for post in site.portfolio %}
+  {% for post in site.projects %}
   <a href="{{ post.url | relative_url }}" class="project-card-item" data-category="{{ post.categories | join: ',' }}">
     <div class="card-content">
       <div class="card-meta">
@@ -134,6 +134,47 @@ function filterProjects(category) {
     opacity: 0.7;
     line-height: 1.5;
     margin-bottom: 1.5rem;
+  }
+
+  /* Hero Action Buttons (Individual Project Header) */
+  .page__hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-action-btn:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  .hero-action-btn .btn-icon {
+    font-size: 1rem;
+  }
+
+  .hero-action-btn .btn-text {
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
   }
 
   .card-footer {
