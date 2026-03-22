@@ -5,88 +5,139 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
-# Data Engineering Leader & Software‑Driven Problem Solver
+<style>
+  .skill-container {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 24px;
+  }
+  .skill-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #f1f3f4;
+    padding-bottom: 8px;
+  }
+  .skill-chip {
+    background-color: #f1f3f4;
+    color: #3c4043;
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 4px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    border: 2px solid #dadce0;
+    transition: all 0.2s ease;
+  }
+  .skill-chip:hover {
+    background-color: #4285F4;
+    color: #ffffff;
+    border: 2px solid #4285F4;
+    box-shadow: 0 0 8px rgba(66, 133, 244, 0.4);
+    outline: 2px solid #4285F4;
+    outline-offset: 2px;
+  }
+
+  .project-card-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .project-card {
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .project-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+  }
+
+  .project-card-content {
+    padding: 15px;
+  }
+
+  .project-card-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+  }
+
+  .project-card-desc {
+    font-size: 0.9rem;
+    color: #586069;
+    margin-bottom: 15px;
+  }
+
+  .project-card-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #0366d6;
+    background: #f1f8ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .project-card-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>
+
+# Yashwanth Pandi | [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yashpandi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashpandi) [![Resume](https://img.shields.io/badge/Resume-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://yashpandi.com/resume) [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yash@example.com)
+
+
+**Data Engineering Leader & Software‑Driven Problem Solver**
 
 Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
 
 My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
 
-<!-- ---
-
-## What Recruiters & Hiring Managers Care About
-
-- **End‑to‑end pipeline ownership:** from ingestion through transformation, to warehouse and downstream access.  Comfortable in Python, SQL, Airflow, Spark, dbt, and the AWS ecosystem.  
-- **Cloud‑first focus:** 5+ years in AWS (S3, EMR, Glue, Lambda), Snowflake/Redshift, GCP (BigQuery) and infrastructure as code with Terraform.
-- **Cost & performance optimization:** expertise with spot instances, partitioning strategies, and workload isolation; have reduced compute bills by >30% in production.
-- **Reliability & observability:** integrated automated tests, metrics, and alerting (Prometheus/Grafana, Great Expectations) to achieve 99.9% pipeline SLAs.
-- **Cross‑functional collaboration:** worked closely with BI, analytics, and data science teams; strong communicator who can present technical trade‑offs to non‑technical audiences.
-- **Team growth:** hired and coached junior engineers, conducted code reviews, and led technical design sessions in Agile/Scrum environments.
-
----
-
-## Technical Toolbox
-
-| Category | Technologies |
-|:---------|:-------------|
-| **Languages** | Python (expert), SQL (PostgreSQL, Snowflake, BigQuery), Bash, Java |
-| **Orchestration** | Apache Airflow, Dagster, Prefect |
-| **Compute** | Apache Spark (PySpark), Pandas, Dask, AWS Lambda |
-| **Warehousing** | Snowflake, Redshift, BigQuery, dbt (Core/Cloud) |
-| **Cloud & Infra** | AWS (S3, EMR, Glue), GCP, Docker, Terraform, Kubernetes, GitHub Actions |
-| **Quality/Monitoring** | Great Expectations, SodaSQL, Prometheus, Grafana |
-
----
-
-## Professional Impact & Experience
-
-### **Senior Data Engineer** | [Current Company] 
-*Jan 2022 – Present*
-
-* **Cost Optimization:** Re-architected Spark-based ETL jobs to utilize **Spot Instances** and optimized partitioning, reducing monthly AWS compute costs by **35% ($12k/mo savings)**.
-* **Scalability:** Developed 50+ modular pipelines in **Airflow** processing over **10TB** of daily telemetry data with 99.9% delivery success.
-* **Quality Assurance:** Integrated **dbt-tests** and **Great Expectations** into the CI/CD pipeline, reducing downstream data incidents by **40%**.
-* **Modernization:** Led the migration from an on-premise Hadoop cluster to a **Snowflake** cloud warehouse, improving query performance for the BI team by **5x**.
-
-### **Data Engineer (Software Focused)** | [Previous Company]
-*June 2019 – Dec 2021*
-
-* **Automation:** Developed a custom Python framework for API data ingestion, replacing manual processes and saving the engineering team **80+ man-hours per month**.
-* **Modeling:** Designed and implemented a **Star Schema** architecture in Redshift, streamlining reporting for Finance and Marketing stakeholders.
-* **Observability:** Built a real-time monitoring dashboard using Prometheus/Grafana to track pipeline latency and row-count drift.
-
----
-
-## Featured Project: End-to-End Medallion Lakehouse
-
-**Objective:** To provide the Marketing team with sub-5-minute latency for customer behavior analysis.
-
-
-
-* **Bronze (Raw):** Event-driven ingestion using **AWS Kinesis** and Lambda to land raw JSON in S3.
-* **Silver (Cleaned):** Spark jobs handle deduplication, schema enforcement, and PII masking.
-* **Gold (Curated):** **dbt** models transform data into business-ready dimensions and facts.
-* **Infrastructure:** Deployed entirely via **Terraform** to ensure environment parity between Dev and Prod.
-
-> [**View System Design & Repo on GitHub →**](https://github.com/yourusername/project)
-
----
-
-## Certifications & Education
-
-* **AWS Certified Data Engineer – Associate** (2024)
-* **dbt Certified Developer** (2023)
-* **B.S. in Computer Science** | [University Name] | 2019
-
----
-
-## Technical Writing & Insights
-* *Optimizing Spark Joins: How to Handle Data Skew in Production*
-* *Why Your Data Warehouse Needs a Semantic Layer*
-* *The Shift from ETL to ELT: A Practical Guide for Software Engineers*
-
----
-
-### **Let's Connect**
-I am always interested in discussing **distributed systems, data mesh, or cloud cost-optimization**. 
-
-[**Email Me**](mailto:me@yashwanth.co.in) / [**LinkedIn**](https://linkedin.com/in/yashwanthpandi) / [**Download Resume (PDF)**](/assets/resume.pdf) -->
+## Technology Stack
+<div class="skill-container">
+<span class="skill-chip">Amazon Web Services</span>
+<span class="skill-chip">Data Pipelines</span>
+<span class="skill-chip">Scalability</span>
+<span class="skill-chip">Data Processing</span>
+<span class="skill-chip">Data Architecture</span>
+<span class="skill-chip">Amazon Redshift</span>
+<span class="skill-chip">Security Controls</span>
+<span class="skill-chip">Data Warehousing</span>
+<span class="skill-chip">Cloud Computing</span>
+<span class="skill-chip">Database Design</span>
+<span class="skill-chip">AWS Kinesis</span>
+<span class="skill-chip">Performance Tuning</span>
+<span class="skill-chip">Apache Airflow</span>
+<span class="skill-chip">Extract, Transform, Load (ETL)</span>
+<span class="skill-chip">Infrastructure as Code (IaC)</span>
+<span class="skill-chip">Terraform</span>
+<span class="skill-chip">Amazon CloudWatch</span>
+<span class="skill-chip">CI/CD</span>
+<span class="skill-chip">Dataflow</span>
+<span class="skill-chip">IT Automation</span>
+<span class="skill-chip">Query Languages</span>
+<span class="skill-chip">Data Lakes</span>
+<span class="skill-chip">SQL</span>
+<span class="skill-chip">Vector Databases</span>
+<span class="skill-chip">Apache Kafka</span>
+<span class="skill-chip">Amazon S3</span>
+<span class="skill-chip">Apache Spark</span>
+<span class="skill-chip">Star Schema</span>
+<span class="skill-chip">Apache Hadoop</span>
+<span class="skill-chip">Machine Learning</span>
+</div>
