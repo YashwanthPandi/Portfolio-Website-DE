@@ -1,3 +1,11 @@
+<a href="https://jekyll-themes.com//[GITHUB REPOSITORY NAME]">
+  <img
+    src="https://img.shields.io/badge/featured%20on-JT-red.svg"
+    height="20"
+    alt="Jekyll Themes Shield"
+  />
+</a>
+
 # My Personal Portfolio
 **Based on the Academic Pages framework for Jekyll.**
 
