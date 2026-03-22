@@ -11,7 +11,7 @@ Seasoned **Data Engineer** with a software‑developer’s mindset and a track r
 
 My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
 
----
+<!-- ---
 
 ## What Recruiters & Hiring Managers Care About
 
@@ -89,4 +89,4 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 ### **Let's Connect**
 I am always interested in discussing **distributed systems, data mesh, or cloud cost-optimization**. 
 
-[**Email Me**](mailto:me@yashwanth.co.in) / [**LinkedIn**](https://linkedin.com/in/yashwanthpandi) / [**Download Resume (PDF)**](/assets/resume.pdf)
+[**Email Me**](mailto:me@yashwanth.co.in) / [**LinkedIn**](https://linkedin.com/in/yashwanthpandi) / [**Download Resume (PDF)**](/assets/resume.pdf) -->
