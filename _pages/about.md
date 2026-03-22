@@ -5,6 +5,7 @@ redirect_from:
 - "/about/"
 - "/about.html"
 ---
+
 <style>
   .skill-container {
     font-family: 'Roboto', sans-serif;
@@ -107,6 +108,40 @@ redirect_from:
 Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
 
 My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
+
+## Featured Projects
+
+<div class="row row-cols-1 row-cols-md-3 g-4 row-cols-2 row-cols-md-">
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://static.thenounproject.com/png/default-image-icon-4595376-512.png" class="card-img-top" alt="Demo-IMG">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://static.thenounproject.com/png/default-image-icon-4595376-512.png" class="card-img-top" alt="Demo-IMG">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://static.thenounproject.com/png/default-image-icon-4595376-512.png" class="card-img-top" alt="Demo-IMG">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
 
 ## Technology Stack
 <div class="skill-container">
