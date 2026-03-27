@@ -103,12 +103,12 @@ redirect_from:
 # Yashwanth Pandi | [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yashwanthpandi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashwanthpandi) [![Resume](https://img.shields.io/badge/Resume-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://yashwanth.co.in/resume) [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:me@yashwanth.co.in)
 **Data Engineering Leader & Software‑Driven Problem Solver**
 -->
-![GitHub Contributions](https://ghchart.rshah.org/YashwanthPandi) 
-
-
 Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
 
+![GitHub Contributions](https://ghchart.rshah.org/YashwanthPandi) 
+
 My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
+
 
 ## Technology Stack
 <div class="skill-container">
