@@ -13,7 +13,7 @@ tags:
   - Kafka
   - Data Engineering
 ---
-
+<br>
 You've built batch pipelines. You've optimized your ETL workflows. But then reality hits: **data doesn't wait**. Your customers want real-time recommendations. Your infrastructure team needs live metrics. Your sensors are producing data *right now*. 
 
 Welcome to the world of streaming data. Unlike batch processing where data arrives in neat, scheduled chunks, streaming data flows continuously from sources like IoT devices, clickstreams, or database change events. The challenge isn't just *how* to process it—it's *what tool* should you choose?

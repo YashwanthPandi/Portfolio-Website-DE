@@ -11,7 +11,7 @@ tags:
   - Architecture
   - Cloud
 ---
-
+<br>
 In data engineering, the transition from gathering requirements to selecting a tech stack is where the "magic" (and the danger) happens. It's easy to get distracted by the latest high-performance tools, but as the author Joe Reis often illustrates, **choosing a data tool without context is like choosing a vehicle without knowing your destination**.
 
 ## The Vehicle Analogy: Context is Everything

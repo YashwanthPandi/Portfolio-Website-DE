@@ -10,8 +10,7 @@ tags:
   - System Architecture
   - Apache Beam
 ---
-
-# The Architect’s Blueprint: From Data Warehouses to the Data Mesh
+<br>
 
 In the early days of computing, data was simple. You had a database, you ran a query,
 and you got an answer. Today, data is a tidal wave. For a Data Engineer,

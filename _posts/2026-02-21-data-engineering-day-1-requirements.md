@@ -12,6 +12,7 @@ tags:
 - business-requirement-gatering
 - Data Scientist
 ---
+<br>
 If you are here, you’re likely excited to start "spinning up resources" in the Cloud or writing Python scripts. But here is the truth: **The most expensive mistake a Data Engineer can make is building the wrong thing efficiently.**
 
 Before we touch the keyboard, we need to master the art of translation.
