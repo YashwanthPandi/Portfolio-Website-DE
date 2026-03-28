@@ -98,17 +98,119 @@ redirect_from:
     font-weight: bold;
     text-decoration: none;
   }
+
+  .certification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    align-items: center;
+    justify-items: center;
+    margin: 24px 0;
+  }
+
+  .cert-badge {
+    width: 100%;
+    max-width: 190px;
+    height: 220px;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cert-badge span {
+    margin-top: 8px;
+    display: block;
+    font-size: 0.78rem;
+    color: #222;
+    max-height: 42px;
+    line-height: 1.2;
+    padding: 0 4px;
+  }
+
+  .cert-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  }
+
+  .cert-badge img {
+    display: block;
+    max-width: 160px;
+    max-height: 110px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 8px auto;
+    background: #ffffff;
+  }
+  .cert-badge .cert-icon {
+    width: 160px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cert-badge a {
+    display: block;
+    text-align: center;
+    padding: 9px 8px 12px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
 </style>
 <!-- 
 # Yashwanth Pandi | [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yashwanthpandi) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashwanthpandi) [![Resume](https://img.shields.io/badge/Resume-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://yashwanth.co.in/resume) [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:me@yashwanth.co.in)
 **Data Engineering Leader & Software‑Driven Problem Solver**
 -->
+
+
 Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
 
 ![GitHub Contributions](https://ghchart.rshah.org/YashwanthPandi) 
 
 My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
 
+## Certifications
+
+<div class="certification-grid">
+  <div class="cert-badge">
+    <a href="https://aws.amazon.com/certification/certified-data-engineer-associate/" aria-label="AWS Certified Data Engineer - Associate">
+      <div class="cert-icon"><img src="https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/images/certification-badges/dea-badge-resized.46424d5f94ca6c466febd476c86c5d8fe437db1d.png" alt="AWS Certified Data Engineer - Associate" /></div>
+      <span>AWS Data Engineer Associate</span>
+    </a>
+  </div>
+
+  <div class="cert-badge">
+    <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" aria-label="AWS Certified Cloud Practitioner">
+      <div class="cert-icon"><img src="https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png" alt="AWS Certified Cloud Practitioner" /></div>
+      <span>AWS Cloud Practitioner</span>
+    </a>
+  </div>
+
+  <div class="cert-badge">
+    <a href="https://www.coursera.org/learn/google-cybersecurity" aria-label="Google Cybersecurity Certificate">
+      <div class="cert-icon"><img src="https://images.credly.com/size/680x680/images/50cc91fd-d223-4ef0-a512-ab251ba7e812/image.png" alt="Google Cybersecurity Certificate" /></div>
+      <span>Google Cybersecurity</span>
+    </a>
+  </div>
+
+  <div class="cert-badge">
+    <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/agile.html" aria-label="Cisco Agile Fundamentals Certificate">
+      <div class="cert-icon"><img src="https://images.credly.com/images/0ee78720-fba8-4171-adc6-3fcb93ae38b0/Asset_5600.png" alt="Cisco Agile Fundamentals Certificate" /></div>
+      <span>Cisco Agile Fundamentals</span>
+    </a>
+  </div>
+</div>
 
 ## Technology Stack
 <div class="skill-container">
