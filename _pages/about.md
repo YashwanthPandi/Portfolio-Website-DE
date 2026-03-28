@@ -185,7 +185,7 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 <div class="certification-grid">
   <div class="cert-badge">
     <a href="https://aws.amazon.com/certification/certified-data-engineer-associate/" aria-label="AWS Certified Data Engineer - Associate">
-      <div class="cert-icon"><img src="https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/images/certification-badges/dea-badge-resized.46424d5f94ca6c466febd476c86c5d8fe437db1d.png" alt="AWS Certified Data Engineer - Associate" /></div>
+      <div class="cert-icon"><img src="https://img-c.udemycdn.com/open-badges/v2/badge-class/1309014830/97c586f8-400c-427e-951d-7352f731b0de1572374724681906937.png" alt="AWS Certified Data Engineer - Associate" /></div>
       <span>AWS Data Engineer Associate</span>
     </a>
   </div>
