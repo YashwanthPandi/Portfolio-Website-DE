@@ -1,5 +1,5 @@
 ---
-author_profile: true
+author_profile: false
 bibtexurl: /assets/files/sample.bib
 breadcrumbs: true
 categories:
