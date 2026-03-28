@@ -27,7 +27,6 @@ author:
   uri              : 
   email            : "pandiyashwanth@gmail.com" 
   github           : "yashwanthpandi"
-  medium           : "yashwanth"
   stackoverflow    : ""    
 
 # Site Settings
@@ -129,11 +128,18 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-gist
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
   - jekyll-admin
+
+# Pagination configuration (jekyll-paginate-v2)
+pagination:
+  enabled: true
+  per_page: 6
+  permalink: "/blog/page:num/"
+  title: ":title - page :num"
 
 # HTML Compression
 compress_html:
