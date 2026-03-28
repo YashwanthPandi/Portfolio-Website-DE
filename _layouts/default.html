@@ -12,10 +12,18 @@ layout: compress
 
   <body>
 
+    <div id="spaLoader" class="spa-loader" aria-hidden="true">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    {{ content }}
+    <main id="page-content">
+      {{ content }}
+    </main>
 
     <div class="page__footer">
       <footer>

@@ -3,19 +3,21 @@ layout: archive
 title: "Blogs"
 permalink: /blog/
 author_profile: true
-pagination:
-  enabled: true
-  per_page: 6
-  permalink: /blog/page:num/
 ---
 {% include base_path %}
 
+<div id="spaLoader" class="spa-loader" aria-hidden="true">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
 <div class="res-filter-container">
   <div class="res-filter-actions">
-    <button class="filter-btn active" onclick="filterBlogs('all')">All</button>
-    <button class="filter-btn" onclick="filterBlogs('career')">Career</button>
-    <button class="filter-btn" onclick="filterBlogs('data')">Data</button>
-    <button class="filter-btn" onclick="filterBlogs('engineering')">Engineering</button>
+    <button class="filter-btn active" onclick="setCategory('all')">All</button>
+    <button class="filter-btn" onclick="setCategory('career')">Career</button>
+    <button class="filter-btn" onclick="setCategory('data')">Data</button>
+    <button class="filter-btn" onclick="setCategory('engineering')">Engineering</button>
   </div>
 
   <div class="res-filter-actions" style="margin-left:auto; justify-content:flex-end; gap: 0.75rem;">
@@ -33,12 +35,12 @@ pagination:
     </select>
   </div>
 
-  <input id="filterSearch" type="search" placeholder="Search titles & excerpts..." oninput="filterBlogs('all')" aria-label="Search blog posts" />
+  <input id="filterSearch" type="search" placeholder="Search titles & excerpts..." oninput="filterBlogs()" aria-label="Search blog posts" />
 </div>
 
 <div class="post-list-minimal">
   {% assign written_year = "" %}
-  {% for post in paginator.posts %}
+  {% for post in site.posts %}
     {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
     {% if year != written_year %} 
       <!-- <span class="year-marker" data-year="{{ year }}">{{ year }}</span> -->
@@ -69,52 +71,70 @@ pagination:
   {% endfor %}
 </div>
 
-<div class="pagination-nav" style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1.25rem;">
-  {% if paginator.previous_page %}
-    <a class="pagination-link" href="{{ paginator.previous_page_path | relative_url }}">◀ Previous</a>
-  {% endif %}
 
-  {% for i in (1..paginator.total_pages) %}
-    {% if i == paginator.page %}
-      <span class="pagination-link active" style="font-weight:700;">{{ i }}</span>
-    {% else %}
-      <a class="pagination-link" href="{{ paginator.paginate_path | relative_url | replace: ':num', i }}">{{ i }}</a>
-    {% endif %}
-  {% endfor %}
-
-  {% if paginator.next_page %}
-    <a class="pagination-link" href="{{ paginator.next_page_path | relative_url }}">Next ▶</a>
-  {% endif %}
-</div>
 
 <script>
-function filterBlogs(category) {
-  const items = document.querySelectorAll('.blog-post-item');
-  const buttons = document.querySelectorAll('.filter-btn');
-  const yearMarkers = document.querySelectorAll('.year-marker');
-  const searchInput = document.getElementById('filterSearch');
-  const searchText = searchInput ? searchInput.value.trim().toLowerCase() : '';
+const blogState = {
+  category: 'all',
+  sortOrder: 'desc',
+  postsPerPage: 6,
+  searchText: ''
+};
 
-  // Update button active state
-  buttons.forEach(btn => {
-    btn.classList.toggle('active', btn.innerText.toLowerCase() === category.toLowerCase());
+function showLoader() {
+  const loader = document.getElementById('spaLoader');
+  if (loader) loader.style.display = 'flex';
+}
+
+function hideLoader() {
+  const loader = document.getElementById('spaLoader');
+  if (loader) loader.style.display = 'none';
+}
+
+function applyFiltersAndSort() {
+  showLoader();
+  setTimeout(() => {
+    const container = document.querySelector('.post-list-minimal');
+    const allPosts = Array.from(container.querySelectorAll('.blog-post-item'));
+
+    // Filter + Search
+    const visiblePosts = allPosts.filter(post => {
+    const categories = (post.getAttribute('data-category') || '')
+      .split(',')
+      .map(c => c.trim().toLowerCase())
+      .filter(Boolean);
+
+    const title = (post.querySelector('.res-name')?.textContent || '').toLowerCase();
+    const desc = (post.querySelector('.res-desc')?.textContent || '').toLowerCase();
+
+    const categoryMatch = blogState.category === 'all' || categories.includes(blogState.category);
+    const searchMatch = !blogState.searchText || title.includes(blogState.searchText) || desc.includes(blogState.searchText);
+
+    return categoryMatch && searchMatch;
   });
 
-  items.forEach(item => {
-    const itemCategories = item.getAttribute('data-category').split(',');
-    const name = item.querySelector('.res-name')?.textContent?.toLowerCase() || '';
-    const desc = item.querySelector('.res-desc')?.textContent?.toLowerCase() || '';
-    const matchesCategory = category === 'all' || itemCategories.includes(category);
-    const matchesSearch = !searchText || name.includes(searchText) || desc.includes(searchText);
+  // Sort
+  visiblePosts.sort((a, b) => {
+    const dateA = new Date(a.dataset.date);
+    const dateB = new Date(b.dataset.date);
+    return blogState.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+  });
 
-    if (matchesCategory && matchesSearch) {
-      item.style.display = 'flex';
-    } else {
-      item.style.display = 'none';
+  // Re-append sorted posts, set visibility based on pagination limit
+  let shown = 0;
+  allPosts.forEach(post => post.style.display = 'none');
+
+  visiblePosts.forEach(post => {
+    if (shown < blogState.postsPerPage) {
+      post.style.display = 'flex';
+      shown += 1;
     }
   });
 
-  // Hide year markers if no posts are visible under them
+  visiblePosts.forEach(post => container.appendChild(post));
+
+  // Update year markers
+  const yearMarkers = document.querySelectorAll('.year-marker');
   yearMarkers.forEach(marker => {
     let next = marker.nextElementSibling;
     let hasVisible = false;
@@ -127,62 +147,96 @@ function filterBlogs(category) {
     }
     marker.style.display = hasVisible ? 'block' : 'none';
   });
+
+  hideLoader();
+}, 120);
 }
 
-let postsPerPage = 6;
+function setCategory(category) {
+  blogState.category = category;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === category);
+  });
+  applyFiltersAndSort();
+}
+
+function setSortOrder(order) {
+  blogState.sortOrder = order;
+  applyFiltersAndSort();
+}
 
 function setPostsPerPage(value) {
-  postsPerPage = Number(value);
-  applyPostLimit();
+  blogState.postsPerPage = Number(value);
+  applyFiltersAndSort();
 }
 
-function applyPostLimit() {
-  const allPosts = Array.from(document.querySelectorAll('.blog-post-item'));
-  let shownCount = 0;
-
-  allPosts.forEach(post => {
-    if (post.style.display === 'none') {
-      return;
-    }
-    if (shownCount < postsPerPage) {
-      post.style.display = 'flex';
-      shownCount += 1;
-    } else {
-      post.style.display = 'none';
-    }
-  });
-
-  // Optionally hide year markers under hidden posts if implemented.
+function setSearchText(value) {
+  blogState.searchText = value.trim().toLowerCase();
+  applyFiltersAndSort();
 }
 
-function sortPosts(order) {
-  const container = document.querySelector('.post-list-minimal');
-  const posts = Array.from(container.querySelectorAll('.blog-post-item'));
-  const sorted = posts.sort((a, b) => {
-    const dateA = new Date(a.dataset.date);
-    const dateB = new Date(b.dataset.date);
-    return order === 'asc' ? dateA - dateB : dateB - dateA;
+function pushStateToUrl() {
+  const params = new URLSearchParams();
+  if (blogState.category && blogState.category !== 'all') params.set('category', blogState.category);
+  if (blogState.sortOrder && blogState.sortOrder !== 'desc') params.set('sort', blogState.sortOrder);
+  if (blogState.postsPerPage && blogState.postsPerPage !== 6) params.set('per_page', String(blogState.postsPerPage));
+  if (blogState.searchText) params.set('search', blogState.searchText);
+  const url = `${location.pathname}?${params.toString()}`;
+  history.replaceState(blogState, '', url);
+}
+
+function restoreStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  blogState.category = params.get('category') || 'all';
+  blogState.sortOrder = params.get('sort') || 'desc';
+  blogState.postsPerPage = Number(params.get('per_page') || 6);
+  blogState.searchText = params.get('search') || '';
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === blogState.category);
   });
-  sorted.forEach(post => container.appendChild(post));
-  // Re-apply filter state and pagination limit after reorder
-  const activeItem = document.querySelector('.filter-btn.active');
-  const category = activeItem ? activeItem.innerText.toLowerCase() : 'all';
-  filterBlogs(category);
-  applyPostLimit();
+
+  const sortOrder = document.getElementById('sortOrder');
+  if (sortOrder) sortOrder.value = blogState.sortOrder;
+
+  const postsPerPage = document.getElementById('postsPerPage');
+  if (postsPerPage) postsPerPage.value = String(blogState.postsPerPage);
+
+  const searchInput = document.getElementById('filterSearch');
+  if (searchInput) searchInput.value = blogState.searchText;
+
+  applyFiltersAndSort();
 }
 
 function initBlogControls() {
-  const sortOrder = document.getElementById('sortOrder');
-  const postsPerPageSelect = document.getElementById('postsPerPage');
-  if (sortOrder) {
-    sortOrder.value = 'desc';
-  }
-  if (postsPerPageSelect) {
-    postsPerPageSelect.value = String(postsPerPage);
-  }
-  filterBlogs('all');
-  applyPostLimit();
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setCategory(btn.innerText.trim().toLowerCase());
+      pushStateToUrl();
+    });
+  });
+
+  document.getElementById('sortOrder')?.addEventListener('change', e => {
+    setSortOrder(e.target.value);
+    pushStateToUrl();
+  });
+
+  document.getElementById('postsPerPage')?.addEventListener('change', e => {
+    setPostsPerPage(e.target.value);
+    pushStateToUrl();
+  });
+
+  document.getElementById('filterSearch')?.addEventListener('input', e => {
+    setSearchText(e.target.value);
+    pushStateToUrl();
+  });
+
+  window.addEventListener('popstate', () => restoreStateFromUrl());
+
+  restoreStateFromUrl();
 }
+
+window.onSpaPageLoad = initBlogControls;
 
 document.addEventListener('DOMContentLoaded', initBlogControls);
 </script>
@@ -252,6 +306,84 @@ document.addEventListener('DOMContentLoaded', initBlogControls);
     border-radius: 14px;
     border: 1px solid rgba(120, 130, 150, 0.2);
     box-shadow: 0 2px 8px rgba(22, 27, 35, 0.05);
+  }
+
+  a, a:link, a:visited {
+    color: var(--text-color, #1a202c);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  a:hover, a:focus {
+    color: #1d4ed8;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .res-item:hover {
+    border-color: #1d4ed8;
+    box-shadow: 0 8px 24px rgba(29,78,216,0.18);
+    background: rgba(29,78,216,0.04);
+  }
+
+  .pagination-link {
+    color: #1d4ed8;
+    border: 1px solid transparent;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .pagination-link:hover {
+    background: rgba(29, 78, 216, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .filter-btn:hover {
+    border-color: #1d4ed8;
+    color: #1d4ed8;
+  }
+
+  .filter-btn.active {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #fff;
+  }
+
+  .spa-loader {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(2px);
+  }
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border: 0.35rem solid rgba(29, 78, 216, 0.35);
+    border-top-color: #1d4ed8;
+    border-radius: 50%;
+    animation: spinner 0.75s linear infinite;
+  }
+
+  @keyframes spinner {
+    to { transform: rotate(360deg); }
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
   }
 
   #filterSearch {
