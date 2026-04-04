@@ -1,5 +1,5 @@
 ---
-title: 'Weekly Porgress - Data Engineering'
+title: 'Weekly Progress - Data Engineering'
 description: 'I’ve been deep-diving into how data is generated, stored, and the mechanical differences between various source architectures.'
 collection: posts
 permalink: "/posts/2026/04/Weekly-Progress-1/"
