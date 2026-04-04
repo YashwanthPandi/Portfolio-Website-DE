@@ -48,13 +48,6 @@ How does data get into your private sandbox?
 
 ---
 
-## 4. The Engineering Value Formula (Networking Edition)
-
-Just like we discussed in [Day 1](/posts/2026/02/data-engineering-business-requirement-gathering/), our goal is to maximize value. In networking, that means optimizing for security and cost.
-
-$$\text{Value} = \frac{\text{Data Security} \times \text{Pipeline Speed}}{\text{NAT Gateway Fees} + \text{Egress Costs}}$$
-
-By using **VPC Endpoints** instead of a NAT Gateway for S3 access, you reduce the denominator (Cost) while increasing the numerator (Security), directly increasing the value of your architecture.
 
 ---
 
