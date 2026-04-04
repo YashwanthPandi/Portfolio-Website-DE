@@ -1,9 +1,9 @@
 ---
-title: 'Data Engineering Day 2: The Infrastructure Foundation (AWS VPC)'
-description: 'Why mastering networking is the secret weapon for building secure and cost-effective data pipelines.'
+title: 'Weekly Porgress - Data Engineering'
+description: 'I’ve been deep-diving into how data is generated, stored, and the mechanical differences between various source architectures.'
 collection: posts
-permalink: "/posts/2026/04/data-engineering-aws-vpc-networking/"
-date: '2026-04-01 23:00:00'
+permalink: "/posts/2026/04/Weekly-Progress-1/"
+date: '2026-04-03 23:11:00'
 tags:
 - data engineering
 - aws
@@ -12,49 +12,42 @@ tags:
 - systems design
 ---
 
-<br>
-In the early days of data engineering, you could get by just knowing SQL and a bit of Python. But as "Cloud-Native" becomes the standard, the line between **Data Engineering** and **Cloud Infrastructure** has blurred. 
+## 📈 Weekly Summary: The "Ground Truth" of Data Engineering
 
-If you’ve ever had a Spark job fail because it couldn't reach an S3 bucket, or an RDS connection timeout that left you scratching your head, you’ve hit a networking wall. This post is the "missing manual" on AWS VPCs for data professionals.
+This week, I shifted my focus to the very beginning of the **Data Engineering Lifecycle**: Source Systems. You can't build a reliable pipeline if you don't understand where the data starts. 
 
-## 1. The VPC: Your Private Data Sandbox
-A **Virtual Private Cloud (VPC)** is your logically isolated slice of the AWS cloud. Think of it as a physical data center, but defined by code. For a data engineer, the VPC is where your "source of truth" lives.
+I’ve been deep-diving into how data is generated, stored, and the mechanical differences between various source architectures.
 
-### The Subnet Strategy
-Within a VPC, you divide your space into **Subnets**:
-* **Public Subnets:** These have a route to the Internet Gateway. In data land, these are rare. You might put a bastion host (jump box) here, but never your raw data.
-* **Private Subnets:** These have no direct route to the internet. This is where your **Redshift clusters**, **RDS instances**, and **EMR nodes** should live.
+### 🔑 Key Learning Milestones
 
----
+#### 1. Categorizing Data Types
+Understanding the "shape" of data determines the ingestion strategy:
+* **Structured:** Tabular data (RDBMS) with strict schemas.
+* **Semi-Structured:** JSON/XML formats. Flexible but requires careful parsing.
+* **Unstructured:** The "wild west" of data—images, audio, and PDFs.
 
-## 2. The Gatekeepers: Security Groups vs. NACLs
-Security in a VPC is like a high-security building:
+#### 2. Relational (SQL) vs. Non-Relational (NoSQL)
+* **ACID Compliance:** I revisited why **Atomicity, Consistency, Isolation, and Durability** are the bedrock of OLTP systems (like banking). 
+* **NoSQL Flexibility:** Explored Key-Value and Document stores. I learned that while NoSQL scales horizontally with ease, it can become a "management nightmare" if you don't handle schema changes properly downstream.
+* **Eventual Consistency:** A trade-off where speed is prioritized over immediate data synchronization across all nodes.
 
-| Feature | Level | Type | Memory |
-| :--- | :--- | :--- | :--- |
-| **Network ACLs** | Subnet | Stateless | Does not remember traffic; checks every packet. |
-| **Security Groups** | Instance/Resource | Stateful | Automatically allows return traffic for a request. |
-
-**Pro Tip:** Most connection issues are solved at the **Security Group** level. If your Glue job can't talk to your database, check if the database's Security Group allows inbound traffic on the specific port (e.g., 5432 for Postgres) from the Glue Security Group.
+#### 3. Modern Storage & Streaming
+* **Object Storage (Amazon S3):** Mastered the concept of "flat" storage. Using UUIDs and metadata instead of a traditional file hierarchy makes S3 the ideal "landing zone" for data lakes.
+* **The Power of Logs:** Realized that a **Log** is more than just a debug tool; it's an append-only sequence of events that forms the foundation of real-time streaming.
 
 ---
 
-## 3. Data Ingestion & The "Outside World"
-How does data get into your private sandbox?
+### 🛠️ Technical Implementation: AWS & Python
+I spent a significant portion of the week in the terminal working with the **Boto3 SDK**:
+* **DynamoDB CRUD:** Practiced creating tables, putting items, and querying data programmatically.
+* **Composite Keys:** Implemented Partition Keys and Sort Keys to optimize data retrieval.
+* **Schema-less Design:** Experimented with adding distinct attributes to different items within the same DynamoDB table.
 
-* **Internet Gateway (IGW):** The front door for public-facing resources. 
-* **NAT Gateway:** Used when your private ETL tools need to reach *out* to the internet (to pull an API or download a library) without letting the internet reach *in*.
-* **VPC Endpoints (The Secret Sauce):** Standard internet routes are slow and potentially insecure. A **VPC Endpoint** allows your VPC to talk to S3 or DynamoDB using AWS's internal private network. 
+### 🚀 What's Next?
+Next week, I move into **Orchestration and Automation**. I'll be looking at:
+* Setting up **Directed Acyclic Graphs (DAGs)**.
+* Working with **Infrastructure as Code (IaC)**.
+* Automating data quality monitoring.
 
 ---
 
-
----
-
-### Key Discovery Questions for Infrastructure
-When you are moving from requirements to building, ask yourself:
-1.  **Locality:** Is my compute (Lambda/Glue) in the same VPC as my data (RDS/Redshift)?
-2.  **Privacy:** Does this data *need* to traverse the public internet?
-3.  **Connectivity:** Do I need a VPC Peering connection to access a source database in another account?
-
-Mastering these concepts transforms you from a "script writer" to a **Data Architect**. Next time you're designing an ingestion flow, don't just ask "What is the schema?"—ask "What is the route?"
