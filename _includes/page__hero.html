@@ -23,6 +23,46 @@
   {% capture overlay_filter %}rgba(0, 0, 0, {{ page.header.overlay_filter }}){% endcapture %}
 {% endif %}
 
+<style>
+  .page__hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .hero-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 30px; /* Pill shape */
+    background: rgba(255,255,255,0.15);
+    color: #fff !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .hero-action-btn:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: #fff !important;
+  }
+
+  .github-btn {
+    background: rgba(36, 41, 47, 0.6);
+  }
+</style>
+
 <div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
   style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if overlay_img_path %}background-image: {% if overlay_filter %}linear-gradient({{ overlay_filter }}, {{ overlay_filter }}), {% endif %}url('{{ overlay_img_path }}');{% endif %}"
 >
@@ -46,8 +86,15 @@
       {% endif %}
       
       <!-- Action Buttons for Project Links -->
-      {% if page.external_url or page.download_url or page.internal_url %}
+      {% if page.github_url or page.external_url or page.download_url or page.internal_url %}
       <div class="page__hero-actions">
+        {% if page.github_url %}
+          <a href="{{ page.github_url }}" target="_blank" class="hero-action-btn github-btn" title="View on GitHub">
+            <span class="btn-icon"><i class="fab fa-fw fa-github" aria-hidden="true"></i></span>
+            <span class="btn-text">GitHub</span>
+          </a>
+        {% endif %}
+
         {% if page.external_url %}
           <a href="{{ page.external_url }}" target="_blank" class="hero-action-btn external-btn" title="Visit External Page">
             <span class="btn-icon">🔗</span>
