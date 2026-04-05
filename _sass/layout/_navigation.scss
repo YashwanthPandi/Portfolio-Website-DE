@@ -221,7 +221,7 @@
     li {
       display: inline-block;
       vertical-align: middle;
-      margin: 0 0.75rem; /* spacing between links */
+      margin: 0 0.25rem; /* reduced margin to accommodate button padding */
 
       &:first-child {
         font-weight: bold;
@@ -250,26 +250,13 @@
 
     a {
       position: relative;
+      padding: 0.5rem 0.75rem;
+      border-radius: $border-radius;
+      transition: $global-transition;
 
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 4px;
+      &:hover {
         background: var(--global-border-color);
-        width: 100%;
-        -webkit-transition: $global-transition;
-        transition: $global-transition;
-        -webkit-transform: scaleX(0);
-            -ms-transform: scaleX(0);
-                transform: scaleX(0); /* hide*/
-      }
-
-      &:hover:before {
-        -webkit-transform: scaleX(1);
-            -ms-transform: scaleX(1);
-                transform: scaleX(1); /* reveal*/
+        text-decoration: none;
       }
     }
   }
