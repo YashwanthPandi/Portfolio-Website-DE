@@ -12,13 +12,13 @@ tags:
 - systems design
 ---
 
-## 📈 Weekly Summary: The "Ground Truth" of Data Engineering
+##  Weekly Summary: The "Ground Truth" of Data Engineering
 
 This week, I shifted my focus to the very beginning of the **Data Engineering Lifecycle**: Source Systems. You can't build a reliable pipeline if you don't understand where the data starts. 
 
 I’ve been deep-diving into how data is generated, stored, and the mechanical differences between various source architectures.
 
-### 🔑 Key Learning Milestones
+###  Key Learning Milestones
 
 #### 1. Categorizing Data Types
 Understanding the "shape" of data determines the ingestion strategy:
@@ -37,17 +37,12 @@ Understanding the "shape" of data determines the ingestion strategy:
 
 ---
 
-### 🛠️ Technical Implementation: AWS & Python
+###  Technical Implementation: AWS & Python
 I spent a significant portion of the week in the terminal working with the **Boto3 SDK**:
 * **DynamoDB CRUD:** Practiced creating tables, putting items, and querying data programmatically.
 * **Composite Keys:** Implemented Partition Keys and Sort Keys to optimize data retrieval.
 * **Schema-less Design:** Experimented with adding distinct attributes to different items within the same DynamoDB table.
 
-### 🚀 What's Next?
-Next week, I move into **Orchestration and Automation**. I'll be looking at:
-* Setting up **Directed Acyclic Graphs (DAGs)**.
-* Working with **Infrastructure as Code (IaC)**.
-* Automating data quality monitoring.
 
 ---
 
