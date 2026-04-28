@@ -2,7 +2,7 @@ backend:
   name: github
   repo: YashwanthPandi/Portfolio-Website-DE
   branch: prod
-  base_url: https://decap-cms-auth.yashwanth.workers.dev # Your Worker URL
+  base_url: https://decap-cms-auth.pandiyashwanth-8d9.workers.dev
   auth_endpoint: /auth
 
 media_folder: "assets/images"
