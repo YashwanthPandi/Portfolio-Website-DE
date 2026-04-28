@@ -1,8 +1,9 @@
 backend:
-  name: github # Assuming you are using GitHub Pages based on your URL
-  repo: YashwanthPandi/Portfolio-Website-DE/ # Replace with your actual repo
-  branch: feature/feature-decap-cms
-  local_backend: true # Add this line
+  name: github
+  repo: YashwanthPandi/Portfolio-Website-DE
+  branch: prod
+  base_url: https://decap-cms-auth.yashwanth.workers.dev # Your Worker URL
+  auth_endpoint: /auth
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
