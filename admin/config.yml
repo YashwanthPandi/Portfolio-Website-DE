@@ -1,0 +1,24 @@
+backend:
+  name: github # Assuming you are using GitHub Pages based on your URL
+  repo: YashwanthPandi/Portfolio-Website-DE/ # Replace with your actual repo
+  branch: feature/feature-decap-cms
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
+    extension: "md"
+    format: "yaml-frontmatter"
+    create: true
+    # This matches your URL structure: /posts/YYYY/MM/title
+    path: "{{year}}/{{month}}/{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Categories", name: "categories", widget: "list", default: ["posts"] }
+      - { label: "Body", name: "body", widget: "markdown" }
