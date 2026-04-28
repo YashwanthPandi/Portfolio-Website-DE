@@ -42,6 +42,7 @@ include:
   - .htaccess
   - _pages
   - files
+  - cms
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -132,7 +133,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
-  - jekyll-admin
+ 
 
 # Pagination configuration (jekyll-paginate-v2)
 pagination:
