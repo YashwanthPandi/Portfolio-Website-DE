@@ -21,7 +21,7 @@ author:
   avatar           : "profile.png"
   name             : "Yashwanth Pandi"
   pronouns         : 
-  bio              : "Data Scientist & Engineer"
+  bio              : "Software Engineer"
   location         : "San Francisco, CA"
   employer         : "California Lutheran University"
   uri              : 
@@ -31,7 +31,7 @@ author:
 
 # Site Settings
 teaser                   : 
-breadcrumbs              : false
+breadcrumbs              : true
 words_per_minute         : 160
 future                   : true
 read_more                : "disabled"
