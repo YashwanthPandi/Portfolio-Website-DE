@@ -23,6 +23,9 @@ async function handleInternalNavigation(event) {
   const target = event.target.closest('a');
   if (!target || target.target === '_blank' || target.hasAttribute('download')) return;
 
+  // Ignore elements with role="button" (like theme toggle, spotify toggle)
+  if (target.getAttribute('role') === 'button') return;
+
   // Intercept schedule links - open the popup instead of navigating
   if (target.href.includes('/schedule')) {
     event.preventDefault();
@@ -61,7 +64,24 @@ window.addEventListener('popstate', event => {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('click', handleInternalNavigation);
+  
+  // Reinitialize search if present
+  if (typeof window.initSearch === 'function') {
+    window.initSearch();
+  }
+  
+  // Dispatch custom event for page load
+  window.dispatchEvent(new CustomEvent('spaPageLoad'));
 });
+
+// Also reinitialize search when SPA page changes
+if (typeof window.onSpaPageLoad === 'undefined') {
+  window.onSpaPageLoad = function() {
+    if (typeof window.initSearch === 'function') {
+      window.initSearch();
+    }
+  };
+}
 </script>
 
 {% include analytics.html %}

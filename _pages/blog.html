@@ -6,12 +6,6 @@ author_profile: true
 ---
 {% include base_path %}
 
-<div id="spaLoader" class="spa-loader" aria-hidden="true">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-
 <div class="res-filter-container">
   <div class="res-filter-actions">
     <button class="filter-btn active" onclick="setCategory('all')">All</button>
@@ -29,7 +23,7 @@ author_profile: true
       <option value="18">18</option>
     </select>
     <label for="sortOrder" style="margin:0; font-weight: 600;">Sort by date:</label>
-    <select id="sortOrder" onchange="sortPosts(this.value)">
+    <select id="sortOrder" onchange="setSortOrder(this.value)">
       <option value="desc" selected>Newest first</option>
       <option value="asc">Oldest first</option>
     </select>
@@ -48,7 +42,7 @@ author_profile: true
     {% endif %}
     <a href="{{ post.url | relative_url }}" 
        class="res-item blog-post-item" 
-       data-category="{{ post.categories | join: ',' }}" 
+       data-category="{{ post.tags | join: ',' }}" 
        data-date="{{ post.date | date: '%Y-%m-%d' }}">
       
       <div class="res-info">
@@ -81,34 +75,36 @@ const blogState = {
   searchText: ''
 };
 
-function showLoader() {
-  const loader = document.getElementById('spaLoader');
-  if (loader) loader.style.display = 'flex';
-}
-
-function hideLoader() {
-  const loader = document.getElementById('spaLoader');
-  if (loader) loader.style.display = 'none';
-}
-
 function applyFiltersAndSort() {
-  showLoader();
-  setTimeout(() => {
-    const container = document.querySelector('.post-list-minimal');
-    const allPosts = Array.from(container.querySelectorAll('.blog-post-item'));
+  const container = document.querySelector('.post-list-minimal');
+  if (!container) return;
+  
+  const allPosts = Array.from(container.querySelectorAll('.blog-post-item'));
 
-    // Filter + Search
-    const visiblePosts = allPosts.filter(post => {
-    const categories = (post.getAttribute('data-category') || '')
+  // Filter + Search
+  const visiblePosts = allPosts.filter(post => {
+    const tags = (post.getAttribute('data-category') || '')
       .split(',')
       .map(c => c.trim().toLowerCase())
       .filter(Boolean);
 
     const title = (post.querySelector('.res-name')?.textContent || '').toLowerCase();
     const desc = (post.querySelector('.res-desc')?.textContent || '').toLowerCase();
+    const searchLower = blogState.searchText.toLowerCase();
 
-    const categoryMatch = blogState.category === 'all' || categories.includes(blogState.category);
-    const searchMatch = !blogState.searchText || title.includes(blogState.searchText) || desc.includes(blogState.searchText);
+    // Category matching logic
+    let categoryMatch = blogState.category === 'all';
+    if (!categoryMatch) {
+      if (blogState.category === 'career') {
+        categoryMatch = tags.some(tag => tag.includes('career'));
+      } else if (blogState.category === 'data') {
+        categoryMatch = tags.some(tag => tag.includes('data') && !tag.includes('career'));
+      } else if (blogState.category === 'engineering') {
+        categoryMatch = tags.some(tag => tag.includes('engineering') || tag.includes('architecture'));
+      }
+    }
+
+    const searchMatch = !searchLower || title.includes(searchLower) || desc.includes(searchLower);
 
     return categoryMatch && searchMatch;
   });
@@ -147,9 +143,6 @@ function applyFiltersAndSort() {
     }
     marker.style.display = hasVisible ? 'block' : 'none';
   });
-
-  hideLoader();
-}, 120);
 }
 
 function setCategory(category) {
@@ -158,21 +151,28 @@ function setCategory(category) {
     btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === category);
   });
   applyFiltersAndSort();
+  pushStateToUrl();
 }
 
 function setSortOrder(order) {
   blogState.sortOrder = order;
   applyFiltersAndSort();
+  pushStateToUrl();
 }
 
 function setPostsPerPage(value) {
   blogState.postsPerPage = Number(value);
   applyFiltersAndSort();
+  pushStateToUrl();
 }
 
-function setSearchText(value) {
-  blogState.searchText = value.trim().toLowerCase();
-  applyFiltersAndSort();
+function filterBlogs() {
+  const searchInput = document.getElementById('filterSearch');
+  if (searchInput) {
+    blogState.searchText = searchInput.value.trim();
+    applyFiltersAndSort();
+    pushStateToUrl();
+  }
 }
 
 function pushStateToUrl() {
@@ -192,6 +192,7 @@ function restoreStateFromUrl() {
   blogState.postsPerPage = Number(params.get('per_page') || 6);
   blogState.searchText = params.get('search') || '';
 
+  // Update UI elements
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === blogState.category);
   });
@@ -209,36 +210,63 @@ function restoreStateFromUrl() {
 }
 
 function initBlogControls() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setCategory(btn.innerText.trim().toLowerCase());
-      pushStateToUrl();
-    });
-  });
-
-  document.getElementById('sortOrder')?.addEventListener('change', e => {
-    setSortOrder(e.target.value);
-    pushStateToUrl();
-  });
-
-  document.getElementById('postsPerPage')?.addEventListener('change', e => {
-    setPostsPerPage(e.target.value);
-    pushStateToUrl();
-  });
-
-  document.getElementById('filterSearch')?.addEventListener('input', e => {
-    setSearchText(e.target.value);
-    pushStateToUrl();
-  });
-
-  window.addEventListener('popstate', () => restoreStateFromUrl());
-
+  // Restore state from URL first
   restoreStateFromUrl();
+
+  // Setup filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.removeEventListener('click', handleFilterClick);
+    btn.addEventListener('click', handleFilterClick);
+  });
+
+  function handleFilterClick() {
+    const category = this.innerText.trim().toLowerCase();
+    setCategory(category);
+  }
+
+  // Setup sort order
+  const sortOrder = document.getElementById('sortOrder');
+  if (sortOrder) {
+    sortOrder.removeEventListener('change', handleSortChange);
+    sortOrder.addEventListener('change', handleSortChange);
+  }
+
+  function handleSortChange(e) {
+    setSortOrder(e.target.value);
+  }
+
+  // Setup posts per page
+  const postsPerPage = document.getElementById('postsPerPage');
+  if (postsPerPage) {
+    postsPerPage.removeEventListener('change', handlePostsPerPageChange);
+    postsPerPage.addEventListener('change', handlePostsPerPageChange);
+  }
+
+  function handlePostsPerPageChange(e) {
+    setPostsPerPage(e.target.value);
+  }
+
+  // Setup search - DIRECT BINDING
+  const searchInput = document.getElementById('filterSearch');
+  if (searchInput) {
+    searchInput.removeEventListener('input', filterBlogs);
+    searchInput.addEventListener('input', filterBlogs);
+  }
+
+  // Handle browser back/forward
+  window.removeEventListener('popstate', handlePopstate);
+  window.addEventListener('popstate', handlePopstate);
+
+  function handlePopstate() {
+    restoreStateFromUrl();
+  }
 }
 
-window.onSpaPageLoad = initBlogControls;
-
+// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initBlogControls);
+
+// Re-initialize on SPA page load
+window.onSpaPageLoad = initBlogControls;
 </script>
 
 <style>
