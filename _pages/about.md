@@ -173,7 +173,7 @@ redirect_from:
 **Data Engineering Leader & Software‑Driven Problem Solver**
 -->
 
-
+ 
 Software Engineer who actually cares about architecture, maintainability, and clean code. I build and ship scalable web apps using the MEAN stack, handling everything from slick frontend UX to heavy-lifting backend APIs and cloud deployment—without blowing up tech debt or slowing down the team
 
 ![GitHub Contributions](https://ghchart.rshah.org/YashwanthPandi) 
