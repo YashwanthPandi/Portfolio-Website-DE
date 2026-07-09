@@ -174,11 +174,11 @@ redirect_from:
 -->
 
 
-Seasoned **Data Engineer** with a software‑developer’s mindset and a track record of designing, implementing, and operating high‑volume, mission‑critical data systems.  I build **scalable, maintainable, cloud‑native pipelines** that deliver trusted data for analytics and machine learning—while keeping costs in check and teams moving fast.
+Software Engineer who actually cares about architecture, maintainability, and clean code. I build and ship scalable web apps using the MEAN stack, handling everything from slick frontend UX to heavy-lifting backend APIs and cloud deployment—without blowing up tech debt or slowing down the team
 
 ![GitHub Contributions](https://ghchart.rshah.org/YashwanthPandi) 
 
-My work philosophy is to treat data infrastructure as code: automated, versioned, observable, and tested.  I partner with product and analytics stakeholders to translate business requirements into robust ETL/ELT architectures, and I mentor engineers to adopt best practices around CI/CD, modular design, and data quality.
+My philosophy is to treat application development like building production-grade systems: automated, versioned, observable, and tested. I partner with product and design teams to translate business needs into robust full-stack architectures, and I mentor engineers on adopting best practices around CI/CD, modular code design, and overall application reliability.
 
 ## Certifications
 
@@ -214,6 +214,31 @@ My work philosophy is to treat data infrastructure as code: automated, versioned
 
 ## Technology Stack
 <div class="skill-container">
+<span class="skill-chip">Angular</span>
+<span class="skill-chip">Node.js</span>
+<span class="skill-chip">Express.js</span>
+<span class="skill-chip">MongoDB</span>
+<span class="skill-chip">JavaScript (ES6+)</span>
+<span class="skill-chip">TypeScript</span>
+<span class="skill-chip">RESTful APIs</span>
+<span class="skill-chip">GraphQL</span>
+<span class="skill-chip">State Management (NgRx/RxJS)</span>
+<span class="skill-chip">HTML5 & CSS3</span>
+<span class="skill-chip">Material UI</span>
+<span class="skill-chip">Amazon Web Services (AWS)</span>
+<span class="skill-chip">Cloud Computing</span>
+<span class="skill-chip">Database Design</span>
+<span class="skill-chip">SQL & NoSQL</span>
+<span class="skill-chip">Scalability</span>
+<span class="skill-chip">Performance Tuning</span>
+<span class="skill-chip">Security Controls</span>
+<span class="skill-chip">Infrastructure as Code (IaC)</span>
+<span class="skill-chip">Terraform</span>
+<span class="skill-chip">CI/CD</span>
+<span class="skill-chip">Git & Version Control</span>
+<span class="skill-chip">IT Automation</span>
+<span class="skill-chip">Microservices Architecture</span>
+<span class="skill-chip">Unit & Integration Testing</span>
 <span class="skill-chip">Amazon Web Services</span>
 <span class="skill-chip">Data Pipelines</span>
 <span class="skill-chip">Scalability</span>
