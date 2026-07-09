@@ -1,15 +1,6 @@
 <script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+<script src="{{ base_path }}/assets/js/schedule-redirect.js"></script>
 <script>
-function showLoader() {
-  const loader = document.getElementById('spaLoader');
-  if (loader) loader.style.display = 'flex';
-}
-
-function hideLoader() {
-  const loader = document.getElementById('spaLoader');
-  if (loader) loader.style.display = 'none';
-}
-
 function updateContent(htmlText, url) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlText, 'text/html');
@@ -32,12 +23,21 @@ async function handleInternalNavigation(event) {
   const target = event.target.closest('a');
   if (!target || target.target === '_blank' || target.hasAttribute('download')) return;
 
+  // Intercept schedule links - open the popup instead of navigating
+  if (target.href.includes('/schedule')) {
+    event.preventDefault();
+    const popupButton = document.getElementById('open-popup-button');
+    if (popupButton) {
+      popupButton.click();
+    }
+    return;
+  }
+
   const url = new URL(target.href, window.location.origin);
   if (url.origin !== window.location.origin) return;
   if (url.pathname === window.location.pathname && url.search === window.location.search) return;
 
   event.preventDefault();
-  showLoader();
 
   try {
     const response = await fetch(url.href, { headers: { 'Accept': 'text/html' } });
@@ -48,25 +48,19 @@ async function handleInternalNavigation(event) {
   } catch (error) {
     console.error('SPA navigation failed; falling back to full load:', error);
     window.location.href = url.href;
-  } finally {
-    hideLoader();
   }
 }
 
 window.addEventListener('popstate', event => {
   const href = (event.state && event.state.url) || window.location.href;
-  showLoader();
   fetch(href)
     .then(resp => resp.text())
     .then(text => updateContent(text, href))
-    .catch(error => { console.error(error); window.location.href = href; })
-    .finally(hideLoader);
+    .catch(error => { console.error(error); window.location.href = href; });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('click', handleInternalNavigation);
-  window.addEventListener('beforeunload', showLoader);
-  hideLoader();
 });
 </script>
 
