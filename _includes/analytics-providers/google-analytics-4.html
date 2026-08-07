@@ -1,9 +1,100 @@
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GHWXL0Z4MN"></script>
+{% capture analytics_id %}{% if site.analytics.google_analytics_id %}{{ site.analytics.google_analytics_id }}{% elsif site.google_analytics_id %}{{ site.google_analytics_id }}{% else %}G-GHWXL0Z4MN{% endif %}{% endcapture %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ analytics_id | strip }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag(){ window.dataLayer.push(arguments); }
 
-  gtag('config', 'G-GHWXL0Z4MN');
+  var analyticsId = '{{ analytics_id | strip }}';
+  gtag('js', new Date());
+  gtag('config', analyticsId, { send_page_view: false });
+
+  function trackGaPageView(url, title) {
+    if (!analyticsId) return;
+
+    var pageLocation = url || window.location.href;
+    var pageTitle = title || document.title || 'Page';
+    var parsedUrl = new URL(pageLocation, window.location.origin);
+
+    gtag('event', 'page_view', {
+      page_title: pageTitle,
+      page_location: pageLocation,
+      page_path: parsedUrl.pathname + parsedUrl.search
+    });
+  }
+
+  function trackGaEvent(action, category, label, value) {
+    if (!analyticsId) return;
+
+    var payload = {
+      event_category: category || 'engagement'
+    };
+
+    if (label) payload.event_label = label;
+    if (value !== undefined && value !== null) payload.value = value;
+
+    gtag('event', action, payload);
+  }
+
+  window.trackGaPageView = trackGaPageView;
+  window.trackGaEvent = trackGaEvent;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    trackGaPageView(window.location.href, document.title);
+
+    document.addEventListener('click', function(event) {
+      var target = event.target && typeof event.target.closest === 'function'
+        ? event.target.closest('a, button, input[type="submit"], input[type="button"]')
+        : null;
+
+      if (!target) return;
+
+      if (target.tagName === 'A') {
+        var href = target.getAttribute('href') || '';
+        if (!href) return;
+
+        var url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) {
+          trackGaEvent('click', 'outbound_link', href);
+          return;
+        }
+
+        if (/\.(pdf|zip|doc|docx|ppt|pptx|xlsx|csv|png|jpg|jpeg|gif|svg)$/i.test(href)) {
+          trackGaEvent('download', 'file_download', href);
+        }
+      } else if (target.tagName === 'BUTTON' || target.tagName === 'INPUT') {
+        trackGaEvent('click', 'interaction', target.getAttribute('aria-label') || target.value || target.name || 'button');
+      }
+    });
+
+    document.addEventListener('submit', function(event) {
+      var form = event.target;
+      if (form && form.tagName === 'FORM') {
+        trackGaEvent('form_submit', 'form', form.getAttribute('action') || 'form');
+      }
+    });
+
+    var trackedScrolls = {};
+    var scrollDepths = [25, 50, 75, 100];
+
+    function trackScrollDepth() {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var percent = scrollHeight > 0 ? Math.round((scrollTop / scrollHeight) * 100) : 0;
+
+      scrollDepths.forEach(function(depth) {
+        if (!trackedScrolls[depth] && percent >= depth) {
+          trackedScrolls[depth] = true;
+          trackGaEvent('scroll', 'engagement', depth + '%');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', trackScrollDepth, { passive: true });
+    trackScrollDepth();
+  });
+
+  window.addEventListener('load', function() {
+    trackGaPageView(window.location.href, document.title);
+  });
 </script>

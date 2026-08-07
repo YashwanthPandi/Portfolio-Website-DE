@@ -37,6 +37,10 @@ future                   : true
 read_more                : "disabled"
 talkmap_link             : false
 
+analytics:
+  provider: google-analytics-4
+  google_analytics_id: G-GHWXL0Z4MN
+
 # Reading Files
 include:
   - .htaccess

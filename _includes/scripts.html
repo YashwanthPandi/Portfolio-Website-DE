@@ -14,6 +14,10 @@ function updateContent(htmlText, url) {
   window.history.pushState({ url }, '', url);
   window.scrollTo(0, 0);
 
+  if (typeof window.trackGaPageView === 'function') {
+    window.trackGaPageView(url, doc.title || document.title);
+  }
+
   if (typeof window.onSpaPageLoad === 'function') {
     window.onSpaPageLoad();
   }
