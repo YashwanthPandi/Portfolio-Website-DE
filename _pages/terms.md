@@ -11,6 +11,8 @@ modified: 2016-06-06
 
 The privacy of my visitors is extremely important. This Privacy Policy outlines the types of personal information that is received and collected and how it is used.
 
+For the full and updated privacy notice, please visit the dedicated [Privacy Policy](/privacy-policy/) page.
+
 First and foremost, I will never share your email address or any other personal information to anyone without your direct consent.
 
 ### Log Files

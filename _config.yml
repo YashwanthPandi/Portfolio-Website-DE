@@ -12,6 +12,18 @@ url                      : "https://yashwanth.co.in"
 baseurl                  : "" 
 repository               : "https://github.com/YashwanthPandi/PrivateWebsite/"
 timezone                 : "America/Los_Angeles"
+locale                   : "en_US"
+lang                     : "en"
+google_site_verification : ""
+bing_site_verification   : ""
+seo_description          : "Data Engineering portfolio, projects, blog posts, and professional experience of Yashwanth Pandi."
+og_image                : "/images/profile.png"
+social:
+  name: "Yashwanth Pandi"
+  type: "Person"
+  links:
+    - "https://www.linkedin.com/in/yashwanthpandi"
+    - "https://github.com/yashwanthpandi"
 
 # Server Settings
 port: 4000 # Fixes the "Address already in use" error by defaulting to 4001
