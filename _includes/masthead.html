@@ -73,15 +73,15 @@
           {% endfor %}
 
           <li id="spotify-toggle" class="masthead__menu-item persist">
-            <a role="button"><i class="fa-brands fa-spotify"></i></a>
+            <button type="button" aria-label="Open Spotify drawer"><i class="fa-brands fa-spotify"></i></button>
           </li>
 
           <li id="theme-toggle" class="masthead__menu-item persist">
-            <a role="button"><i id="theme-icon" class="fa-solid fa-sun"></i></a>
+            <button type="button" aria-label="Toggle theme"><i id="theme-icon" class="fa-solid fa-sun"></i></button>
           </li>
 
           <li class="masthead__menu-item persist tail">
-            <a id="open-popup-button" class="neetocal-nav-btn" role="button">Schedule a Call</a>
+            <button id="open-popup-button" class="neetocal-nav-btn" type="button">Schedule a Call</button>
           </li>
         </ul>
         <!-- container for overflowed links; populated by greedy-navigation script -->
@@ -93,6 +93,7 @@
  <div id="spotify-drawer" class="spotify-dropdown">
     <div class="spotify-container">
       <iframe 
+        title="Spotify playlist"
         style="border-radius:12px" 
         src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0" 
         width="100%" 

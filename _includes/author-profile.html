@@ -8,11 +8,10 @@
 
   <div class="author__avatar">
     {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}"  fetchpriority="high" />
+      <img src="{{ author.avatar }}" alt="{{ author.name }}" fetchpriority="high" width="175" height="175" />
     {% else %}
-    	<img src="{{ author.avatar | prepend: '/images/' | relative_url }}" class="author__avatar" alt="{{ author.name }}"  fetchpriority="high" />
-    {% endif %}
-  </div>
+      {% assign avatar_src = author.avatar | prepend: '/images/' | relative_url %}
+      <img src="{{ avatar_src }}" srcset="{{ avatar_src }} 800w, {{ '/images/profile-175.png' | relative_url }} 175w" sizes="(min-width: 1024px) 175px, 36px" class="author__avatar" alt="{{ author.name }}" fetchpriority="high" width="175" height="175" />
 
   <div class="author__content">
     <h3 class="author__name">{{ author.name }}</h3>

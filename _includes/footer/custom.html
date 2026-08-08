@@ -4,10 +4,26 @@
 </footer>
 
 <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async function () {
+    const mermaidBlocks = document.querySelectorAll('code.language-mermaid');
+    if (mermaidBlocks.length) {
+      try {
+        const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+        mermaid.initialize({startOnLoad:true, theme:'default'});
+        await mermaid.run({querySelector:'code.language-mermaid'});
+      } catch (error) {
+        console.error('Failed to load Mermaid:', error);
+      }
+    }
 
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({startOnLoad:true, theme:'default'});
-    await mermaid.run({querySelector:'code.language-mermaid'});
+    const mathBlocks = document.querySelectorAll('script[type^="math/tex"], script[type="math/tex; mode=display"], .math, .katex');
+    if (mathBlocks.length) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.id = 'MathJax-script';
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      document.head.appendChild(script);
+    }
+  });
 </script>

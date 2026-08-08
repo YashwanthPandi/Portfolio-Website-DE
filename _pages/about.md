@@ -1,94 +1,89 @@
 ---
+permalink: "/"
+author_profile: true
+redirect_from:
+- "/about/"
+- "/about.html"
+---
+
 <style>
-  /* Hero: two-column, bold headline style inspired by product-focused portfolios */
-  .hero-wrap {
-    display: grid;
-    grid-template-columns: 1fr 560px;
-    gap: 36px;
-    align-items: center;
-    margin-bottom: 28px;
-    padding: 36px 18px;
-    background: linear-gradient(180deg, #071428 0%, #06121b 60%);
-    color: #e6eef8;
-    border-radius: 12px;
+  .hero-intro {
+    margin: 0 0 28px 0;
+    padding: 0;
   }
 
-  .hero-left h1 {
-    font-size: clamp(48px, 8vw, 96px);
-    line-height: 0.95;
+  .hero-intro h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0 0 12px 0;
     font-weight: 800;
+    color: #111827;
+  }
+
+  .hero-intro p {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: #4b5563;
     margin: 0;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
+    max-width: 760px;
   }
 
-  .hero-left p.lead {
-    margin-top: 14px;
-    color: rgba(255,255,255,0.85);
-    font-size: 1.05rem;
-    max-width: 680px;
+  .hero-graph {
+    margin: 28px 0 36px;
+    display: flex;
+    justify-content: center;
   }
 
-  .hero-right {
-    text-align: left;
-    padding: 8px 12px;
+  .hero-graph img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   }
 
-  .hero-right .intro {
-    color: rgba(230,238,248,0.95);
-    font-size: 1rem;
-    margin-bottom: 18px;
+  .skill-container {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 28px;
   }
 
-  .hero-cta {
-    display:flex;
-    gap: 12px;
-    margin-bottom: 18px;
+  .skill-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
   }
 
-  .btn-primary {
-    background: linear-gradient(90deg,#1e90ff,#4f46e5);
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 999px;
-    text-decoration: none;
+  .skill-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px 14px 10px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  }
+
+  .skill-card h4 {
+    font-size: 0.95rem;
     font-weight: 700;
-    box-shadow: 0 8px 24px rgba(79,70,229,0.12);
-    transition: transform .18s ease, box-shadow .18s ease;
+    color: #111827;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.02em;
   }
 
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(79,70,229,0.16); }
-
-  .btn-ghost {
-    background: transparent;
-    color: rgba(230,238,248,0.95);
-    padding: 10px 14px;
-    border-radius: 999px;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.06);
-    font-weight: 700;
+  .skill-chip {
+    background-color: #f1f3f4;
+    color: #3c4043;
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 4px 4px 4px 0;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    border: 2px solid #dadce0;
+    transition: all 0.2s ease;
   }
 
-  .hero-metrics { display:flex; gap:20px; color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-top:8px; }
-
-  .hero-graph { margin-top: 22px; display:flex; justify-content:center; }
-
-  /* Client logos row */
-  .client-row { display:flex; gap:28px; align-items:center; justify-content:center; padding: 30px 6px; opacity:0.95 }
-  .client-row img { max-height:36px; filter:grayscale(1) contrast(.9) opacity(.9); }
-
-  /* Keep existing stack and cert styles consistent */
-  .skill-container { font-family: 'Roboto', sans-serif; margin: 26px 0; }
-
-  /* Featured projects and cert tweaks already styled below; minimal responsive fallback */
-  @media (max-width: 980px) {
-    .hero-wrap { grid-template-columns: 1fr; padding: 26px; }
-    .hero-right { order: 2; }
-    .hero-left { order: 1; }
-    .hero-left h1 { font-size: clamp(36px, 9vw, 64px); }
-  }
-</style>
+  .skill-chip:hover {
+    background-color: #4285F4;
     color: #ffffff;
     border: 2px solid #4285F4;
     box-shadow: 0 0 8px rgba(66, 133, 244, 0.4);
@@ -286,69 +281,44 @@
 -->
 
  
-<div class="hero-wrap">
-  <div class="hero-left">
-    <h1>Thinking becomes product.</h1>
-    <p class="lead">I design and ship interfaces that prioritise clarity, responsiveness, and maintainability. My focus is on reactive state flows, component-first UIs, and engineering systems that keep the user experience predictable at scale.</p>
-  </div>
+<div class="hero-intro">
+  <h1>Building polished web experiences with reactive architecture and thoughtful frontend systems.</h1>
+  <p>I design and ship modern user interfaces with a strong focus on maintainability, accessibility, and product clarity. My work blends Angular, TypeScript, reactive state patterns, and API-driven architecture to create fast, resilient applications that feel as good as they perform.</p>
+</div>
 
-  <div class="hero-right">
-    <div class="intro">I'm Yashwanth — a frontend engineer building production-grade UI systems with Angular and strong state management patterns.</div>
-
-    <div class="hero-cta">
-      <a class="btn-primary" href="/projects/">See Projects</a>
-      <a class="btn-ghost" href="/resume">Resume</a>
-    </div>
-
-    <div class="hero-metrics">
-      <div><strong>Reactive</strong><div style="font-size:0.86rem;color:rgba(255,255,255,0.7)">NgRx & RxJS</div></div>
-      <div><strong>Accessible</strong><div style="font-size:0.86rem;color:rgba(255,255,255,0.7)">A11y-first UI</div></div>
-      <div><strong>Performant</strong><div style="font-size:0.86rem;color:rgba(255,255,255,0.7)">Optimized rendering</div></div>
-    </div>
-
-    <div class="hero-graph">
-      <img src="https://ghchart.rshah.org/YashwanthPandi" alt="GitHub contribution graph for Yashwanth Pandi" />
-    </div>
-  </div>
+<div class="hero-graph">
+  <img src="https://ghchart.rshah.org/YashwanthPandi" alt="GitHub contribution graph for Yashwanth Pandi" />
 </div>
 
 My approach is grounded in state-driven architecture, composable UI patterns, and clean engineering habits. I enjoy turning complex product requirements into clear, scalable frontend experiences and collaborating with teams to build products that are both reliable and enjoyable to use.
-
-<!-- Clients / logos row -->
-<div class="client-row" aria-hidden="true">
-  <img src="/images/clients/thoughtspot.svg" alt="ThoughtSpot" />
-  <img src="/images/clients/precisely.svg" alt="Precisely" />
-  <img src="/images/clients/vedantu.svg" alt="Vedantu" />
-  <img src="/images/clients/airtel.svg" alt="Airtel" />
-</div>
 
 ## Certifications
 
 <div class="certification-grid">
   <div class="cert-badge">
     <a href="https://aws.amazon.com/certification/certified-data-engineer-associate/" aria-label="AWS Certified Data Engineer - Associate">
-      <div class="cert-icon"><img src="https://img-c.udemycdn.com/open-badges/v2/badge-class/1309014830/97c586f8-400c-427e-951d-7352f731b0de1572374724681906937.png" alt="AWS Certified Data Engineer - Associate" /></div>
+      <div class="cert-icon"><img src="https://img-c.udemycdn.com/open-badges/v2/badge-class/1309014830/97c586f8-400c-427e-951d-7352f731b0de1572374724681906937.png" alt="AWS Certified Data Engineer - Associate" width="110" height="110" loading="lazy" /></div>
       <span>AWS Data Engineer Associate</span>
     </a>
   </div>
 
   <div class="cert-badge">
     <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" aria-label="AWS Certified Cloud Practitioner">
-      <div class="cert-icon"><img src="https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png" alt="AWS Certified Cloud Practitioner" /></div>
+      <div class="cert-icon"><img src="https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png" alt="AWS Certified Cloud Practitioner" width="110" height="110" loading="lazy" /></div>
       <span>AWS Cloud Practitioner</span>
     </a>
   </div>
 
   <div class="cert-badge">
     <a href="https://www.coursera.org/learn/google-cybersecurity" aria-label="Google Cybersecurity Certificate">
-      <div class="cert-icon"><img src="https://images.credly.com/size/680x680/images/50cc91fd-d223-4ef0-a512-ab251ba7e812/image.png" alt="Google Cybersecurity Certificate" /></div>
+      <div class="cert-icon"><img src="https://images.credly.com/size/680x680/images/50cc91fd-d223-4ef0-a512-ab251ba7e812/image.png" alt="Google Cybersecurity Certificate" width="110" height="110" loading="lazy" /></div>
       <span>Google Cybersecurity</span>
     </a>
   </div>
 
   <div class="cert-badge">
     <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/agile.html" aria-label="Cisco Agile Fundamentals Certificate">
-      <div class="cert-icon"><img src="https://images.credly.com/images/0ee78720-fba8-4171-adc6-3fcb93ae38b0/Asset_5600.png" alt="Cisco Agile Fundamentals Certificate" /></div>
+      <div class="cert-icon"><img src="https://images.credly.com/images/0ee78720-fba8-4171-adc6-3fcb93ae38b0/Asset_5600.png" alt="Cisco Agile Fundamentals Certificate" width="110" height="110" loading="lazy" /></div>
       <span>Cisco Agile Fundamentals</span>
     </a>
   </div>
