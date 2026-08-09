@@ -58,14 +58,14 @@
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <!-- hamburger removed; links will wrap on small screens -->
+    <div class="masthead__top-bar">
+      <div class="masthead__brand">
+        <a href="{{ base_path }}/" class="masthead__logo-link">
+          <img src="/images/logo.svg" alt="{{ site.title }}" class="site-logo" />
+        </a>
+      </div>
+      <nav id="site-nav" class="greedy-nav masthead__nav-bar">
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist">
-            <a href="{{ base_path }}/"><img src="/images/logo.svg" alt="{{ site.title }}" class="site-logo" /></a>
-          </li>
-
           {% for link in site.data.navigation.main %}
             <li class="masthead__menu-item">
               <a href="{{ base_path }}{{ link.url }}">{{ link.title }}</a>
@@ -84,13 +84,12 @@
             <button id="open-popup-button" class="neetocal-nav-btn" type="button">Schedule a Call</button>
           </li>
         </ul>
-        <!-- container for overflowed links; populated by greedy-navigation script -->
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 
- <div id="spotify-drawer" class="spotify-dropdown">
+  <div id="spotify-drawer" class="spotify-dropdown">
     <div class="spotify-container">
       <iframe 
         title="Spotify playlist"
