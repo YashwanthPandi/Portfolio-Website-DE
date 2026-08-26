@@ -51,3 +51,25 @@ If I don't want to mess with local Ruby environments:
 ```bash
 chmod -R 777 .
 docker compose up
+```
+
+---
+
+## 🧩 CMS Content Management (Blogs + All Main Sections)
+
+You can manage content from the browser at `/cms/`:
+
+- **Blogs** (`_posts`)
+- **Projects** (`_projects`)
+- **Talks** (`_talks`)
+- **Publications** (`_publications`)
+- **Resources section data** (`_data/resources.yml`)
+- **Navigation menu** (`_data/navigation.yml`)
+- **Contact form settings** (`_data/contact.yml`)
+
+### Contact Form Service
+
+The contact page is available at `/contact/` and submits to the configured service endpoint in [contact.yml](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/_data/contact.yml).
+
+Default provider is **FormSubmit**.  
+If you prefer Formspree, replace `form.action` with your Formspree endpoint.
