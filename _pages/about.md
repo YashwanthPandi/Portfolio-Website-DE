@@ -48,8 +48,8 @@ redirect_from:
     --hero-globe-filter: saturate(1.08) brightness(1.05);
     background: var(--hero-bg);
     color: var(--hero-text);
-    width: 100%;
-    margin: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     padding: 0;
     box-sizing: border-box;
     transition: background 0.3s ease, color 0.2s ease;
@@ -70,9 +70,9 @@ redirect_from:
 
   .hero-globe-shell {
     position: absolute;
-    width: clamp(17rem, 37vw, 32rem);
+    width: clamp(18rem, 45vw, 45rem);
     aspect-ratio: 1;
-    right: clamp(-8rem, -6vw, -1rem);
+    right: clamp(-8rem, -5vw, 3rem);
     top: 50%;
     transform: translateY(-50%);
     border-radius: 9999px;
@@ -125,17 +125,17 @@ redirect_from:
   }
 
   .edge-to-edge-hero .hero-inner {
-    max-width: 90rem;
+    max-width: 100%;
     width: 100%;
-    margin: 0 auto;
-    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 4vw, 4rem);
+    margin: 0;
+    padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 5vw, 5.5rem);
     height: auto;
     min-height: auto;
     max-height: none;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     align-items: center;
-    gap: clamp(3rem, 6vw, 5rem);
+    gap: clamp(4rem, 8vw, 6rem);
     position: relative;
     z-index: 1;
   }
@@ -172,9 +172,9 @@ redirect_from:
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(2.75rem, 6vw, 5.5rem);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     font-weight: 900;
     color: var(--hero-text);
     margin-bottom: 1.5rem;
@@ -274,13 +274,13 @@ redirect_from:
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(1.3rem, 3.2vw, 2.25rem);
-    line-height: 1.2;
-    letter-spacing: -0.018em;
+    font-size: clamp(1.4rem, 2.8vw, 2.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
     color: var(--hero-text);
     text-align: left;
     max-width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
   .hero-description {
@@ -335,21 +335,21 @@ redirect_from:
 
   @media (min-width: 1536px) {
     .edge-to-edge-hero .hero-inner {
-      padding-left: clamp(3rem, 8vw, 6.5rem);
-      padding-right: clamp(3rem, 8vw, 6.5rem);
-      gap: clamp(4rem, 7vw, 6rem);
+      padding-left: clamp(4rem, 10vw, 8rem);
+      padding-right: clamp(4rem, 10vw, 8rem);
+      gap: clamp(5rem, 10vw, 8rem);
     }
 
     .hero-left {
-      max-width: 32rem;
+      max-width: none;
     }
   }
 
   @media (max-width: 1200px) {
     .edge-to-edge-hero .hero-inner {
-      grid-template-columns: 1fr 0.95fr;
-      padding: 2.5rem 1.5rem;
-      gap: 2.5rem;
+      grid-template-columns: 1fr 1fr;
+      padding: 3rem 2rem;
+      gap: 3rem;
     }
 
     .hero-left {
@@ -357,11 +357,11 @@ redirect_from:
     }
 
     .hero-globe-shell {
-      width: clamp(12rem, 42vw, 18rem);
-      right: clamp(-5rem, -7vw, -2rem);
+      width: clamp(14rem, 38vw, 26rem);
+      right: clamp(-4rem, -6vw, 0);
       top: 8%;
       transform: translateY(0);
-      opacity: 0.45;
+      opacity: 0.5;
     }
   }
 
@@ -369,7 +369,7 @@ redirect_from:
     .edge-to-edge-hero .hero-inner {
       grid-template-columns: 1fr;
       min-height: auto;
-      padding: 2.25rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       gap: 2rem;
     }
 
