@@ -5,8 +5,12 @@
 // Determine the expected state of the theme toggle, which can be "dark", "light", or
 // "system". Default is "system".
 let determineThemeSetting = () => {
-  let themeSetting = localStorage.getItem("theme");
-  return (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") ? "system" : themeSetting;
+  try {
+    let themeSetting = localStorage.getItem("theme");
+    return (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") ? "system" : themeSetting;
+  } catch (e) {
+    return "system";
+  }
 };
 
 // Determine the computed theme, which can be "dark" or "light". If the theme setting is
@@ -16,35 +20,53 @@ let determineComputedTheme = () => {
   if (themeSetting != "system") {
     return themeSetting;
   }
-  return (userPref && userPref("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+
+  const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+  return (mediaQuery && mediaQuery.matches) ? "dark" : "light";
 };
 
-// detect OS/browser preference
-const browserPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const browserPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+const updateThemeIcon = (theme) => {
+  const icon = document.getElementById('theme-icon');
+  if (!icon) return;
+
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 0 1 11.21 3a9 9 0 1 0 9.79 9.79Z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3.5a.75.75 0 0 1 .75.75v1.2a.75.75 0 0 1-1.5 0V4.25A.75.75 0 0 1 12 3.5ZM5.64 5.64a.75.75 0 0 1 1.06 0l.85.85a.75.75 0 1 1-1.06 1.06l-.85-.85a.75.75 0 0 1 0-1.06Zm12.7 0a.75.75 0 0 1 0 1.06l-.85.85a.75.75 0 0 1-1.06-1.06l.85-.85a.75.75 0 0 1 1.06 0ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm-7.5 4.75a.75.75 0 0 1 .75-.75h1.2a.75.75 0 0 1 0 1.5H5.25a.75.75 0 0 1-.75-.75Zm15.75 0a.75.75 0 0 1 .75-.75h1.2a.75.75 0 0 1 0 1.5h-1.2a.75.75 0 0 1-.75-.75Zm-12.7 5.72a.75.75 0 0 1 1.06 0l.85.85a.75.75 0 1 1-1.06 1.06l-.85-.85a.75.75 0 0 1 0-1.06Zm12.7 0a.75.75 0 0 1 0 1.06l-.85.85a.75.75 0 1 1-1.06-1.06l.85-.85a.75.75 0 0 1 1.06 0ZM12 16.5a.75.75 0 0 1 .75.75v1.2a.75.75 0 0 1-1.5 0v-1.2A.75.75 0 0 1 12 16.5Z"/>';
+  }
+};
 
 // Set the theme on page load or when explicitly called
 let setTheme = (theme) => {
-  const use_theme =
-    theme ||
-    localStorage.getItem("theme") ||
-    $("html").attr("data-theme") ||
-    browserPref;
+  const html = document.documentElement;
+  const resolvedTheme = theme || determineThemeSetting() || browserPref;
+  const normalizedTheme = (resolvedTheme === 'dark' || resolvedTheme === 'light') ? resolvedTheme : browserPref;
 
-  if (use_theme === "dark") {
-    $("html").attr("data-theme", "dark");
-    $("#theme-icon").removeClass("fa-sun").addClass("fa-moon");
-  } else if (use_theme === "light") {
-    $("html").removeAttr("data-theme");
-    $("#theme-icon").removeClass("fa-moon").addClass("fa-sun");
+  html.setAttribute('data-theme', normalizedTheme);
+  html.classList.toggle('dark', normalizedTheme === 'dark');
+  html.style.colorScheme = normalizedTheme;
+
+  if (normalizedTheme === 'dark') {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
   }
+
+  updateThemeIcon(normalizedTheme);
 };
 
 // Toggle the theme manually
 var toggleTheme = () => {
-  const current_theme = $("html").attr("data-theme");
-  const new_theme = current_theme === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", new_theme);
-  setTheme(new_theme);
+  const currentTheme = determineComputedTheme();
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+  try {
+    localStorage.setItem("theme", newTheme);
+  } catch (e) {}
+
+  setTheme(newTheme);
 };
 
 /* ==========================================================================
