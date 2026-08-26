@@ -150,9 +150,9 @@ redirect_from:
   }
 
   .hero-button.primary {
-    background: #7c6ee6;
+    background: #1DB954;
     color: #fff;
-    box-shadow: 0 8px 24px rgba(124, 110, 230, 0.25);
+    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.25);
   }
 
   .hero-button.secondary {
