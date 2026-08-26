@@ -10,7 +10,8 @@ redirect_from:
   /* 1. Prevent horizontal scroll */
   html, body {
     overflow-x: hidden !important;
-    height: 100%;
+    height: auto;
+    width: 100%;
   }
 
   /* 2. Strip top/bottom spacing added by Minimal Mistakes layout containers */
@@ -44,7 +45,7 @@ redirect_from:
     box-sizing: border-box;
     transition: background-color 0.2s ease, color 0.2s ease;
     position: static;
-    overflow: hidden;
+    overflow: visible;
   }
 
   html[data-theme="light"] .edge-to-edge-hero,
