@@ -35,6 +35,13 @@
     .logo-img {
       height: 40px;
       width: auto;
+      filter: brightness(0) saturate(0%);
+      transition: filter 0.2s ease;
+    }
+
+    html[data-theme="dark"] .logo-img,
+    html.dark .logo-img {
+      filter: brightness(0) invert(1);
     }
 
     .nav-menu {
