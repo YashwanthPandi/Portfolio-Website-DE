@@ -70,9 +70,9 @@ redirect_from:
 
   .hero-globe-shell {
     position: absolute;
-    width: clamp(18rem, 45vw, 45rem);
+    width: clamp(20rem, 50vw, 55rem);
     aspect-ratio: 1;
-    right: clamp(-8rem, -5vw, 3rem);
+    right: clamp(-10rem, -3vw, 5rem);
     top: 50%;
     transform: translateY(-50%);
     border-radius: 9999px;
@@ -128,14 +128,14 @@ redirect_from:
     max-width: 100%;
     width: 100%;
     margin: 0;
-    padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 5vw, 5.5rem);
+    padding: clamp(5rem, 10vw, 8.5rem) clamp(2.5rem, 6vw, 6.5rem);
     height: auto;
     min-height: auto;
     max-height: none;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 0.95fr 1.3fr;
     align-items: center;
-    gap: clamp(4rem, 8vw, 6rem);
+    gap: clamp(5rem, 10vw, 7.5rem);
     position: relative;
     z-index: 1;
   }
@@ -172,12 +172,12 @@ redirect_from:
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(3rem, 8vw, 7rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-size: clamp(3.2rem, 9vw, 8rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     font-weight: 900;
     color: var(--hero-text);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .intro-block {
@@ -233,12 +233,12 @@ redirect_from:
   }
 
   .hero-rule {
-    width: 4.5rem;
-    height: 0.36rem;
+    width: 5rem;
+    height: 0.38rem;
     background: var(--hero-accent);
     border-radius: 9999px;
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .hero-links {
@@ -274,20 +274,20 @@ redirect_from:
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(1.4rem, 2.8vw, 2.5rem);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.5rem, 3vw, 2.75rem);
+    line-height: 1.22;
+    letter-spacing: -0.016em;
     color: var(--hero-text);
     text-align: left;
     max-width: 100%;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero-description {
     margin: 0;
     max-width: 100%;
-    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-    line-height: 1.6;
+    font-size: clamp(1rem, 1.9vw, 1.15rem);
+    line-height: 1.65;
     color: var(--hero-text-soft);
     text-align: left;
   }
@@ -335,21 +335,40 @@ redirect_from:
 
   @media (min-width: 1536px) {
     .edge-to-edge-hero .hero-inner {
-      padding-left: clamp(4rem, 10vw, 8rem);
-      padding-right: clamp(4rem, 10vw, 8rem);
-      gap: clamp(5rem, 10vw, 8rem);
+      padding-left: clamp(5rem, 12vw, 9rem);
+      padding-right: clamp(5rem, 12vw, 9rem);
+      gap: clamp(6rem, 12vw, 9rem);
     }
 
     .hero-left {
       max-width: none;
+    }
+
+    .hero-heading {
+      font-size: clamp(5rem, 11vw, 8.5rem);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-rule {
+      width: 5.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-copy {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      margin-bottom: 2rem;
+    }
+
+    .hero-description {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
     }
   }
 
   @media (max-width: 1200px) {
     .edge-to-edge-hero .hero-inner {
       grid-template-columns: 1fr 1fr;
-      padding: 3rem 2rem;
-      gap: 3rem;
+      padding: 3.5rem 2.5rem;
+      gap: 3.5rem;
     }
 
     .hero-left {
@@ -357,8 +376,8 @@ redirect_from:
     }
 
     .hero-globe-shell {
-      width: clamp(14rem, 38vw, 26rem);
-      right: clamp(-4rem, -6vw, 0);
+      width: clamp(16rem, 40vw, 28rem);
+      right: clamp(-4rem, -6vw, 1rem);
       top: 8%;
       transform: translateY(0);
       opacity: 0.5;
