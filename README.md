@@ -103,3 +103,8 @@ Add repository secrets:
 - `CLOUDFLARE_ACCOUNT_ID`
 - `DECAP_GITHUB_CLIENT_ID`
 - `DECAP_GITHUB_CLIENT_SECRET`
+
+After adding secrets, run this workflow once from GitHub Actions using **Run workflow** on branch `prod`.
+Then confirm:
+- `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/health` returns `ok: true`
+- `https://yashwanth.co.in/cms/` login works
