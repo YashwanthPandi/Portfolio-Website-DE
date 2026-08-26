@@ -30,9 +30,14 @@ redirect_from:
     --hero-line: rgba(17, 24, 39, 0.12);
     background: transparent;
     color: var(--hero-text);
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
     transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   html[data-theme="light"] .edge-to-edge-hero,
