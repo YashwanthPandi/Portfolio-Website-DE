@@ -1,32 +1,202 @@
-<header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
+<header class="site-header">
+  <style>
+    /* Base Header Styling */
+    .site-header {
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Left Zone: Logo */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+    }
+    
+    /* Center & Right Zones */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    
+    /* Center Zone: Links */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+      margin: 0 auto;
+      padding: 0;
+    }
+    
+    .nav-item {
+      text-decoration: none;
+      color: #4b5563; /* Gray-600 */
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px; /* Pill shape */
+      transition: all 0.2s ease;
+    }
+    
+    .nav-item:hover {
+      background-color: #f9fafb;
+      color: #111827;
+    }
+    
+    .nav-item.active {
+      background-color: #f3f4f6; /* Gray-100 */
+      color: #111827; /* Gray-900 */
+    }
+    
+    /* Right Zone: Actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .nav-icons a {
+      color: #6b7280; /* Gray-500 */
+      display: flex;
+      transition: color 0.2s ease;
+    }
+    
+    .icon-spotify:hover { color: #1DB954; }
+    .icon-settings:hover { color: #111827; }
+    
+    /* CTA Button */
+    .btn-cta {
+      background-color: #1DB954;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.625rem 1.5rem;
+      border-radius: 9999px; /* Matches active state pill shape */
+      transition: background-color 0.2s ease;
+    }
+    
+    .btn-cta:hover {
+      background-color: #1aa34a;
+    }
+    
+    /* Mobile Toggle Button */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #4b5563;
+    }
+    
+    /* Responsive Mobile Styles */
+    @media (max-width: 768px) {
+      .mobile-toggle {
+        display: block;
+      }
       
-      <!-- Site Title / Logo -->
-      <div class="flex-shrink-0 flex items-center">
-        <a href="{{ '/' | relative_url }}" class="text-xl font-extrabold text-indigo-600 hover:text-indigo-800 transition-colors">
-          {{ site.title }}
-        </a>
-      </div>
+      .nav-menu {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 1rem 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        gap: 1.5rem;
+      }
+    
+      .nav-menu.is-open {
+        display: flex;
+      }
+    
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+    
+      .nav-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <nav class="navbar">
+    
+    <!-- Left Zone: Logo -->
+    <a href="/" class="nav-brand">
+      <!-- Replace with your actual image path -->
+      <img src="/path-to-signature-logo.svg" alt="Yashwanth Pandi" class="logo-img" />
+    </a>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+      </svg>
+    </button>
+
+    <!-- Center & Right Zones -->
+    <div class="nav-menu" id="nav-menu">
       
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex space-x-8">
-        {% for link in site.data.navigation.main %}
-          <a href="{{ link.url | relative_url }}" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-            {{ link.title }}
+      <!-- Center Zone: Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="/" class="nav-item active">Home</a></li>
+        <li><a href="/projects" class="nav-item">Projects</a></li>
+        <li><a href="/blogs" class="nav-item">Blogs</a></li>
+        <li><a href="/resources" class="nav-item">Resources</a></li>
+        <li><a href="/resume" class="nav-item">Resume</a></li>
+      </ul>
+
+      <!-- Right Zone: Icons & CTA -->
+      <div class="nav-actions">
+        <div class="nav-icons">
+          <a href="#" aria-label="Spotify" class="icon-spotify">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.563.387-.857.207-2.35-1.434-5.305-1.76-8.786-.963-.335.077-.67-.133-.746-.467-.077-.334.132-.67.467-.745 3.808-.87 7.076-.496 9.715 1.115.293.18.386.563.207.853zm1.268-2.828c-.225.367-.704.482-1.072.258-2.687-1.65-6.785-2.13-9.965-1.166-.413.127-.85-.104-.977-.517-.126-.413.104-.85.517-.978 3.635-1.106 8.143-.566 11.24 1.33.367.225.482.705.257 1.073zm.105-2.92c-3.23-1.92-8.56-2.096-11.64-1.16-.505.153-1.03-.13-1.183-.635-.152-.505.13-1.03.635-1.183 3.553-1.077 9.447-.87 13.164 1.34.453.27.597.87.327 1.32-.27.453-.87.598-1.32.327z"/></svg>
           </a>
-        {% endfor %}
-      </nav>
-
-      <!-- Mobile Menu Icon (Visual Only) -->
-      <div class="md:hidden flex items-center">
-        <button type="button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+          <a href="#" aria-label="Settings" class="icon-settings">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+          </a>
+        </div>
+        <a href="#schedule" class="btn-cta">Schedule a Call</a>
       </div>
-
+      
     </div>
-  </div>
+  </nav>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const navMenu = document.getElementById('nav-menu');
+
+      if (mobileBtn && navMenu) {
+        mobileBtn.addEventListener('click', function() {
+          navMenu.classList.toggle('is-open');
+        });
+      }
+    });
+  </script>
 </header>
