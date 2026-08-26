@@ -12,11 +12,13 @@ layout: default
   {% include breadcrumbs.html %}
 {% endif %}
 
-<main id="main" role="main" class="layout--page">
+<main id="main" role="main" class="layout--page{% if page.url == '/' %} layout--home-full{% endif %}">
 
-  {% include sidebar.html %}
+  {% unless page.url == "/" %}
+    {% include sidebar.html %}
+  {% endunless %}
 
-  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+  <article class="page h-entry{% if page.url == '/' %} page--edge-to-edge{% endif %}" itemscope itemtype="https://schema.org/CreativeWork">
 
     <!-- Structured Metadata -->
     {% if page.title %}
@@ -36,10 +38,10 @@ layout: default
     {% endif %}
 
 
-    <div class="page__inner-wrap">
+    <div class="page__inner-wrap{% if page.url == '/' %} page__inner-wrap--flush{% endif %}">
 
       <!-- Header -->
-      {% unless page.header.overlay_color or page.header.overlay_image %}
+      {% unless page.header.overlay_color or page.header.overlay_image or page.url == "/" %}
       <header class="page__header">
 
         {% if page.title %}
@@ -92,6 +94,8 @@ layout: default
         {{ content }}
       </section>
 
+
+      {% unless page.url == "/" %}
 
       <!-- Resource / Citation Block -->
       {% if page.citation or page.paperurl or page.slidesurl or page.bibtexurl %}
@@ -158,10 +162,12 @@ layout: default
 
       {% include post_pagination.html %}
 
+      {% endunless %}
+
     </div>
 
 
-    {% if site.comments.provider and page.comments %}
+    {% if site.comments.provider and page.comments and page.url != "/" %}
       {% include comments.html %}
     {% endif %}
 
@@ -169,7 +175,7 @@ layout: default
 
 
   <!-- Related Posts -->
-  {% if page.id and page.related and site.related_posts.size > 0 %}
+  {% if page.id and page.related and site.related_posts.size > 0 and page.url != "/" %}
   <section class="page__related">
 
     <h3 class="page__related-title">
