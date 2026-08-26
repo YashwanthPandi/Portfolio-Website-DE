@@ -30,7 +30,14 @@
     "plotly.js-dist-min": "^3.3.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "axe-core": "^4.13.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "lighthouse": "^13.4.1",
     "onchange": "^7.1.0",
+    "playwright": "^1.62.1",
     "tailwindcss": "^3.4.17",
     "uglify-js": "^3.17.4"
   },
@@ -41,6 +48,13 @@
     "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/site.css --minify",
     "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/site.css --watch",
     "build": "npm run build:css && npm run build:js && bundle exec jekyll build",
-    "test": "npm run build"
+    "test": "npm run build",
+    "test:unit": "jest tests/unit.test.js",
+    "test:ui": "jest tests/ui.test.js --testTimeout=60000",
+    "test:performance": "jest tests/performance.test.js --testTimeout=120000",
+    "test:seo": "jest tests/seo.test.js --testTimeout=30000",
+    "test:security": "jest tests/security.test.js --testTimeout=30000",
+    "test:all": "jest tests/ --testTimeout=120000 --verbose",
+    "test:coverage": "jest tests/ --coverage --testTimeout=120000"
   }
 }
