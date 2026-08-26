@@ -144,10 +144,32 @@
   @include breakpoint($large) {
     background: var(--global-bg-color);
     border: 1px solid var(--global-border-color);
-    border-radius: $border-radius;
-    padding: 1.25rem 1rem 1rem;
-    box-shadow: $box-shadow;
-    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    padding: 2rem 1.5rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  @include breakpoint($large) {
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+      border-color: #7c6ee6;
+    }
+  }
+
+  /* Dark mode */
+  html[data-theme="dark"] &,
+  html.dark & {
+    background: var(--global-bg-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.08);
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(124, 110, 230, 0.2);
+      border-color: #a78bfa;
+    }
   }
 }
 
@@ -162,19 +184,41 @@
     display: block;
     width: auto;
     height: auto;
+    margin: 0 auto 1.5rem;
+    text-align: center;
   }
 
   img {
     width: 36px;
     height: 36px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 
     @include breakpoint($large) {
-      width: 175px;
-      height: 175px;
-      padding: 5px;
-      border: 1px solid var(--global-border-color);
+      width: 140px;
+      height: 140px;
+      padding: 0;
+      border: 3px solid #7c6ee6;
+      box-shadow: 0 8px 24px rgba(124, 110, 230, 0.15);
+    }
+
+    @include breakpoint($large) {
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 32px rgba(124, 110, 230, 0.25);
+      }
+    }
+
+    html[data-theme="dark"] & {
+      @include breakpoint($large) {
+        border-color: #a78bfa;
+        box-shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
+
+        &:hover {
+          box-shadow: 0 12px 32px rgba(167, 139, 250, 0.25);
+        }
+      }
     }
   }
 }
@@ -191,15 +235,19 @@
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    text-align: center;
   }
 }
 
 .author__name {
   margin: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
 
   @include breakpoint($large) {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
 }
 .sidebar .author__name {
@@ -216,19 +264,28 @@
 
 .author__pronouns {
   margin: 0;
+  font-size: 0.9rem;
+  color: var(--global-text-color-secondary, #9ca3af);
 
   @include breakpoint($large) {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 }
 
 .author__bio {
   margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #7c6ee6;
 
   @include breakpoint($large) {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  html[data-theme="dark"] & {
+    color: #a78bfa;
   }
 }
 
@@ -253,6 +310,21 @@
 
   button {
     margin-bottom: 0;
+    background: linear-gradient(135deg, #7c6ee6 0%, #6854d6 100%);
+    border: none;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(124, 110, 230, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 110, 230, 0.4);
+    }
 
     @include breakpoint($large) {
       display: none;
@@ -265,17 +337,19 @@
   position: absolute;
   right: 0;
   margin-top: 15px;
-  padding: 10px;
+  padding: 12px;
   list-style-type: none;
   border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
+  border-radius: 12px;
   background: var(--global-bg-color);
   z-index: -1;
-  box-shadow: 0 0 10px rgba(#000, 0.25);
+  box-shadow: 0 4px 12px rgba(#000, 0.15);
   cursor: default;
 
   @include breakpoint($large) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     position: relative;
     margin: 0;
     padding: 0;

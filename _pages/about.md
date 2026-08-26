@@ -49,12 +49,13 @@ redirect_from:
     --hero-line: rgba(17, 24, 39, 0.12);
   }
 
-  html[data-theme="dark"], html.dark {
-    --hero-text: #f5f7fb;
-    --hero-text-soft: #d6deea;
-    --hero-muted: #94a3b8;
-    --hero-accent: #f2c94c;
-    --hero-line: rgba(148, 163, 184, 0.18);
+  html[data-theme="dark"] .edge-to-edge-hero,
+  html.dark .edge-to-edge-hero {
+    --hero-text: #ffffff;
+    --hero-text-soft: #f5f7fb;
+    --hero-muted: #e0e7ff;
+    --hero-accent: #fde047;
+    --hero-line: rgba(255, 255, 255, 0.12);
   }
 
   .edge-to-edge-hero .hero-inner {
