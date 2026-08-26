@@ -93,3 +93,13 @@ If `/cms/` loads but login fails, deploy the OAuth worker in [cms-auth-worker/](
 3. Verify:
    - `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/health` should return `{ "ok": true, ... }`
    - Then open `https://yashwanth.co.in/cms/` and sign in.
+
+#### Optional: auto-deploy from GitHub Actions
+
+Workflow: [deploy-cms-auth-worker.yml](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/.github/workflows/deploy-cms-auth-worker.yml)
+
+Add repository secrets:
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `DECAP_GITHUB_CLIENT_ID`
+- `DECAP_GITHUB_CLIENT_SECRET`
