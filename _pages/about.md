@@ -125,17 +125,17 @@ redirect_from:
   }
 
   .edge-to-edge-hero .hero-inner {
-    max-width: 100%;
+    max-width: 90rem;
     width: 100%;
-    margin: 0;
-    padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 4vw, 4rem);
     height: auto;
     min-height: auto;
     max-height: none;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 5rem);
     position: relative;
     z-index: 1;
   }
@@ -159,24 +159,25 @@ redirect_from:
   }
 
   .hero-left {
-    padding-left: clamp(0.25rem, 1.2vw, 1.5rem);
+    padding-left: 0;
     padding-bottom: 0;
   }
 
   .hero-right {
     border-left: 1px solid var(--hero-line);
-    padding-left: clamp(2rem, 3vw, 3rem);
+    padding-left: clamp(2.5rem, 4vw, 4rem);
     width: 100%;
-    align-self: flex-start;
+    align-self: center;
   }
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     font-weight: 900;
     color: var(--hero-text);
+    margin-bottom: 1.5rem;
   }
 
   .intro-block {
@@ -190,27 +191,29 @@ redirect_from:
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.65rem 1.25rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+    font-size: 1rem;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   .hero-button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   }
 
   .hero-button.primary {
@@ -230,11 +233,12 @@ redirect_from:
   }
 
   .hero-rule {
-    width: 5.5rem;
-    height: 0.42rem;
+    width: 4.5rem;
+    height: 0.36rem;
     background: var(--hero-accent);
     border-radius: 9999px;
-    margin-top: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
   }
 
   .hero-links {
@@ -270,19 +274,20 @@ redirect_from:
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(1.2rem, 3vw, 2.5rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.3rem, 3.2vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
     color: var(--hero-text);
     text-align: left;
-    max-width: 36rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
   }
 
   .hero-description {
-    margin: 1.2rem 0 0;
-    max-width: 32rem;
-    font-size: 1.05rem;
-    line-height: 1.45;
+    margin: 0;
+    max-width: 100%;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    line-height: 1.6;
     color: var(--hero-text-soft);
     text-align: left;
   }
@@ -328,7 +333,29 @@ redirect_from:
     box-shadow: 0 0 0 0.25rem rgba(34, 197, 94, 0.18);
   }
 
+  @media (min-width: 1536px) {
+    .edge-to-edge-hero .hero-inner {
+      padding-left: clamp(3rem, 8vw, 6.5rem);
+      padding-right: clamp(3rem, 8vw, 6.5rem);
+      gap: clamp(4rem, 7vw, 6rem);
+    }
+
+    .hero-left {
+      max-width: 32rem;
+    }
+  }
+
   @media (max-width: 1200px) {
+    .edge-to-edge-hero .hero-inner {
+      grid-template-columns: 1fr 0.95fr;
+      padding: 2.5rem 1.5rem;
+      gap: 2.5rem;
+    }
+
+    .hero-left {
+      max-width: none;
+    }
+
     .hero-globe-shell {
       width: clamp(12rem, 42vw, 18rem);
       right: clamp(-5rem, -7vw, -2rem);
@@ -336,19 +363,21 @@ redirect_from:
       transform: translateY(0);
       opacity: 0.45;
     }
+  }
 
+  @media (max-width: 992px) {
     .edge-to-edge-hero .hero-inner {
       grid-template-columns: 1fr;
       min-height: auto;
-      padding: 2rem 1.5rem;
-      gap: 1.25rem;
+      padding: 2.25rem 1.5rem;
+      gap: 2rem;
     }
 
     .hero-right {
       border-left: none;
       border-top: 1px solid var(--hero-line);
       padding-left: 0;
-      padding-top: 1.5rem;
+      padding-top: 1.75rem;
       margin-top: 0;
     }
 
