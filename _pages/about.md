@@ -496,12 +496,132 @@ redirect_from:
         var globe = null;
         var frameId = 0;
         var phi = 0;
+        var flightIndex = 0;
         var observer = null;
         var themeClickHandler = null;
+        var routePoints = [];
+        var staticRouteMarkers = [];
+
+        var cityCoordinates = {
+          Eluru: [16.7107, 81.0952],
+          Hyderabad: [17.3850, 78.4867],
+          'Los Angeles': [34.0522, -118.2437],
+          Istanbul: [41.0082, 28.9784],
+          'New Delhi': [28.6139, 77.2090],
+          Vijayawada: [16.5062, 80.6480],
+          Columbus: [39.9612, -82.9988],
+          Dallas: [32.7767, -96.7970],
+          'San Francisco': [37.7749, -122.4194]
+        };
+
+        var routeStops = [
+          'Eluru',
+          'Hyderabad',
+          'Los Angeles',
+          'Istanbul',
+          'New Delhi',
+          'Vijayawada',
+          'Hyderabad',
+          'Los Angeles',
+          'Columbus',
+          'Dallas',
+          'Columbus',
+          'San Francisco'
+        ];
 
         function isDarkTheme() {
           var root = document.documentElement;
           return root.classList.contains('dark') || root.getAttribute('data-theme') === 'dark';
+        }
+
+        function toRadians(value) {
+          return value * Math.PI / 180;
+        }
+
+        function toDegrees(value) {
+          return value * 180 / Math.PI;
+        }
+
+        function latLonToVector(location) {
+          var lat = toRadians(location[0]);
+          var lon = toRadians(location[1]);
+          return [
+            Math.cos(lat) * Math.cos(lon),
+            Math.sin(lat),
+            Math.cos(lat) * Math.sin(lon)
+          ];
+        }
+
+        function vectorToLatLon(vector) {
+          var x = vector[0];
+          var y = vector[1];
+          var z = vector[2];
+          var hyp = Math.sqrt(x * x + z * z);
+          return [
+            toDegrees(Math.atan2(y, hyp)),
+            toDegrees(Math.atan2(z, x))
+          ];
+        }
+
+        function interpolateGreatCircle(startLocation, endLocation, steps) {
+          var start = latLonToVector(startLocation);
+          var end = latLonToVector(endLocation);
+          var dot = start[0] * end[0] + start[1] * end[1] + start[2] * end[2];
+          dot = Math.min(1, Math.max(-1, dot));
+          var omega = Math.acos(dot);
+          var sinOmega = Math.sin(omega);
+          var points = [];
+
+          if (sinOmega < 0.0001) {
+            points.push(startLocation);
+            points.push(endLocation);
+            return points;
+          }
+
+          for (var step = 0; step <= steps; step += 1) {
+            var t = step / steps;
+            var scaleStart = Math.sin((1 - t) * omega) / sinOmega;
+            var scaleEnd = Math.sin(t * omega) / sinOmega;
+            var point = [
+              start[0] * scaleStart + end[0] * scaleEnd,
+              start[1] * scaleStart + end[1] * scaleEnd,
+              start[2] * scaleStart + end[2] * scaleEnd
+            ];
+            points.push(vectorToLatLon(point));
+          }
+
+          return points;
+        }
+
+        function buildFlightPath() {
+          var points = [];
+          for (var index = 0; index < routeStops.length - 1; index += 1) {
+            var start = cityCoordinates[routeStops[index]];
+            var end = cityCoordinates[routeStops[index + 1]];
+            if (!start || !end) continue;
+            var segment = interpolateGreatCircle(start, end, 120);
+            if (points.length > 0) segment = segment.slice(1);
+            points = points.concat(segment);
+          }
+          return points;
+        }
+
+        function buildStaticRouteMarkers(pathPoints) {
+          var markers = [];
+          for (var i = 0; i < pathPoints.length; i += 1) {
+            markers.push({ location: pathPoints[i], size: 0.0039 });
+          }
+          return markers;
+        }
+
+        function getFlightMarkers() {
+          if (!routePoints.length) return [];
+          var markers = staticRouteMarkers.slice();
+          var totalPoints = routePoints.length;
+          var head = Math.floor(flightIndex) % totalPoints;
+          markers.push({ location: routePoints[head], size: 0.022 });
+
+          return markers;
         }
 
         function getThemeConfig() {
@@ -510,7 +630,8 @@ redirect_from:
               dark: 1,
               mapBrightness: 6,
               baseColor: [0.07, 0.18, 0.35],
-              glowColor: [0.2, 0.52, 0.95]
+              glowColor: [0.2, 0.52, 0.95],
+              markerColor: [0.55, 0.85, 1]
             };
           }
 
@@ -518,7 +639,8 @@ redirect_from:
             dark: 1,
             mapBrightness: 6,
             baseColor: [0.07, 0.18, 0.35],
-            glowColor: [0.2, 0.52, 0.95]
+            glowColor: [0.2, 0.52, 0.95],
+            markerColor: [1, 1, 1]
           };
         }
 
@@ -541,17 +663,21 @@ redirect_from:
             mapSamples: 40000,
             mapBrightness: theme.mapBrightness,
             baseColor: theme.baseColor,
-            markerColor: [1, 0, 0],
+            markerColor: theme.markerColor,
             glowColor: theme.glowColor,
             opacity: 1,
             offset: [0, 0],
-            markers: []
+            markers: getFlightMarkers()
           });
         }
 
         function animate() {
           phi += 0.003;
-          if (globe) globe.update({ phi: phi });
+          flightIndex += 0.2;
+          if (globe) globe.update({
+            phi: phi,
+            markers: getFlightMarkers()
+          });
           frameId = window.requestAnimationFrame(animate);
         }
 
@@ -559,6 +685,8 @@ redirect_from:
           buildGlobe();
         }
 
+        routePoints = buildFlightPath();
+        staticRouteMarkers = buildStaticRouteMarkers(routePoints);
         buildGlobe();
         animate();
 
