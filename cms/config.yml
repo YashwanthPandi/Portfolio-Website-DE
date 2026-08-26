@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: YashwanthPandi/Portfolio-Website-DE
-  branch: prod
+  branch: master
   base_url: https://decap-cms-auth.pandiyashwanth-8d9.workers.dev
   auth_endpoint: /auth
 
@@ -10,17 +10,139 @@ public_folder: "/assets/images"
 
 collections:
   - name: "posts"
-    label: "Posts"
+    label: "Blogs"
     folder: "_posts"
     extension: "md"
     format: "yaml-frontmatter"
     create: true
-    # This matches your URL structure: /posts/YYYY/MM/title
+    delete: true
     path: "{{year}}/{{month}}/{{year}}-{{month}}-{{day}}-{{slug}}"
     slug: "{{slug}}"
     fields:
-      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Categories", name: "categories", widget: "list", default: ["posts"] }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+      - { label: "Collection", name: "collection", widget: "hidden", default: "posts" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss", date_format: "YYYY-MM-DD", time_format: "HH:mm:ss" }
+      - { label: "Permalink", name: "permalink", widget: "string", required: false, hint: "Example: /posts/2026/03/my-post/" }
+      - { label: "Categories", name: "categories", widget: "list", required: false, default: ["posts"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    extension: "md"
+    format: "yaml-frontmatter"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Date", name: "date", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Modified", name: "modified", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "External URL", name: "external_url", widget: "string", required: false }
+      - { label: "GitHub URL", name: "github_url", widget: "string", required: false }
+      - { label: "Download URL", name: "download_url", widget: "string", required: false }
+      - label: "Header"
+        name: "header"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Overlay Image", name: "overlay_image", widget: "image", required: false }
+          - { label: "Overlay Filter", name: "overlay_filter", widget: "number", required: false, value_type: "float" }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "talks"
+    label: "Talks"
+    folder: "_talks"
+    extension: "md"
+    format: "yaml-frontmatter"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+      - { label: "Collection", name: "collection", widget: "hidden", default: "talks" }
+      - { label: "Type", name: "type", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Permalink", name: "permalink", widget: "string", required: false }
+      - { label: "Venue", name: "venue", widget: "string", required: false }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "publications"
+    label: "Publications"
+    folder: "_publications"
+    extension: "md"
+    format: "yaml-frontmatter"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Permalink", name: "permalink", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "site-sections"
+    label: "Site Sections"
+    files:
+      - label: "Resources List"
+        name: "resources-data"
+        file: "_data/resources.yml"
+        fields:
+          - label: "Resources"
+            name: "resources"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Link", name: "link", widget: "string" }
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Image", name: "image", widget: "image", required: false }
+      - label: "Top Navigation"
+        name: "main-navigation"
+        file: "_data/navigation.yml"
+        fields:
+          - label: "Main Navigation"
+            name: "main"
+            widget: "list"
+            summary: "{{fields.title}} → {{fields.url}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+      - label: "Contact Settings"
+        name: "contact-settings"
+        file: "_data/contact.yml"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - label: "Form"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Provider", name: "provider", widget: "select", options: ["Formspree", "FormSubmit"], default: "Formspree" }
+              - { label: "Action URL", name: "action", widget: "string", hint: "Example: https://formspree.io/f/your_form_id" }
+              - { label: "Method", name: "method", widget: "select", options: ["POST"], default: "POST" }
+              - { label: "Success Message", name: "success_message", widget: "string", required: false }
+      - label: "Contact Page"
+        name: "contact-page"
+        file: "_pages/contact.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - { label: "Author Profile", name: "author_profile", widget: "boolean", default: true, required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
       - { label: "Body", name: "body", widget: "markdown" }

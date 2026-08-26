@@ -1,0 +1,8 @@
+title: "Contact"
+intro: "Have a project, collaboration, or question? Send a message and I will get back to you."
+email: "pandiyashwanth@gmail.com"
+form:
+  provider: "FormSubmit"
+  action: "https://formsubmit.co/pandiyashwanth@gmail.com"
+  method: "POST"
+  success_message: "Thanks for your message. I will reply soon."
