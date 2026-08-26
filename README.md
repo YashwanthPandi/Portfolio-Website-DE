@@ -69,7 +69,27 @@ You can manage content from the browser at `/cms/`:
 
 ### Contact Form Service
 
-The contact page is available at `/contact/` and submits to the configured service endpoint in [contact.yml](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/_data/contact.yml).
+The contact page is available at `/contact/` and submits to the configured service endpoint in `_data/contact.yml`.
 
 Default provider is **FormSubmit**.  
 If you prefer Formspree, replace `form.action` with your Formspree endpoint.
+
+### Decap CMS GitHub Login (Cloudflare Worker)
+
+If `/cms/` loads but login fails, deploy the OAuth worker in [cms-auth-worker/](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/cms-auth-worker):
+
+1. Create a GitHub OAuth app:
+   - Homepage URL: `https://yashwanth.co.in`
+   - Authorization callback URL: `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/callback`
+2. Deploy worker:
+   ```bash
+   cd cms-auth-worker
+   npm i -D wrangler
+   npx wrangler login
+   npx wrangler secret put GITHUB_CLIENT_ID
+   npx wrangler secret put GITHUB_CLIENT_SECRET
+   npx wrangler deploy
+   ```
+3. Verify:
+   - `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/health` should return `{ "ok": true, ... }`
+   - Then open `https://yashwanth.co.in/cms/` and sign in.

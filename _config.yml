@@ -72,6 +72,7 @@ exclude:
   - assets/js/vendor
   - node_modules
   - vendor
+  - cms-auth-worker
   - Gemfile
   - Gemfile.lock
 keep_files:
