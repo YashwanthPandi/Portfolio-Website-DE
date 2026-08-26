@@ -95,9 +95,9 @@ redirect_from:
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(4.5rem, 8vw, 13rem);
-    line-height: 0.82;
-    letter-spacing: -0.09em;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     font-weight: 900;
     color: var(--hero-text);
   }
@@ -190,9 +190,9 @@ redirect_from:
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(2rem, 2.2vw, 3.4rem);
-    line-height: 1.08;
-    letter-spacing: -0.06em;
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--hero-text);
     text-align: left;
     max-width: 36rem;
@@ -251,7 +251,7 @@ redirect_from:
       grid-template-columns: 1fr;
       min-height: auto;
       padding: 2rem 1.5rem;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     .hero-right {
@@ -274,8 +274,9 @@ redirect_from:
     }
 
     .hero-heading {
-      font-size: clamp(2.5rem, 15vw, 4rem);
-      line-height: 0.95;
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
     }
 
     .hero-links {
@@ -285,13 +286,15 @@ redirect_from:
     }
 
     .hero-copy {
-      font-size: 1.3rem;
-      line-height: 1.3;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
     }
 
     .hero-description {
-      font-size: 0.95rem;
-      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      line-height: 1.5;
     }
 
     .hero-actions {
@@ -299,12 +302,14 @@ redirect_from:
       flex-direction: column;
       align-items: stretch;
       gap: 0.75rem;
+      margin-top: 1rem;
     }
 
     .hero-button {
       width: 100%;
-      padding: 0.7rem 1rem;
-      font-size: 0.95rem;
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+      min-height: 2.5rem;
     }
 
     .intro-block {
@@ -314,6 +319,16 @@ redirect_from:
     .hero-right {
       padding-top: 1rem;
       margin-top: 0;
+    }
+
+    .hero-status {
+      width: 100%;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .status-row {
+      font-size: 0.8rem;
     }
   }
 </style>
