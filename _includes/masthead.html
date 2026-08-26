@@ -1,11 +1,111 @@
 <style>
-  /* 1. Spotify Dropdown & Glassmorphism */
+  /* ====== 1. UNIFIED MASTHEAD LAYOUT ====== */
+  .masthead {
+    background: #1e222b !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 20;
+  }
+
+  .masthead__inner-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+  }
+
+  .masthead__top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px; /* single consistent header height */
+  }
+
+  /* Logo / brand area */
+  .masthead__brand {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .masthead__logo-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .site-logo {
+    height: 32px;
+    width: auto;
+    /* If your logo.svg is drawn in black, this makes it visible on the dark bar.
+       Remove this line if your logo is already white/light. */
+    filter: brightness(0) invert(1);
+  }
+
+  /* Nav area */
+  .masthead__nav-bar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .greedy-nav .visible-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.75em;
+  }
+
+  .masthead__menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .masthead__menu-item a {
+    color: #e4e4e7 !important; /* zinc-200 */
+    font-weight: 500;
+    text-decoration: none !important;
+    font-size: 0.95em;
+    transition: color 0.2s ease;
+  }
+
+  .masthead__menu-item a:hover {
+    color: #f4c430 !important; /* accent yellow, matches hero */
+  }
+
+  /* Persist items (spotify icon, theme toggle, button) sit at consistent
+     vertical center regardless of surrounding link height */
+  .masthead__menu-item.persist {
+    display: flex;
+    align-items: center;
+  }
+
+  .masthead__menu-item.persist button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  #theme-icon {
+    color: #e4e4e7;
+    font-size: 1em;
+    transition: color 0.2s ease;
+  }
+  #theme-icon:hover {
+    color: #f4c430;
+  }
+
+  /* ====== 2. Spotify Dropdown & Glassmorphism ====== */
   .spotify-dropdown {
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -20,15 +120,15 @@
     padding: 0 1em;
   }
   #spotify-toggle i {
-    color: #1DB954; 
+    color: #1DB954;
     transition: transform 0.2s ease;
     cursor: pointer;
   }
   #spotify-toggle:hover i { transform: scale(1.1); filter: brightness(1.2); }
 
-  /* 2. NeetoCal Button Styling - NO UNDERLINE */
+  /* ====== 3. NeetoCal Button Styling — NO UNDERLINE ====== */
   .neetocal-nav-btn {
-    background-color: #1DB954 !important; /* Spotify Green */
+    background-color: #1DB954 !important;
     color: white !important;
     padding: 6px 15px !important;
     border-radius: 20px !important;
@@ -38,14 +138,12 @@
     margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
-    /* This removes the underline */
-    text-decoration: none !important; 
+    text-decoration: none !important;
     border: none !important;
     line-height: 1.2 !important;
   }
 
-  /* Force remove underline on hover */
-  .neetocal-nav-btn:hover, 
+  .neetocal-nav-btn:hover,
   .neetocal-nav-btn:focus,
   .neetocal-nav-btn:active,
   .visible-links .masthead__menu-item a.neetocal-nav-btn:hover {
@@ -53,6 +151,20 @@
     filter: brightness(1.1);
     color: white !important;
     outline: none;
+  }
+
+  /* ====== 4. Mobile: stack nav below brand if it overflows ====== */
+  @media (max-width: 768px) {
+    .masthead__top-bar {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 0.75em 0;
+    }
+    .greedy-nav .visible-links {
+      flex-wrap: wrap;
+      gap: 1em 1.25em;
+      row-gap: 0.5em;
+    }
   }
 </style>
 
@@ -91,15 +203,15 @@
 
   <div id="spotify-drawer" class="spotify-dropdown">
     <div class="spotify-container">
-      <iframe 
+      <iframe
         title="Spotify playlist"
-        style="border-radius:12px" 
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0" 
-        width="100%" 
-        height="80" 
-        frameBorder="0" 
-        allowfullscreen="" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0"
+        width="100%"
+        height="80"
+        frameBorder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy">
       </iframe>
     </div>
