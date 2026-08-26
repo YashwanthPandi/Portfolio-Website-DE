@@ -1,246 +1,147 @@
-<style>
-  /* ====== 1. UNIFIED MASTHEAD LAYOUT ====== */
-  .masthead {
-    background: #1e222b !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    position: relative;
-    z-index: 20;
-  }
+<header class="sticky top-0 z-50 w-full bg-[#1e222b] border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="flex items-center justify-between h-16">
 
-  .masthead__inner-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1.5em;
-  }
+      <!-- Logo -->
+      <a href="{{ base_path }}/" class="flex items-center h-full shrink-0">
+        <img
+          src="/images/logo.svg"
+          alt="{{ site.title }}"
+          class="h-8 w-auto brightness-0 invert"
+        />
+      </a>
 
-  .masthead__top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px; /* single consistent header height */
-  }
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-7">
+        {% for link in site.data.navigation.main %}
+          
+            href="{{ base_path }}{{ link.url }}"
+            class="text-sm font-medium text-zinc-200 hover:text-[#f4c430] transition-colors"
+          >{{ link.title }}</a>
+        {% endfor %}
 
-  /* Logo / brand area */
-  .masthead__brand {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
+        <!-- Spotify toggle -->
+        <button id="spotify-toggle" type="button" aria-label="Open Spotify drawer" class="text-[#1DB954] hover:scale-110 hover:brightness-125 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.723a.78.78 0 0 1-1.072.257c-2.688-1.652-6.786-2.13-9.966-1.166a.78.78 0 0 1-.453-1.492c3.63-1.102 8.147-.568 11.234 1.329a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 9.075 9.375 8.89 6.297 9.84a.936.936 0 1 1-.548-1.79c3.53-1.076 9.404-.858 13.115 1.35a.936.936 0 0 1-.95 1.606z"/>
+          </svg>
+        </button>
 
-  .masthead__logo-link {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
+        <!-- Theme toggle -->
+        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="text-zinc-200 hover:text-[#f4c430] transition-colors">
+          <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+            <circle cx="12" cy="12" r="4"/>
+            <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
 
-  .site-logo {
-    height: 32px;
-    width: auto;
-    /* If your logo.svg is drawn in black, this makes it visible on the dark bar.
-       Remove this line if your logo is already white/light. */
-    filter: brightness(0) invert(1);
-  }
-
-  /* Nav area */
-  .masthead__nav-bar {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-
-  .greedy-nav .visible-links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 1.75em;
-  }
-
-  .masthead__menu-item {
-    display: flex;
-    align-items: center;
-  }
-
-  .masthead__menu-item a {
-    color: #e4e4e7 !important; /* zinc-200 */
-    font-weight: 500;
-    text-decoration: none !important;
-    font-size: 0.95em;
-    transition: color 0.2s ease;
-  }
-
-  .masthead__menu-item a:hover {
-    color: #f4c430 !important; /* accent yellow, matches hero */
-  }
-
-  /* Persist items (spotify icon, theme toggle, button) sit at consistent
-     vertical center regardless of surrounding link height */
-  .masthead__menu-item.persist {
-    display: flex;
-    align-items: center;
-  }
-
-  .masthead__menu-item.persist button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 0;
-  }
-
-  #theme-icon {
-    color: #e4e4e7;
-    font-size: 1em;
-    transition: color 0.2s ease;
-  }
-  #theme-icon:hover {
-    color: #f4c430;
-  }
-
-  /* ====== 2. Spotify Dropdown & Glassmorphism ====== */
-  .spotify-dropdown {
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .spotify-dropdown.is-open {
-    max-height: 120px;
-    padding: 10px 0;
-  }
-  .spotify-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1em;
-  }
-  #spotify-toggle i {
-    color: #1DB954;
-    transition: transform 0.2s ease;
-    cursor: pointer;
-  }
-  #spotify-toggle:hover i { transform: scale(1.1); filter: brightness(1.2); }
-
-  /* ====== 3. NeetoCal Button Styling — NO UNDERLINE ====== */
-  .neetocal-nav-btn {
-    background-color: #1DB954 !important;
-    color: white !important;
-    padding: 6px 15px !important;
-    border-radius: 20px !important;
-    font-weight: bold !important;
-    font-size: 0.8em !important;
-    text-transform: uppercase;
-    margin-left: 10px;
-    display: inline-block;
-    vertical-align: middle;
-    text-decoration: none !important;
-    border: none !important;
-    line-height: 1.2 !important;
-  }
-
-  .neetocal-nav-btn:hover,
-  .neetocal-nav-btn:focus,
-  .neetocal-nav-btn:active,
-  .visible-links .masthead__menu-item a.neetocal-nav-btn:hover {
-    text-decoration: none !important;
-    filter: brightness(1.1);
-    color: white !important;
-    outline: none;
-  }
-
-  /* ====== 4. Mobile: stack nav below brand if it overflows ====== */
-  @media (max-width: 768px) {
-    .masthead__top-bar {
-      flex-wrap: wrap;
-      height: auto;
-      padding: 0.75em 0;
-    }
-    .greedy-nav .visible-links {
-      flex-wrap: wrap;
-      gap: 1em 1.25em;
-      row-gap: 0.5em;
-    }
-  }
-</style>
-
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__top-bar">
-      <div class="masthead__brand">
-        <a href="{{ base_path }}/" class="masthead__logo-link">
-          <img src="/images/logo.svg" alt="{{ site.title }}" class="site-logo" />
-        </a>
-      </div>
-      <nav id="site-nav" class="greedy-nav masthead__nav-bar">
-        <ul class="visible-links">
-          {% for link in site.data.navigation.main %}
-            <li class="masthead__menu-item">
-              <a href="{{ base_path }}{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {% endfor %}
-
-          <li id="spotify-toggle" class="masthead__menu-item persist">
-            <button type="button" aria-label="Open Spotify drawer"><i class="fa-brands fa-spotify"></i></button>
-          </li>
-
-          <li id="theme-toggle" class="masthead__menu-item persist">
-            <button type="button" aria-label="Toggle theme"><i id="theme-icon" class="fa-solid fa-sun"></i></button>
-          </li>
-
-          <li class="masthead__menu-item persist tail">
-            <button id="open-popup-button" class="neetocal-nav-btn" type="button">Schedule a Call</button>
-          </li>
-        </ul>
-        <ul class="hidden-links hidden"></ul>
+        <!-- Schedule call -->
+        <button
+          id="open-popup-button"
+          type="button"
+          class="bg-[#1DB954] hover:brightness-110 text-white text-xs font-bold uppercase px-4 py-1.5 rounded-full transition-[filter]"
+        >Schedule a Call</button>
       </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="mobile-menu-toggle" type="button" aria-label="Toggle menu" class="md:hidden text-zinc-200">
+        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
     </div>
   </div>
 
-  <div id="spotify-drawer" class="spotify-dropdown">
-    <div class="spotify-container">
+  <!-- Mobile menu panel -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#1e222b] border-t border-white/10 px-4 py-4 space-y-3">
+    {% for link in site.data.navigation.main %}
+      
+        href="{{ base_path }}{{ link.url }}"
+        class="block text-sm font-medium text-zinc-200 hover:text-[#f4c430] transition-colors"
+      >{{ link.title }}</a>
+    {% endfor %}
+
+    <div class="flex items-center gap-5 pt-2">
+      <button id="spotify-toggle-mobile" type="button" aria-label="Open Spotify drawer" class="text-[#1DB954]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.723a.78.78 0 0 1-1.072.257c-2.688-1.652-6.786-2.13-9.966-1.166a.78.78 0 0 1-.453-1.492c3.63-1.102 8.147-.568 11.234 1.329a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 9.075 9.375 8.89 6.297 9.84a.936.936 0 1 1-.548-1.79c3.53-1.076 9.404-.858 13.115 1.35a.936.936 0 0 1-.95 1.606z"/>
+        </svg>
+      </button>
+      <button id="theme-toggle-mobile" type="button" aria-label="Toggle theme" class="text-zinc-200">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+          <circle cx="12" cy="12" r="4"/>
+          <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button id="open-popup-button-mobile" type="button" class="bg-[#1DB954] hover:brightness-110 text-white text-xs font-bold uppercase px-4 py-1.5 rounded-full">Schedule a Call</button>
+    </div>
+  </div>
+
+  <!-- Spotify drawer -->
+  <div id="spotify-drawer" class="max-h-0 overflow-hidden transition-[max-height] duration-400 ease-in-out bg-white/5 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-2.5">
       <iframe
         title="Spotify playlist"
-        style="border-radius:12px"
+        class="rounded-xl w-full"
         src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0"
-        width="100%"
         height="80"
-        frameBorder="0"
+        frameborder="0"
         allowfullscreen=""
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy">
       </iframe>
     </div>
   </div>
-</div>
+</header>
 
 <script>window.neetoCal = window.neetoCal || { embed: function(){(neetoCal.q=neetoCal.q||[]).push(arguments)} };</script>
 <script async src="https://cdn.neetocal.com/javascript/embed.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
+    // NeetoCal booking popup (desktop + mobile buttons)
     if (window.neetoCal) {
       neetoCal.embed({
-      type: "elementClick",
-      id: "489e15b2-35cb-40a7-8076-e080cf6acf38",
-      organization: "yashwanth-pandi",
-      elementSelector: "#open-popup-button",
-      isSidebarAndCoverImgHidden: "false",
-      shouldForwardQueryParams: "false"
+        type: "elementClick",
+        id: "489e15b2-35cb-40a7-8076-e080cf6acf38",
+        organization: "yashwanth-pandi",
+        elementSelector: "#open-popup-button, #open-popup-button-mobile",
+        isSidebarAndCoverImgHidden: "false",
+        shouldForwardQueryParams: "false"
       });
     }
 
-    const spotifyBtn = document.getElementById('spotify-toggle');
+    // Spotify drawer toggle (desktop + mobile trigger)
     const drawer = document.getElementById('spotify-drawer');
-    if (spotifyBtn && drawer) {
-      spotifyBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        drawer.classList.toggle('is-open');
-      });
+    function toggleDrawer(e) {
+      e.preventDefault();
+      const isOpen = drawer.classList.contains('max-h-[120px]');
+      drawer.classList.toggle('max-h-0', isOpen);
+      drawer.classList.toggle('max-h-[120px]', !isOpen);
+      drawer.classList.toggle('py-2.5', !isOpen);
     }
+    document.getElementById('spotify-toggle')?.addEventListener('click', toggleDrawer);
+    document.getElementById('spotify-toggle-mobile')?.addEventListener('click', toggleDrawer);
+
+    // Mobile menu toggle
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger-icon');
+    const close = document.getElementById('close-icon');
+    document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
+      menu.classList.toggle('hidden');
+      hamburger.classList.toggle('hidden');
+      close.classList.toggle('hidden');
+    });
+
+    // Theme toggle placeholder — wire up to your actual dark/light logic
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+    document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
   });
 </script>
