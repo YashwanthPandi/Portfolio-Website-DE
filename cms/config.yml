@@ -145,4 +145,3 @@ collections:
           - { label: "Permalink", name: "permalink", widget: "string" }
           - { label: "Author Profile", name: "author_profile", widget: "boolean", default: true, required: false }
           - { label: "Body", name: "body", widget: "markdown", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
