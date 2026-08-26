@@ -30,9 +30,14 @@ redirect_from:
     --hero-line: rgba(17, 24, 39, 0.12);
     background: transparent;
     color: var(--hero-text);
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
     transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   html[data-theme="light"] .edge-to-edge-hero,
@@ -44,12 +49,13 @@ redirect_from:
     --hero-line: rgba(17, 24, 39, 0.12);
   }
 
-  html[data-theme="dark"], html.dark {
-    --hero-text: #f5f7fb;
-    --hero-text-soft: #d6deea;
-    --hero-muted: #94a3b8;
-    --hero-accent: #f2c94c;
-    --hero-line: rgba(148, 163, 184, 0.18);
+  html[data-theme="dark"] .edge-to-edge-hero,
+  html.dark .edge-to-edge-hero {
+    --hero-text: #ffffff;
+    --hero-text-soft: #f5f7fb;
+    --hero-muted: #e0e7ff;
+    --hero-accent: #fde047;
+    --hero-line: rgba(255, 255, 255, 0.12);
   }
 
   .edge-to-edge-hero .hero-inner {
@@ -334,7 +340,7 @@ redirect_from:
           Specializing in building robust front-end web applications, scalable cloud software architectures, and automated high-performance data pipelines.
         </p>
         <div class="hero-actions">
-          <a href="#" class="hero-button primary">Schedule a Call</a>
+          <a id="hero-schedule-btn" class="hero-button primary" href="#" role="button">Schedule a Call</a>
           <a href="/projects" class="hero-button secondary">View Projects</a>
         </div>
         <div class="hero-status">
@@ -352,7 +358,7 @@ redirect_from:
       var hero = document.querySelector('.edge-to-edge-hero');
       if (!hero) return;
 
-      var header = document.querySelector('.masthead, header[role="banner"], header');
+      var header = document.querySelector('.masthead, header[role="banner"], header, .site-header');
       var footer = document.querySelector('.page__footer, footer[role="contentinfo"], footer');
 
       var headerH = header ? header.getBoundingClientRect().height : 0;
@@ -362,7 +368,23 @@ redirect_from:
       hero.style.minHeight = Math.max(available, 0) + 'px';
     }
 
-    document.addEventListener('DOMContentLoaded', fitHero);
+    // Wire up Schedule a Call buttons to Neeto popup
+    function setupScheduleButtons() {
+      var heroBtn = document.getElementById('hero-schedule-btn');
+      var navBtn = document.getElementById('open-popup-button');
+      
+      if (heroBtn && window.neetoCal) {
+        heroBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          navBtn.click();
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      fitHero();
+      setupScheduleButtons();
+    });
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
     window.addEventListener('orientationchange', fitHero);
