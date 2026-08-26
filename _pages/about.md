@@ -334,7 +334,7 @@ redirect_from:
           Specializing in building robust front-end web applications, scalable cloud software architectures, and automated high-performance data pipelines.
         </p>
         <div class="hero-actions">
-          <a href="#" class="hero-button primary">Schedule a Call</a>
+          <a id="hero-schedule-btn" class="hero-button primary" href="#" role="button">Schedule a Call</a>
           <a href="/projects" class="hero-button secondary">View Projects</a>
         </div>
         <div class="hero-status">
@@ -352,7 +352,7 @@ redirect_from:
       var hero = document.querySelector('.edge-to-edge-hero');
       if (!hero) return;
 
-      var header = document.querySelector('.masthead, header[role="banner"], header');
+      var header = document.querySelector('.masthead, header[role="banner"], header, .site-header');
       var footer = document.querySelector('.page__footer, footer[role="contentinfo"], footer');
 
       var headerH = header ? header.getBoundingClientRect().height : 0;
@@ -362,7 +362,23 @@ redirect_from:
       hero.style.minHeight = Math.max(available, 0) + 'px';
     }
 
-    document.addEventListener('DOMContentLoaded', fitHero);
+    // Wire up Schedule a Call buttons to Neeto popup
+    function setupScheduleButtons() {
+      var heroBtn = document.getElementById('hero-schedule-btn');
+      var navBtn = document.getElementById('open-popup-button');
+      
+      if (heroBtn && window.neetoCal) {
+        heroBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          navBtn.click();
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      fitHero();
+      setupScheduleButtons();
+    });
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
     window.addEventListener('orientationchange', fitHero);
