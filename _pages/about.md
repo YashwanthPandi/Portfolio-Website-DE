@@ -31,39 +31,97 @@ redirect_from:
   }
 
   .edge-to-edge-hero {
-    --hero-bg: transparent;
-    --hero-text: #1d2431;
-    --hero-text-soft: #4b5563;
-    --hero-muted: #9ca4af;
-    --hero-accent: #f2c94c;
-    --hero-line: rgba(17, 24, 39, 0.12);
-    background: transparent;
+    --hero-bg:
+      radial-gradient(60% 70% at 70% 30%, rgba(37, 99, 235, 0.35) 0%, rgba(37, 99, 235, 0) 70%),
+      linear-gradient(135deg, #081324 0%, #0b1d38 50%, #0a1a31 100%);
+    --hero-bg-overlay:
+      radial-gradient(80% 60% at 78% 48%, rgba(56, 189, 248, 0.14) 0%, rgba(56, 189, 248, 0) 74%),
+      linear-gradient(to top, rgba(8, 14, 28, 0.76) 0%, rgba(8, 14, 28, 0.1) 35%, rgba(8, 14, 28, 0) 70%);
+    --hero-text: #f8fbff;
+    --hero-text-soft: #d9e8fb;
+    --hero-muted: #9fb3cc;
+    --hero-accent: #7dd3fc;
+    --hero-line: rgba(186, 230, 253, 0.28);
+    --hero-globe-shell-shadow:
+      0 0 48px rgba(56, 189, 248, 0.35),
+      0 0 18px rgba(96, 165, 250, 0.32);
+    --hero-globe-filter: saturate(1.08) brightness(1.05);
+    background: var(--hero-bg);
     color: var(--hero-text);
     width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    position: static;
-    overflow: visible;
+    transition: background 0.3s ease, color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .edge-to-edge-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--hero-bg-overlay);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.95;
+  }
+
+  .hero-globe-shell {
+    position: absolute;
+    width: clamp(17rem, 37vw, 32rem);
+    aspect-ratio: 1;
+    right: clamp(-8rem, -6vw, -1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 9999px;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: var(--hero-globe-shell-shadow);
+    opacity: 0.95;
+  }
+
+  .hero-globe-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 9999px;
+    filter: var(--hero-globe-filter);
   }
 
   html[data-theme="light"] .edge-to-edge-hero,
   html:not(.dark):not([data-theme="dark"]) .edge-to-edge-hero {
-    --hero-text: #1d2431;
-    --hero-text-soft: #4b5563;
-    --hero-muted: #9ca4af;
-    --hero-accent: #f2c94c;
-    --hero-line: rgba(17, 24, 39, 0.12);
+    --hero-bg:
+      radial-gradient(60% 70% at 70% 30%, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0) 70%),
+      linear-gradient(135deg, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%);
+    --hero-bg-overlay:
+      radial-gradient(70% 50% at 82% 44%, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0) 76%),
+      linear-gradient(to top, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.02) 30%, rgba(15, 23, 42, 0) 75%);
+    --hero-text: #0f172a;
+    --hero-text-soft: #334155;
+    --hero-muted: #64748b;
+    --hero-accent: #111827;
+    --hero-line: rgba(15, 23, 42, 0.16);
+    --hero-globe-shell-shadow:
+      0 0 22px rgba(15, 23, 42, 0.18),
+      0 0 8px rgba(15, 23, 42, 0.14);
+    --hero-globe-filter: grayscale(1) invert(1) contrast(1.55) brightness(0.9);
   }
 
   html[data-theme="dark"] .edge-to-edge-hero,
   html.dark .edge-to-edge-hero {
-    --hero-text: #ffffff;
-    --hero-text-soft: #f5f7fb;
-    --hero-muted: #e0e7ff;
-    --hero-accent: #fde047;
-    --hero-line: rgba(255, 255, 255, 0.12);
+    --hero-bg:
+      radial-gradient(60% 70% at 70% 30%, rgba(29, 78, 216, 0.36) 0%, rgba(29, 78, 216, 0) 72%),
+      linear-gradient(138deg, #010409 0%, #060f1e 44%, #040a14 100%);
+    --hero-bg-overlay:
+      radial-gradient(84% 62% at 82% 46%, rgba(56, 189, 248, 0.16) 0%, rgba(56, 189, 248, 0) 78%),
+      linear-gradient(to top, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.25) 40%, rgba(2, 6, 23, 0) 72%);
+    --hero-text: #f8fbff;
+    --hero-text-soft: #e2edff;
+    --hero-muted: #b6c8e6;
+    --hero-accent: #60a5fa;
+    --hero-line: rgba(147, 197, 253, 0.24);
   }
 
   .edge-to-edge-hero .hero-inner {
@@ -80,6 +138,12 @@ redirect_from:
     gap: clamp(2rem, 5vw, 4rem);
     position: relative;
     z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-globe-shell {
+      transform: translateY(-50%);
+    }
   }
 
   .hero-left,
@@ -265,6 +329,14 @@ redirect_from:
   }
 
   @media (max-width: 1200px) {
+    .hero-globe-shell {
+      width: clamp(12rem, 42vw, 18rem);
+      right: clamp(-5rem, -7vw, -2rem);
+      top: 8%;
+      transform: translateY(0);
+      opacity: 0.45;
+    }
+
     .edge-to-edge-hero .hero-inner {
       grid-template-columns: 1fr;
       min-height: auto;
@@ -286,6 +358,14 @@ redirect_from:
   }
 
   @media (max-width: 640px) {
+    .hero-globe-shell {
+      width: clamp(9rem, 55vw, 13rem);
+      top: 6%;
+      right: -3.5rem;
+      transform: translateY(0);
+      opacity: 0.38;
+    }
+
     .edge-to-edge-hero .hero-inner {
       padding: 1.5rem 1rem;
       gap: 1rem;
@@ -353,6 +433,10 @@ redirect_from:
 {% raw %}
 <div class="edge-to-edge-hero">
   <div class="hero-inner">
+    <div class="hero-globe-shell" aria-hidden="true">
+      <canvas id="hero-globe-canvas" class="hero-globe-canvas"></canvas>
+    </div>
+
     <div class="hero-left">
       <h1 class="hero-heading">Yashwanth <br /><span class="muted">Pandi.</span></h1>
       <div class="hero-rule"></div>
@@ -387,6 +471,8 @@ redirect_from:
 
 <script>
   (function () {
+    var disposeHeroGlobe = null;
+
     function fitHero() {
       var hero = document.querySelector('.edge-to-edge-hero');
       if (!hero) return;
@@ -399,6 +485,113 @@ redirect_from:
 
       var available = window.innerHeight - headerH - footerH;
       hero.style.minHeight = Math.max(available, 0) + 'px';
+    }
+
+    function setupHeroGlobe() {
+      var canvas = document.getElementById('hero-globe-canvas');
+      if (!canvas) return;
+
+      import('https://cdn.skypack.dev/cobe').then(function (mod) {
+        var createGlobe = mod.default;
+        var globe = null;
+        var frameId = 0;
+        var phi = 0;
+        var observer = null;
+        var themeClickHandler = null;
+
+        function isDarkTheme() {
+          var root = document.documentElement;
+          return root.classList.contains('dark') || root.getAttribute('data-theme') === 'dark';
+        }
+
+        function getThemeConfig() {
+          if (isDarkTheme()) {
+            return {
+              dark: 1,
+              mapBrightness: 6,
+              baseColor: [0.07, 0.18, 0.35],
+              glowColor: [0.2, 0.52, 0.95]
+            };
+          }
+
+          return {
+            dark: 1,
+            mapBrightness: 6,
+            baseColor: [0.07, 0.18, 0.35],
+            glowColor: [0.2, 0.52, 0.95]
+          };
+        }
+
+        function buildGlobe() {
+          var width = canvas.offsetWidth;
+          if (!width) return;
+
+          var theme = getThemeConfig();
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          if (globe) globe.destroy();
+          globe = createGlobe(canvas, {
+            devicePixelRatio: dpr,
+            width: width * dpr,
+            height: width * dpr,
+            phi: phi,
+            theta: 0.26,
+            dark: theme.dark,
+            scale: 1.08,
+            diffuse: 1.2,
+            mapSamples: 40000,
+            mapBrightness: theme.mapBrightness,
+            baseColor: theme.baseColor,
+            markerColor: [1, 0, 0],
+            glowColor: theme.glowColor,
+            opacity: 1,
+            offset: [0, 0],
+            markers: []
+          });
+        }
+
+        function animate() {
+          phi += 0.003;
+          if (globe) globe.update({ phi: phi });
+          frameId = window.requestAnimationFrame(animate);
+        }
+
+        function refreshGlobe() {
+          buildGlobe();
+        }
+
+        buildGlobe();
+        animate();
+
+        window.addEventListener('resize', refreshGlobe);
+
+        observer = new MutationObserver(function (changes) {
+          for (var i = 0; i < changes.length; i += 1) {
+            if (changes[i].attributeName === 'class' || changes[i].attributeName === 'data-theme') {
+              refreshGlobe();
+              break;
+            }
+          }
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+
+        var themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeClickHandler = function () {
+            window.setTimeout(refreshGlobe, 50);
+          };
+          themeToggle.addEventListener('click', themeClickHandler);
+        }
+
+        disposeHeroGlobe = function () {
+          window.cancelAnimationFrame(frameId);
+          window.removeEventListener('resize', refreshGlobe);
+          if (observer) observer.disconnect();
+          if (themeToggle && themeClickHandler) themeToggle.removeEventListener('click', themeClickHandler);
+          if (globe) globe.destroy();
+        };
+      }).catch(function (error) {
+        console.error('Unable to initialize globe animation:', error);
+      });
     }
 
     // Wire up Schedule a Call buttons to Neeto popup
@@ -417,10 +610,14 @@ redirect_from:
     document.addEventListener('DOMContentLoaded', function () {
       fitHero();
       setupScheduleButtons();
+      setupHeroGlobe();
     });
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
     window.addEventListener('orientationchange', fitHero);
+    window.addEventListener('beforeunload', function () {
+      if (disposeHeroGlobe) disposeHeroGlobe();
+    });
   })();
 </script>
 {% endraw %}
