@@ -132,12 +132,13 @@ redirect_from:
     height: auto;
     min-height: auto;
     max-height: none;
-    display: grid;
-    grid-template-columns: 0.95fr 1.3fr;
-    align-items: center;
-    gap: clamp(5rem, 10vw, 7.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
     position: relative;
     z-index: 1;
+    max-width: 50%;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -154,20 +155,22 @@ redirect_from:
     text-align: left;
     align-items: flex-start;
     min-width: 0;
-    width: 100%;
+    width: auto;
     height: auto;
   }
 
   .hero-left {
     padding-left: 0;
     padding-bottom: 0;
+    width: auto;
   }
 
   .hero-right {
-    border-left: 1px solid var(--hero-line);
-    padding-left: clamp(2.5rem, 4vw, 4rem);
-    width: 100%;
-    align-self: center;
+    border-left: none;
+    padding-left: 0;
+    width: auto;
+    align-self: flex-start;
+    margin-top: 1.5rem;
   }
 
   .hero-heading {
@@ -177,7 +180,7 @@ redirect_from:
     letter-spacing: -0.035em;
     font-weight: 900;
     color: var(--hero-text);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .intro-block {
@@ -366,9 +369,8 @@ redirect_from:
 
   @media (max-width: 1200px) {
     .edge-to-edge-hero .hero-inner {
-      grid-template-columns: 1fr 1fr;
+      max-width: 100%;
       padding: 3.5rem 2.5rem;
-      gap: 3.5rem;
     }
 
     .hero-left {
@@ -386,10 +388,9 @@ redirect_from:
 
   @media (max-width: 992px) {
     .edge-to-edge-hero .hero-inner {
-      grid-template-columns: 1fr;
+      max-width: 100%;
       min-height: auto;
       padding: 2.5rem 1.5rem;
-      gap: 2rem;
     }
 
     .hero-right {
