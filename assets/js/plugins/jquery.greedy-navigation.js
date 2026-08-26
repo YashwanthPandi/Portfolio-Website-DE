@@ -5,97 +5,83 @@
 *
 */
 
-var $nav = $('#site-nav');
-// if the toggle button has been removed don't run the greedy algorithm
-var $btn = $('#site-nav button');
-if ($btn.length === 0) {
-  // fallback: make links wrap via CSS; nothing else to do
-  return;
-}
-var $vlinks = $('#site-nav .visible-links');
-var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
-var $hlinks = $('#site-nav .hidden-links');
+(function () {
+  var $nav = $('#site-nav');
+  if (!$nav.length) {
+    return;
+  }
 
-// accessibility helpers
-$btn.attr('aria-expanded', 'false');
-$hlinks.attr('aria-hidden', 'true');
+  var $btn = $('#site-nav button');
+  if ($btn.length === 0) {
+    return;
+  }
 
-var breaks = [];
+  var $vlinks = $('#site-nav .visible-links');
+  var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
+  var $hlinks = $('#site-nav .hidden-links');
 
-function updateNav() {
+  $btn.attr('aria-expanded', 'false');
+  $hlinks.attr('aria-hidden', 'true');
 
-  var availableSpace = $btn.hasClass('hidden') ? $nav.width() : $nav.width() - $btn.width() - 30;
+  var breaks = [];
 
-  // The visible list is overflowing the nav
-  if ($vlinks.width() > availableSpace) {
+  function updateNav() {
+    var availableSpace = $btn.hasClass('hidden') ? $nav.width() : $nav.width() - $btn.width() - 30;
 
-    while ($vlinks.width() > availableSpace && $vlinks.children("*:not(.persist)").length > 0) {
-      // Record the width of the list
-      breaks.push($vlinks.width());
-
-      // Move item to the hidden list
-      $vlinks.children("*:not(.persist)").last().prependTo($hlinks);
-
-      availableSpace = $btn.hasClass("hidden") ? $nav.width() : $nav.width() - $btn.width() - 30;
-
-      // Show the dropdown btn
-      $btn.removeClass("hidden");
-    }
-
-    // The visible list is not overflowing
-  } else {
-
-    // There is space for another item in the nav
-    while (breaks.length > 0 && availableSpace > breaks[breaks.length - 1]) {
-      // Move the item to the visible list
-      if ($vlinks_persist_tail.children().length > 0) {
-        $hlinks.children().first().insertBefore($vlinks_persist_tail);
-      } else {
-        $hlinks.children().first().appendTo($vlinks);
+    if ($vlinks.width() > availableSpace) {
+      while ($vlinks.width() > availableSpace && $vlinks.children("*:not(.persist)").length > 0) {
+        breaks.push($vlinks.width());
+        $vlinks.children("*:not(.persist)").last().prependTo($hlinks);
+        availableSpace = $btn.hasClass("hidden") ? $nav.width() : $nav.width() - $btn.width() - 30;
+        $btn.removeClass("hidden");
       }
-      breaks.pop();
+    } else {
+      while (breaks.length > 0 && availableSpace > breaks[breaks.length - 1]) {
+        if ($vlinks_persist_tail.children().length > 0) {
+          $hlinks.children().first().insertBefore($vlinks_persist_tail);
+        } else {
+          $hlinks.children().first().appendTo($vlinks);
+        }
+        breaks.pop();
+      }
+
+      if (breaks.length < 1) {
+        $btn.addClass('hidden');
+        $btn.removeClass('close');
+        $hlinks.addClass('hidden');
+        $btn.attr('aria-expanded', 'false');
+        $hlinks.attr('aria-hidden', 'true');
+      }
     }
 
-    // Hide the dropdown btn if hidden list is empty
-    if (breaks.length < 1) {
-      $btn.addClass('hidden');
-      $btn.removeClass('close');
-      $hlinks.addClass('hidden');
-      // update accessibility
-      $btn.attr('aria-expanded', 'false');
-      $hlinks.attr('aria-hidden', 'true');
+    $btn.attr("count", breaks.length);
+
+    var mastheadHeight = $('.masthead').height();
+    $('body').css('padding-top', mastheadHeight + 'px');
+    if ($(".author__urls-wrapper button").is(":visible")) {
+      $(".sidebar").css("padding-top", "");
+    } else {
+      $(".sidebar").css("padding-top", mastheadHeight + "px");
     }
   }
 
-  // Keep counter updated
-  $btn.attr("count", breaks.length);
+  $(window).on('resize', function () {
+    updateNav();
+  });
 
-  // update masthead height and the body/sidebar top padding
-  var mastheadHeight = $('.masthead').height();
-  $('body').css('padding-top', mastheadHeight + 'px');
-  if ($(".author__urls-wrapper button").is(":visible")) {
-    $(".sidebar").css("padding-top", "");
-  } else {
-    $(".sidebar").css("padding-top", mastheadHeight + "px");
+  if (screen && screen.orientation && screen.orientation.addEventListener) {
+    screen.orientation.addEventListener("change", function () {
+      updateNav();
+    });
   }
 
-}
+  $btn.on('click', function () {
+    var isOpen = $hlinks.toggleClass('hidden').hasClass('hidden') === false;
+    $(this).toggleClass('close');
+    $nav.toggleClass('open', isOpen);
+    $btn.attr('aria-expanded', isOpen);
+    $hlinks.attr('aria-hidden', !isOpen);
+  });
 
-// Window listeners
-
-$(window).on('resize', function () {
   updateNav();
-});
-screen.orientation.addEventListener("change", function () {
-  updateNav();
-});
-
-$btn.on('click', function () {
-  var isOpen = $hlinks.toggleClass('hidden').hasClass('hidden') === false;
-  $(this).toggleClass('close');
-  $nav.toggleClass('open', isOpen);
-  $btn.attr('aria-expanded', isOpen);
-  $hlinks.attr('aria-hidden', !isOpen);
-});
-
-updateNav();
+})();

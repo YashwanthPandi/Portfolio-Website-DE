@@ -3,19 +3,16 @@
   <head>
     {% include head.html %}
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex min-h-screen flex-col bg-slate-50 text-slate-900">
     {% include browser-upgrade.html %}
     {% include masthead.html %}
-    
-    <main id="page-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <main id="page-content" class="w-full flex-1">
       {{ content }}
     </main>
-    
-    <div class="mt-auto w-full bg-white border-t border-gray-200">
-      {% include footer/custom.html %}
-      {% include footer.html %}
-    </div>
-    
+
+    {% include footer/custom.html %}
+
     {% include scripts.html %}
   </body>
 </html>

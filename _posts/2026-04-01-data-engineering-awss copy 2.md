@@ -2,7 +2,7 @@
 title: 'Batch vs Stream in AWS'
 description: 'I’ve been deep-diving into how data is generated, stored, and the mechanical differences between various source architectures.'
 collection: posts
-permalink: "/posts/2026/04/Weekly-Progress-1/"
+permalink: "/posts/2026/04/batch-vs-stream-in-aws/"
 date: '2026-04-03 21:38:00'
 tags:
 - data engineering

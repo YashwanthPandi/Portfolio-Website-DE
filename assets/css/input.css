@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --app-bg: #f8fafc;
+  --app-surface: #ffffff;
+  --app-surface-strong: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #475569;
+  --app-border: rgba(15, 23, 42, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark,
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --app-bg: #0f172a;
+  --app-surface: #111827;
+  --app-surface-strong: #1f2937;
+  --app-text: #e2e8f0;
+  --app-text-muted: #cbd5e1;
+  --app-border: rgba(148, 163, 184, 0.2);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark body,
+html[data-theme='dark'] body {
+  @apply bg-slate-950 text-slate-100;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+}
+
+.site-header {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  border-bottom: 1px solid var(--app-border);
+}
+
+html.dark .site-header,
+html[data-theme='dark'] .site-header {
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+html.dark footer,
+html[data-theme='dark'] footer,
+html.dark .page__footer,
+html[data-theme='dark'] .page__footer {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+}
+
+html.dark .author-card,
+html[data-theme='dark'] .author-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--app-text);
+}
+
+html.dark .author-card .author__name,
+html.dark .author-card .author__bio,
+html.dark .author-card .author__pronouns,
+html.dark .author-card .author__urls,
+html.dark .author-card .author__urls a,
+html.dark .author-card .author__desktop,
+html[data-theme='dark'] .author-card .author__name,
+html[data-theme='dark'] .author-card .author__bio,
+html[data-theme='dark'] .author-card .author__pronouns,
+html[data-theme='dark'] .author-card .author__urls,
+html[data-theme='dark'] .author-card .author__urls a,
+html[data-theme='dark'] .author-card .author__desktop {
+  color: var(--app-text);
+}
+
+html.dark .author-card .author__bio,
+html.dark .author-card .author__pronouns,
+html[data-theme='dark'] .author-card .author__bio,
+html[data-theme='dark'] .author-card .author__pronouns {
+  color: var(--app-text-muted);
+}
+
+
+.site-header {
+  margin: 0;
+}
+
+.site-header .navbar {
+  padding: 0.7rem 1.1rem;
+}
+
+#page-content {
+  @apply min-h-[60vh];
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  @apply bg-sky-200 text-slate-900;
+}
