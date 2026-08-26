@@ -1,29 +1,18 @@
+<footer class="bg-slate-900 text-white mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      
+      <div class="mb-4 md:mb-0">
+        <p class="text-slate-400 text-sm">
+          &copy; {{ site.time | date: '%Y' }} {{ site.title }}. 
+        </p>
+      </div>
+      
+      <!-- Social Links Row -->
+      <div class="flex space-x-6">
+        {% include social-share.html %}
+      </div>
 
-<footer style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-family: sans-serif; font-size: 0.9em;">
-
+    </div>
+  </div>
 </footer>
-
-<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async function () {
-    const mermaidBlocks = document.querySelectorAll('code.language-mermaid');
-    if (mermaidBlocks.length) {
-      try {
-        const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
-        mermaid.initialize({startOnLoad:true, theme:'default'});
-        await mermaid.run({querySelector:'code.language-mermaid'});
-      } catch (error) {
-        console.error('Failed to load Mermaid:', error);
-      }
-    }
-
-    const mathBlocks = document.querySelectorAll('script[type^="math/tex"], script[type="math/tex; mode=display"], .math, .katex');
-    if (mathBlocks.length) {
-      const script = document.createElement('script');
-      script.defer = true;
-      script.id = 'MathJax-script';
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      document.head.appendChild(script);
-    }
-  });
-</script>

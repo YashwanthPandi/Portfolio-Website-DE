@@ -1,38 +1,30 @@
----
-layout: compress
----
-
-<!-- {% include base_path %} -->
-
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
-  <head>
-    {% include head.html %}
-  </head>
-
-  <body>
-
-    <div id="spaLoader" class="spa-loader" aria-hidden="true">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-
-    {% include browser-upgrade.html %}
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="scroll-smooth">
+  {% include head.html %}
+  <body class="bg-gray-50 text-gray-900 font-sans antialiased flex flex-col min-h-screen">
+    
+    <!-- Top Navigation -->
     {% include masthead.html %}
-
-    <main id="page-content">
-      {{ content }}
+    
+    <!-- Main Content Wrapper -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex flex-col md:flex-row gap-8">
+      
+      <!-- Sidebar (Author Profile) -->
+      {% if page.author_profile or layout.author_profile %}
+        <aside class="w-full md:w-1/4 flex-shrink-0">
+          {% include author-profile.html %}
+        </aside>
+      {% endif %}
+      
+      <!-- Page Content -->
+      <article class="w-full {% if page.author_profile or layout.author_profile %}md:w-3/4{% endif %} bg-white shadow-sm rounded-2xl p-6 md:p-10 border border-gray-100">
+        {{ content }}
+      </article>
+      
     </main>
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-
+    <!-- Footer -->
+    {% include footer.html %}
     {% include scripts.html %}
-
   </body>
 </html>

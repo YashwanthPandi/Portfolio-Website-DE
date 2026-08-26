@@ -1,122 +1,32 @@
-<header class="sticky top-0 z-50 w-full bg-[#1e222b] border-b border-white/10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-    <div class="flex items-center justify-between h-16">
-
-      <!-- Logo -->
-      <a href="{{ base_path }}/" class="flex items-center h-full shrink-0"><img src="/images/logo.svg" alt="{{ site.title }}" class="h-8 w-auto brightness-0 invert" /></a>
-
-      <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-7">
+<header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Site Title / Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="{{ '/' | relative_url }}" class="text-xl font-extrabold text-indigo-600 hover:text-indigo-800 transition-colors">
+          {{ site.title }}
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex space-x-8">
         {% for link in site.data.navigation.main %}
-          <a href="{{ base_path }}{{ link.url }}" class="text-sm font-medium text-zinc-200 hover:text-[#f4c430] transition-colors">{{ link.title }}</a>
+          <a href="{{ link.url | relative_url }}" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            {{ link.title }}
+          </a>
         {% endfor %}
-
-        <!-- Spotify toggle -->
-        <button id="spotify-toggle" type="button" aria-label="Open Spotify drawer" class="text-[#1DB954] hover:scale-110 hover:brightness-125 transition-transform">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.723a.78.78 0 0 1-1.072.257c-2.688-1.652-6.786-2.13-9.966-1.166a.78.78 0 0 1-.453-1.492c3.63-1.102 8.147-.568 11.234 1.329a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 9.075 9.375 8.89 6.297 9.84a.936.936 0 1 1-.548-1.79c3.53-1.076 9.404-.858 13.115 1.35a.936.936 0 0 1-.95 1.606z"/>
-          </svg>
-        </button>
-
-        <!-- Theme toggle -->
-        <button id="theme-toggle" type="button" aria-label="Toggle theme" class="text-zinc-200 hover:text-[#f4c430] transition-colors">
-          <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-            <circle cx="12" cy="12" r="4"/>
-            <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-          </svg>
-        </button>
-
-        <!-- Schedule call -->
-        <button id="open-popup-button" type="button" class="bg-[#1DB954] hover:brightness-110 text-white text-xs font-bold uppercase px-4 py-1.5 rounded-full transition-[filter]">Schedule a Call</button>
       </nav>
 
-      <!-- Mobile hamburger -->
-      <button id="mobile-menu-toggle" type="button" aria-label="Toggle menu" class="md:hidden text-zinc-200">
-        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+      <!-- Mobile Menu Icon (Visual Only) -->
+      <div class="md:hidden flex items-center">
+        <button type="button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
 
-    </div>
-  </div>
-
-  <!-- Mobile menu panel -->
-  <div id="mobile-menu" class="hidden md:hidden bg-[#1e222b] border-t border-white/10 px-4 py-4 space-y-3">
-    {% for link in site.data.navigation.main %}
-      <a href="{{ base_path }}{{ link.url }}" class="block text-sm font-medium text-zinc-200 hover:text-[#f4c430] transition-colors">{{ link.title }}</a>
-    {% endfor %}
-
-    <div class="flex items-center gap-5 pt-2">
-      <button id="spotify-toggle-mobile" type="button" aria-label="Open Spotify drawer" class="text-[#1DB954]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.723a.78.78 0 0 1-1.072.257c-2.688-1.652-6.786-2.13-9.966-1.166a.78.78 0 0 1-.453-1.492c3.63-1.102 8.147-.568 11.234 1.329a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 9.075 9.375 8.89 6.297 9.84a.936.936 0 1 1-.548-1.79c3.53-1.076 9.404-.858 13.115 1.35a.936.936 0 0 1-.95 1.606z"/>
-        </svg>
-      </button>
-      <button id="theme-toggle-mobile" type="button" aria-label="Toggle theme" class="text-zinc-200">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-          <circle cx="12" cy="12" r="4"/>
-          <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-      </button>
-      <button id="open-popup-button-mobile" type="button" class="bg-[#1DB954] hover:brightness-110 text-white text-xs font-bold uppercase px-4 py-1.5 rounded-full">Schedule a Call</button>
-    </div>
-  </div>
-
-  <!-- Spotify drawer -->
-  <div id="spotify-drawer" class="max-h-0 overflow-hidden transition-[max-height] duration-400 ease-in-out bg-white/5 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 py-2.5">
-      <iframe title="Spotify playlist" class="rounded-xl w-full" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 </header>
-
-<script>window.neetoCal = window.neetoCal || { embed: function(){(neetoCal.q=neetoCal.q||[]).push(arguments)} };</script>
-<script async src="https://cdn.neetocal.com/javascript/embed.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // NeetoCal booking popup (desktop + mobile buttons)
-    if (window.neetoCal) {
-      neetoCal.embed({
-        type: "elementClick",
-        id: "489e15b2-35cb-40a7-8076-e080cf6acf38",
-        organization: "yashwanth-pandi",
-        elementSelector: "#open-popup-button, #open-popup-button-mobile",
-        isSidebarAndCoverImgHidden: "false",
-        shouldForwardQueryParams: "false"
-      });
-    }
-
-    // Spotify drawer toggle (desktop + mobile trigger)
-    const drawer = document.getElementById('spotify-drawer');
-    function toggleDrawer(e) {
-      e.preventDefault();
-      const isOpen = drawer.classList.contains('max-h-[120px]');
-      drawer.classList.toggle('max-h-0', isOpen);
-      drawer.classList.toggle('max-h-[120px]', !isOpen);
-      drawer.classList.toggle('py-2.5', !isOpen);
-    }
-    document.getElementById('spotify-toggle')?.addEventListener('click', toggleDrawer);
-    document.getElementById('spotify-toggle-mobile')?.addEventListener('click', toggleDrawer);
-
-    // Mobile menu toggle
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger-icon');
-    const close = document.getElementById('close-icon');
-    document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
-      menu.classList.toggle('hidden');
-      hamburger.classList.toggle('hidden');
-      close.classList.toggle('hidden');
-    });
-
-    // Theme toggle placeholder — wire up to your actual dark/light logic
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-    }
-    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
-    document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
-  });
-</script>
