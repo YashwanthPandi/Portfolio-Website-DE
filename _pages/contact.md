@@ -4,13 +4,12 @@ title: Contact
 permalink: /contact/
 author_profile: false
 ---
-
 {% assign contact = site.data.contact %}
 {% assign form = contact.form %}
 
 {{ contact.intro }}
 
-<form action="{{ form.action }}" method="{{ form.method | default: 'POST' }}" class="contact-form">
+<form action="{{ https://formsubmit.co/pandiyashwanth@gmail.com}}" method="{{ form.method | default: 'POST' }}" class="contact-form">
   <label for="contact-name">Name</label>
   <input id="contact-name" name="name" type="text" required>
 
@@ -28,9 +27,11 @@ author_profile: false
   <input type="hidden" name="_captcha" value="false">
 
   <button type="submit">Send message</button>
+
 </form>
 
 {% if form.success_message %}
+
 <p class="contact-help">{{ form.success_message }}</p>
 {% endif %}
 <p class="contact-help">Prefer email? <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
