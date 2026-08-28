@@ -729,13 +729,24 @@ redirect_from:
           };
         }
 
-        function buildGlobe() {
+        function buildGlobe(retries) {
+          retries = retries || 0;
           var width = canvas.offsetWidth;
-          if (!width) return;
+          
+          // If DOM hasn't rendered width yet, retry in next frame (up to 10 times)
+          if (!width || width === 0) {
+            if (retries < 10) {
+              requestAnimationFrame(function () {
+                buildGlobe(retries + 1);
+              });
+            }
+            return;
+          }
 
           var theme = getThemeConfig();
           var dpr = Math.min(window.devicePixelRatio || 1, 2);
           if (globe) globe.destroy();
+          
           globe = createGlobe(canvas, {
             devicePixelRatio: dpr,
             width: width * dpr,
@@ -772,8 +783,12 @@ redirect_from:
 
         routePoints = buildFlightPath();
         staticRouteMarkers = buildStaticRouteMarkers(routePoints);
-        buildGlobe();
-        animate();
+        
+        // Wait one frame to ensure CSS layout/dimensions are calculated
+        requestAnimationFrame(function () {
+          buildGlobe();
+          animate();
+        });
 
         window.addEventListener('resize', refreshGlobe);
 
@@ -807,7 +822,6 @@ redirect_from:
       });
     }
 
-    // Wire up Schedule a Call buttons to Neeto popup
     function setupScheduleButtons() {
       var heroBtn = document.getElementById('hero-schedule-btn');
       var navBtn = document.getElementById('open-popup-button');
@@ -823,22 +837,29 @@ redirect_from:
     function init() {
       if (disposeHeroGlobe) {
         disposeHeroGlobe();
+        disposeHeroGlobe = null;
       }
       fitHero();
       setupScheduleButtons();
-      setupHeroGlobe();
+      
+      // Delay initialization slightly to ensure layout repaints post-navigation
+      requestAnimationFrame(function () {
+        setupHeroGlobe();
+      });
     }
 
-    // Execute immediately if DOM is ready, otherwise wait for load events
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    // Handle initial direct load or immediate execution
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
       init();
     } else {
       document.addEventListener('DOMContentLoaded', init);
     }
 
-    // Listen to client-side navigation events
+    // Catch PJAX / Turbo / SWUP / InstantClick / custom SPA route transitions
     document.addEventListener('pjax:complete', init);
+    document.addEventListener('pjax:end', init);
     document.addEventListener('turbo:load', init);
+    document.addEventListener('page:load', init);
 
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
