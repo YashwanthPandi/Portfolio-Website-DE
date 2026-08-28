@@ -820,11 +820,26 @@ redirect_from:
       }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function init() {
+      if (disposeHeroGlobe) {
+        disposeHeroGlobe();
+      }
       fitHero();
       setupScheduleButtons();
       setupHeroGlobe();
-    });
+    }
+
+    // Execute immediately if DOM is ready, otherwise wait for load events
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      init();
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
+    }
+
+    // Listen to client-side navigation events
+    document.addEventListener('pjax:complete', init);
+    document.addEventListener('turbo:load', init);
+
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
     window.addEventListener('orientationchange', fitHero);
