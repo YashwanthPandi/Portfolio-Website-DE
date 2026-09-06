@@ -3,11 +3,13 @@
 <meta charset="utf-8">
 <script>
   (function() {
-    var storedTheme = null;
-    try { storedTheme = localStorage.getItem("theme"); } catch(e) {}
-    var theme = (storedTheme === "light") ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.classList.toggle("dark", theme === "dark");
+    try {
+      localStorage.setItem("theme", "dark");
+    } catch (e) {}
+
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.documentElement.classList.add("dark");
+    document.documentElement.style.colorScheme = "dark";
   })();
 </script>
 

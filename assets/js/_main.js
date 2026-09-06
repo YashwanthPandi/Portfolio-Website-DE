@@ -2,64 +2,52 @@
    Various functions that we want to use within the template
    ========================================================================== */
 
-// Determine the expected state of the theme toggle, which can be "dark" or "light".
-// Default is "dark".
+// Dark mode is required site-wide. Light mode is intentionally disabled.
 let determineThemeSetting = () => {
   try {
-    let themeSetting = localStorage.getItem("theme");
-    return (themeSetting === "light" || themeSetting === "dark") ? themeSetting : "dark";
-  } catch (e) {
-    return "dark";
-  }
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "light") {
+      localStorage.setItem("theme", "dark");
+    }
+  } catch (e) {}
+
+  return "dark";
 };
 
-// Determine the computed theme, which can be "dark" or "light".
+// Determine the computed theme, which is always dark.
 let determineComputedTheme = () => {
-  return determineThemeSetting();
+  return "dark";
 };
 
 const browserPref = 'dark';
 
-const updateThemeIcon = (theme) => {
-  const icon = document.getElementById('theme-icon');
-  if (!icon) return;
-
-  if (theme === 'dark') {
-    icon.innerHTML = '<path d="M21 12.79A9 9 0 0 1 11.21 3a9 9 0 1 0 9.79 9.79Z"/>';
-  } else {
-    icon.innerHTML = '<path d="M12 3.5a.75.75 0 0 1 .75.75v1.2a.75.75 0 0 1-1.5 0V4.25A.75.75 0 0 1 12 3.5ZM5.64 5.64a.75.75 0 0 1 1.06 0l.85.85a.75.75 0 1 1-1.06 1.06l-.85-.85a.75.75 0 0 1 0-1.06Zm12.7 0a.75.75 0 0 1 0 1.06l-.85.85a.75.75 0 0 1-1.06-1.06l.85-.85a.75.75 0 0 1 1.06 0ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm-7.5 4.75a.75.75 0 0 1 .75-.75h1.2a.75.75 0 0 1 0 1.5H5.25a.75.75 0 0 1-.75-.75Zm15.75 0a.75.75 0 0 1 .75-.75h1.2a.75.75 0 0 1 0 1.5h-1.2a.75.75 0 0 1-.75-.75Zm-12.7 5.72a.75.75 0 0 1 1.06 0l.85.85a.75.75 0 1 1-1.06 1.06l-.85-.85a.75.75 0 0 1 0-1.06Zm12.7 0a.75.75 0 0 1 0 1.06l-.85.85a.75.75 0 1 1-1.06-1.06l.85-.85a.75.75 0 0 1 1.06 0ZM12 16.5a.75.75 0 0 1 .75.75v1.2a.75.75 0 0 1-1.5 0v-1.2A.75.75 0 0 1 12 16.5Z"/>';
-  }
-};
-
-// Set the theme on page load or when explicitly called
+// Theme switching is intentionally disabled. The site is always dark.
 let setTheme = (theme) => {
   const html = document.documentElement;
-  const resolvedTheme = theme || determineThemeSetting() || browserPref;
-  const normalizedTheme = (resolvedTheme === 'dark' || resolvedTheme === 'light') ? resolvedTheme : browserPref;
+  const resolvedTheme = "dark";
 
-  html.setAttribute('data-theme', normalizedTheme);
-  html.classList.toggle('dark', normalizedTheme === 'dark');
-  html.style.colorScheme = normalizedTheme;
+  try {
+    localStorage.setItem("theme", "dark");
+  } catch (e) {}
 
-  if (normalizedTheme === 'dark') {
+  html.setAttribute('data-theme', resolvedTheme);
+  html.classList.add('dark');
+  html.style.colorScheme = resolvedTheme;
+
+  if (resolvedTheme === 'dark') {
     document.body.classList.add('dark');
   } else {
     document.body.classList.remove('dark');
   }
-
-  updateThemeIcon(normalizedTheme);
 };
 
-// Toggle the theme manually
+// Light mode is disabled; no toggle is exposed anywhere.
 var toggleTheme = () => {
-  const currentTheme = determineComputedTheme();
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-
   try {
-    localStorage.setItem("theme", newTheme);
+    localStorage.setItem("theme", "dark");
   } catch (e) {}
 
-  setTheme(newTheme);
+  setTheme("dark");
 };
 
 /* ==========================================================================
@@ -105,21 +93,9 @@ $(document).ready(function () {
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)
 
-  // If the user hasn't chosen a theme, follow the OS preference
-  setTheme();
-  window.matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            setTheme(e.matches ? "dark" : "light");
-          }
-        });
+  setTheme("dark");
 
-  // Enable the theme toggle
-  $('#theme-toggle').on('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleTheme();
-  });
+  // Light mode is intentionally disabled site-wide.
 
   // Enable the sticky footer
   var bumpIt = function () {

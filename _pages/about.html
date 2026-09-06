@@ -111,9 +111,9 @@ redirect_from:
     border-radius: 50%;
     border: 1px solid rgba(148, 163, 184, 0.12);
     transform: rotate(var(--orbit-tilt));
-    transition: transform 180ms ease-out;
+    transition: transform 260ms ease-out;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
     box-shadow: inset 0 0 12px rgba(148, 163, 184, 0.06);
   }
 
@@ -131,14 +131,17 @@ redirect_from:
     position: absolute;
     width: 1rem;
     height: 1rem;
-    right: 11%;
-    top: 17%;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #fffefb 0%, #edf3ff 22%, #dbe7f8 48%, #b5c4d8 100%);
-    box-shadow: 0 0 16px rgba(191, 219, 254, 0.26);
+    box-shadow: 0 0 18px rgba(191, 219, 254, 0.38), 0 0 36px rgba(147, 197, 253, 0.18);
     opacity: 0.9;
     transform: translate(var(--moon-drift-x), var(--moon-drift-y));
-    transition: transform 150ms ease-out;
+    transition: transform 90ms linear, opacity 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+    z-index: 4;
   }
 
   .hero-moon::before {
@@ -168,7 +171,7 @@ redirect_from:
 
   .hero-globe-canvas {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
     height: 100%;
     display: block;
@@ -1231,24 +1234,52 @@ redirect_from:
       var moon = document.querySelector('.hero-moon');
       if (!globeShell || !orbit || !moon) return;
 
+      var pointerX = 0;
+      var pointerY = 0;
+      var orbitAngle = 0.8;
+      var baseRadius = Math.min(globeShell.clientWidth, globeShell.clientHeight) * 0.44;
+
+      function updateMoonPosition() {
+        var x = Math.cos(orbitAngle) * baseRadius;
+        var y = Math.sin(orbitAngle) * baseRadius * 0.9;
+        var depth = Math.cos(orbitAngle);
+        var swayX = pointerX * 16;
+        var swayY = pointerY * 12;
+        var visible = depth > -0.12;
+        var scale = visible ? 1 : 0.72;
+
+        moon.style.transform = 'translate(' + (x + swayX).toFixed(2) + 'px, ' + (y + swayY).toFixed(2) + 'px) scale(' + scale.toFixed(2) + ')';
+        moon.style.opacity = visible ? (0.55 + (depth + 1) * 0.45).toFixed(2) : '0.12';
+        moon.style.filter = visible ? 'brightness(1)' : 'brightness(0.6)';
+        moon.style.zIndex = visible ? '6' : '0';
+        moon.style.boxShadow = visible
+          ? '0 0 18px rgba(191, 219, 254, 0.38), 0 0 36px rgba(147, 197, 253, 0.18)'
+          : '0 0 8px rgba(191, 219, 254, 0.12)';
+        orbit.style.transform = 'rotate(' + (-20 + pointerY * -18).toFixed(2) + 'deg)';
+      }
+
+      function animateMoon() {
+        orbitAngle += 0.0085;
+        updateMoonPosition();
+        requestAnimationFrame(animateMoon);
+      }
+
       var pointerHandler = function (event) {
         var rect = globeShell.getBoundingClientRect();
-        var x = (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-        var y = (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-
-        var driftX = Math.max(-10, Math.min(10, x * 12)).toFixed(2) + 'px';
-        var driftY = Math.max(-10, Math.min(10, y * 10)).toFixed(2) + 'px';
-        var orbitTilt = (-20 + (y * -16)).toFixed(2) + 'deg';
-
-        moon.style.transform = 'translate(' + driftX + ', ' + driftY + ')';
-        orbit.style.transform = 'rotate(' + orbitTilt + ')';
+        pointerX = (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        pointerY = (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+        pointerX = Math.max(-1, Math.min(1, pointerX));
+        pointerY = Math.max(-1, Math.min(1, pointerY));
       };
 
       globeShell.addEventListener('pointermove', pointerHandler);
       globeShell.addEventListener('pointerleave', function () {
-        moon.style.transform = 'translate(0px, 0px)';
-        orbit.style.transform = 'rotate(-20deg)';
+        pointerX = 0;
+        pointerY = 0;
       });
+
+      updateMoonPosition();
+      requestAnimationFrame(animateMoon);
     }
 
     function init() {
