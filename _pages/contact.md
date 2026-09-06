@@ -31,6 +31,12 @@ author_profile: false
       <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
     </div>
 
+    <input type="hidden" name="_subject" value="New portfolio contact form submission">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <!-- honeypot: real users never see/fill this, bots do -->
+    <input type="text" name="_honey" aria-hidden="true" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+
     <div class="form-actions">
       <button type="submit" class="contact-submit-btn" id="contact-submit-btn">
         <span>Send Message</span>
@@ -51,20 +57,17 @@ author_profile: false
   </div>
 </div>
 
-<!-- EmailJS Library Script -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <script>
   (function () {
-    // Optional EmailJS Credentials (replace with your keys if using EmailJS)
-    // emailjs.init("YOUR_PUBLIC_KEY");
-    var EMAILJS_SERVICE_ID = ""; // e.g. "service_xxx"
-    var EMAILJS_TEMPLATE_ID = ""; // e.g. "template_xxx"
+    // FormSubmit (https://formsubmit.co) is free and requires no signup/API key
+    var FORM_ENDPOINT = "{{ contact.form.action }}".replace('formsubmit.co/', 'formsubmit.co/ajax/');
+    var SUCCESS_MESSAGE = "{{ contact.form.success_message }}";
 
     var form = document.getElementById('contact-form');
     var statusDiv = document.getElementById('contact-status');
     var copyBtn = document.getElementById('contact-copy-btn');
     var submitBtn = document.getElementById('contact-submit-btn');
+    var submitBtnDefaultHTML = submitBtn ? submitBtn.innerHTML : '';
 
     if (!form) return;
 
@@ -91,34 +94,29 @@ author_profile: false
 
       var recipient = "{{ contact.email }}";
 
-      // If EmailJS keys are set up, send silently via EmailJS library
-      if (typeof emailjs !== 'undefined' && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Sending...';
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending...';
 
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          from_name: name,
-          from_email: email,
-          subject: subject,
-          message: message,
-          to_email: recipient
-        }).then(function () {
-          statusDiv.className = 'contact-status success';
-          statusDiv.innerText = '✓ Message sent successfully! Thank you for reaching out.';
-          statusDiv.style.display = 'block';
-          form.reset();
-        }, function (err) {
-          console.error('EmailJS error:', err);
-          // Fallback to direct client mailto
-          sendViaMailto(recipient, name, email, subject, message);
-        }).finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '<span>Send Message</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
-        });
-      } else {
-        // Direct zero-3rd-party browser JS Mail Client send
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      }).then(function (response) {
+        if (!response.ok) throw new Error('FormSubmit request failed with status ' + response.status);
+        return response.json();
+      }).then(function () {
+        statusDiv.className = 'contact-status success';
+        statusDiv.innerText = '✓ ' + SUCCESS_MESSAGE;
+        statusDiv.style.display = 'block';
+        form.reset();
+      }).catch(function (err) {
+        console.error('FormSubmit error:', err);
+        // Fallback to direct client mailto only if the API call itself failed
         sendViaMailto(recipient, name, email, subject, message);
-      }
+      }).finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitBtnDefaultHTML;
+      });
     });
 
     function sendViaMailto(recipient, name, email, subject, message) {
