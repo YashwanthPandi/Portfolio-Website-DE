@@ -277,22 +277,87 @@ redirect_from:
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem 0.8rem;
+    gap: 0.6rem 0.8rem;
     margin-top: 0.25rem;
     margin-bottom: 0;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--hero-text-soft);
   }
 
-  .hero-links a {
+  .hero-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--hero-text);
+    font-size: 0.875rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
   }
 
-  .hero-links a:hover {
+  html[data-theme="light"] .hero-social-link,
+  html:not(.dark):not([data-theme="dark"]) .hero-social-link {
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    color: #0f172a;
+  }
+
+  .hero-social-link:hover {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(56, 189, 248, 0.4);
     color: var(--hero-accent);
+    transform: translateY(-1px);
+  }
+
+  .hero-social-link .social-icon {
+    flex-shrink: 0;
+  }
+
+  .hero-notification-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: var(--hero-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    width: fit-content;
+  }
+
+  .hero-notification-banner .dot {
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 9999px;
+    background: #22c55e;
+    box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 0.35rem rgba(34, 197, 94, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+  }
+
+  .hero-notification-banner .banner-sep {
+    opacity: 0.4;
+  }
+
+  .hero-notification-banner .banner-loc {
+    color: var(--hero-text-soft);
   }
 
   .hero-eyebrow {
@@ -527,6 +592,7 @@ redirect_from:
   }
 </style>
 
+{% assign hero = site.data.hero %}
 <div class="edge-to-edge-hero">
   <div class="hero-inner">
     <div class="hero-globe-shell" aria-hidden="true">
@@ -535,30 +601,39 @@ redirect_from:
 
     <div class="hero-left">
       <div class="hero-card">
-        <h1 class="hero-heading">Yashwanth <br><span class="muted">Pandi.</span></h1>
+        <div class="hero-notification-banner">
+          <span class="dot"></span>
+          <span>{{ hero.status | default: 'Available for new challenges' }}</span>
+          <span class="banner-sep">•</span>
+          <span class="banner-loc">{{ hero.location | default: 'San Francisco, CA' }}</span>
+        </div>
+
+        <h1 class="hero-heading">{{ hero.heading_line1 | default: 'Yashwanth' }} <br><span class="muted">{{ hero.heading_line2 | default: 'Pandi.' }}</span></h1>
         
         <div class="hero-links">
-          <a href="https://github.com/YashwanthPandi" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span>•</span>
-          <a href="mailto:pandiyashwanth@gmail.com">Email</a>
-          <span>•</span>
-          <a href="https://www.linkedin.com/in/yashwanthpandi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="{{ hero.github_url | default: 'https://github.com/YashwanthPandi' }}" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+            <svg class="social-icon" width="16" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.39-1.305.705-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="mailto:{{ hero.email | default: 'pandiyashwanth@gmail.com' }}" class="hero-social-link">
+            <svg class="social-icon" width="16" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            <span>Gmail</span>
+          </a>
+          <a href="{{ hero.linkedin_url | default: 'https://www.linkedin.com/in/yashwanthpandi' }}" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+            <svg class="social-icon" width="16" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            <span>LinkedIn</span>
+          </a>
         </div>
 
         <div class="hero-divider"></div>
 
-        <span class="hero-eyebrow">— Introduction</span>
-        <p class="hero-copy">Software and Data Engineer, based in California.</p>
+        <p class="hero-copy">{{ hero.copy | default: 'Software and Data Engineer, based in California.' }}</p>
         <p class="hero-description">
-          Specializing in building robust front-end web applications, scalable cloud software architectures, and automated high-performance data pipelines.
+          {{ hero.description | default: 'Specializing in building robust front-end web applications, scalable cloud software architectures, and automated high-performance data pipelines.' }}
         </p>
         <div class="hero-actions">
-          <a id="hero-schedule-btn" class="hero-button primary" href="#" role="button">Schedule a Call</a>
-          <a href="/projects" class="hero-button secondary">View Projects</a>
-        </div>
-        <div class="hero-status">
-          <div class="status-row"><span class="dot"></span><span>Available for new challenges</span></div>
-          <div>San Francisco, CA</div>
+          <a id="hero-schedule-btn" class="hero-button primary" href="#" role="button">{{ hero.schedule_call_text | default: 'Schedule a Call' }}</a>
+          <a href="{{ hero.view_projects_url | default: '/projects' }}" class="hero-button secondary">{{ hero.view_projects_text | default: 'View Projects' }}</a>
         </div>
       </div>
     </div>

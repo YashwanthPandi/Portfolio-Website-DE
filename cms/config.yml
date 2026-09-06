@@ -93,10 +93,43 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  - name: "pages"
+    label: "All Pages"
+    folder: "_pages"
+    extension: "md"
+    format: "yaml-frontmatter"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "string", default: "single" }
+      - { label: "Author Profile", name: "author_profile", widget: "boolean", required: false, default: true }
+      - { label: "Redirect From", name: "redirect_from", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
   - name: "site-sections"
-    label: "Site Sections"
+    label: "Site Settings & Data"
     files:
-      - label: "Resources List"
+      - label: "Homepage Hero Section"
+        name: "hero-data"
+        file: "_data/hero.yml"
+        fields:
+          - { label: "Status Banner", name: "status", widget: "string" }
+          - { label: "Location Tag", name: "location", widget: "string" }
+          - { label: "Name Heading Line 1", name: "heading_line1", widget: "string" }
+          - { label: "Name Heading Line 2", name: "heading_line2", widget: "string" }
+          - { label: "GitHub URL", name: "github_url", widget: "string" }
+          - { label: "Email Address", name: "email", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin_url", widget: "string" }
+          - { label: "Headline Copy", name: "copy", widget: "text" }
+          - { label: "Hero Description", name: "description", widget: "text" }
+          - { label: "Schedule Call Button Label", name: "schedule_call_text", widget: "string" }
+          - { label: "View Projects Button Label", name: "view_projects_text", widget: "string" }
+          - { label: "View Projects Button Link", name: "view_projects_url", widget: "string" }
+
+      - label: "Resources List Data"
         name: "resources-data"
         file: "_data/resources.yml"
         fields:
@@ -110,7 +143,8 @@ collections:
               - { label: "Link", name: "link", widget: "string" }
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Image", name: "image", widget: "image", required: false }
-      - label: "Top Navigation"
+
+      - label: "Top Navigation Links"
         name: "main-navigation"
         file: "_data/navigation.yml"
         fields:
@@ -121,27 +155,56 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
+
       - label: "Contact Settings"
         name: "contact-settings"
         file: "_data/contact.yml"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Intro", name: "intro", widget: "text" }
-          - { label: "Email", name: "email", widget: "string" }
-          - label: "Form"
+          - { label: "Intro Text", name: "intro", widget: "text" }
+          - { label: "Email Address", name: "email", widget: "string" }
+          - label: "Form Configuration"
             name: "form"
             widget: "object"
             fields:
-              - { label: "Provider", name: "provider", widget: "select", options: ["Formspree", "FormSubmit"], default: "Formspree" }
-              - { label: "Action URL", name: "action", widget: "string", hint: "Example: https://formspree.io/f/your_form_id" }
-              - { label: "Method", name: "method", widget: "select", options: ["POST"], default: "POST" }
+              - { label: "Provider", name: "provider", widget: "string", default: "FormSubmit" }
+              - { label: "Action URL", name: "action", widget: "string" }
+              - { label: "Method", name: "method", widget: "string", default: "POST" }
               - { label: "Success Message", name: "success_message", widget: "string", required: false }
-      - label: "Contact Page"
+
+      - label: "Contact Page File"
         name: "contact-page"
         file: "_pages/contact.md"
         fields:
-          - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Permalink", name: "permalink", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+          - { label: "Author Profile", name: "author_profile", widget: "boolean", default: false, required: false }
+
+      - label: "Resume Page File"
+        name: "resume-page"
+        file: "_pages/resume.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "archive" }
           - { label: "Author Profile", name: "author_profile", widget: "boolean", default: true, required: false }
           - { label: "Body", name: "body", widget: "markdown", required: false }
+
+      - label: "Privacy Policy Page"
+        name: "privacy-policy-page"
+        file: "_pages/privacy-policy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - { label: "Modified Date", name: "modified", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Terms of Service Page"
+        name: "terms-page"
+        file: "_pages/terms.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - { label: "Modified Date", name: "modified", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+          - { label: "Body", name: "body", widget: "markdown" }

@@ -44,9 +44,11 @@ layout: default
         </div>
       </section>
 
+      {% if page.tags[0] or page.categories[0] %}
       <footer class="page__meta">
         {% include page__taxonomy.html %}
       </footer>
+      {% endif %}
     </div>
   </article>
 </div>
