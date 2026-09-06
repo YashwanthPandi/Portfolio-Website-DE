@@ -1,8 +1,9 @@
 ---
-permalink: "/about/"
-page: "about.md"
+permalink: "/"
+page: "about.html"
 author_profile: false
 redirect_from:
+- "/about/"
 - "/about.html"
 ---
 <style>
@@ -69,7 +70,7 @@ redirect_from:
 
   .hero-globe-shell {
     position: relative;
-    width: clamp(20rem, 100%, 45rem);
+    width: clamp(22rem, 42vw, 36rem);
     aspect-ratio: 1;
     right: auto;
     top: auto;
@@ -78,12 +79,12 @@ redirect_from:
     z-index: 0;
     pointer-events: none;
     box-shadow: var(--hero-globe-shell-shadow);
-    opacity: 0.95;
-    grid-column: 2;
-    grid-row: 1 / span 2;
+    opacity: 1;
+    grid-column: 1;
+    grid-row: 1;
     justify-self: center;
     align-self: center;
-    order: 3;
+    order: 1;
   }
 
   .hero-globe-canvas {
@@ -129,26 +130,20 @@ redirect_from:
   }
 
   .edge-to-edge-hero .hero-inner {
-    max-width: 100%;
+    max-width: 1280px;
     width: 100%;
-    margin: 0;
-    padding: clamp(5rem, 10vw, 8.5rem) clamp(2.5rem, 6vw, 6.5rem);
+    margin: 0 auto;
+    padding: clamp(3.5rem, 6vw, 6rem) clamp(2rem, 5vw, 4rem);
     height: auto;
     min-height: auto;
     max-height: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    align-items: flex-start;
-    gap: clamp(3rem, 8vw, 6rem);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
     position: relative;
     z-index: 1;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-globe-shell {
-      transform: translateY(-50%);
-    }
   }
 
   .hero-left,
@@ -167,8 +162,10 @@ redirect_from:
     padding-left: 0;
     padding-bottom: 0;
     width: 100%;
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
+    order: 2;
+    z-index: 2;
   }
 
   .hero-right {
@@ -177,47 +174,70 @@ redirect_from:
     width: 100%;
     align-self: flex-start;
     margin-top: 0;
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(3.2rem, 9vw, 8rem);
-    line-height: 0.96;
-    letter-spacing: -0.06em;
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
     font-weight: 900;
     color: var(--hero-text);
-    margin-bottom: 1.1rem;
   }
 
-  .intro-block {
+  .hero-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--hero-line);
+    margin: 0.25rem 0;
+  }
+
+  .hero-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 1rem;
+    gap: 1.25rem;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border-radius: 1.5rem;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--hero-line);
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  html[data-theme="light"] .hero-card,
+  html:not(.dark):not([data-theme="dark"]) .hero-card {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.1);
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .hero-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.75rem 1.5rem;
+    min-height: 2.6rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
     white-space: nowrap;
     cursor: pointer;
@@ -231,11 +251,11 @@ redirect_from:
   .hero-button.primary {
     background: #1DB954;
     color: #fff;
-    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.25);
+    box-shadow: 0 4px 16px rgba(29, 185, 84, 0.3);
   }
 
   .hero-button.secondary {
-    border: 1px solid rgba(148, 163, 184, 0.5);
+    border: 1px solid var(--hero-line);
     color: var(--hero-text);
     background: transparent;
   }
@@ -245,22 +265,22 @@ redirect_from:
   }
 
   .hero-rule {
-    width: 5rem;
-    height: 0.38rem;
+    width: 4rem;
+    height: 0.32rem;
     background: var(--hero-accent);
     border-radius: 9999px;
-    margin-top: 0;
-    margin-bottom: 2rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
   }
 
   .hero-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.7rem 0.9rem;
-    margin-top: 0.4rem;
+    gap: 0.5rem 0.8rem;
+    margin-top: 0.25rem;
     margin-bottom: 0;
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--hero-text-soft);
   }
@@ -279,16 +299,18 @@ redirect_from:
     display: inline-block;
     color: var(--hero-accent);
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     font-size: 0.72rem;
     font-weight: 700;
+    margin: 0;
   }
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(1.5rem, 3vw, 2.75rem);
-    line-height: 1.16;
-    letter-spacing: -0.04em;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     color: var(--hero-text);
     text-align: left;
     max-width: 100%;
@@ -297,8 +319,8 @@ redirect_from:
   .hero-description {
     margin: 0;
     max-width: 100%;
-    font-size: clamp(1rem, 1.9vw, 1.15rem);
-    line-height: 1.7;
+    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    line-height: 1.6;
     color: var(--hero-text-soft);
     text-align: left;
   }
@@ -321,14 +343,17 @@ redirect_from:
 
   .hero-status {
     margin-top: 0.5rem;
-    padding-top: 0.8rem;
+    padding-top: 0.75rem;
     border-top: 1px solid var(--hero-line);
     color: var(--hero-text-soft);
-    font-size: 0.9rem;
+    font-size: 0.825rem;
     line-height: 1.4;
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .hero-status .status-row {
@@ -339,11 +364,11 @@ redirect_from:
 
   .hero-status .dot {
     display: inline-block;
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 0.6rem;
+    height: 0.6rem;
     border-radius: 9999px;
     background: #22c55e;
-    box-shadow: 0 0 0 0.25rem rgba(34, 197, 94, 0.18);
+    box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.2);
   }
 
   @media (min-width: 1536px) {
@@ -384,24 +409,19 @@ redirect_from:
       gap: clamp(2rem, 5vw, 4rem);
     }
 
-    .hero-left {
-      max-width: none;
+    .hero-globe-shell {
+      width: clamp(18rem, 40vw, 28rem);
       grid-column: 1;
       grid-row: 1;
-    }
-
-    .hero-globe-shell {
-      width: clamp(16rem, 40vw, 28rem);
-      grid-column: 2;
-      grid-row: 1 / span 2;
       justify-self: center;
       align-self: center;
-      opacity: 0.6;
+      opacity: 1;
     }
 
-    .hero-right {
-      grid-column: 1;
-      grid-row: 2;
+    .hero-left {
+      max-width: none;
+      grid-column: 2;
+      grid-row: 1;
     }
   }
 
@@ -418,43 +438,32 @@ redirect_from:
       grid-row: 1;
     }
 
-    .hero-right {
-      border-left: none;
-      border-top: 1px solid var(--hero-line);
-      padding-left: 0;
-      padding-top: 1.75rem;
-      margin-top: 0;
+    .hero-globe-shell {
+      position: relative;
       grid-column: 1;
       grid-row: 2;
-    }
-
-    .hero-globe-shell {
-      grid-column: 1;
-      grid-row: auto;
-      position: absolute;
-      width: clamp(12rem, 35vw, 20rem);
-      right: -2rem;
-      top: 20%;
-      transform: translateY(0);
-      opacity: 0.35;
-      justify-self: auto;
-      align-self: auto;
-      margin: 0;
+      width: clamp(18rem, 60vw, 26rem);
+      right: auto;
+      top: auto;
+      opacity: 0.95;
+      margin: 0 auto;
     }
   }
 
   @media (max-width: 640px) {
     .hero-globe-shell {
-      width: clamp(9rem, 55vw, 13rem);
-      top: 6%;
-      right: -3.5rem;
-      transform: translateY(0);
-      opacity: 0.38;
+      width: clamp(15rem, 80vw, 20rem);
+      opacity: 0.95;
+    }
+
+    .hero-card {
+      padding: 1.25rem;
+      gap: 0.85rem;
     }
 
     .edge-to-edge-hero .hero-inner {
       padding: 1.5rem 1rem;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .hero-heading {
@@ -496,6 +505,7 @@ redirect_from:
       min-height: 2.5rem;
     }
 
+    .name-block,
     .intro-block {
       width: 100%;
     }
@@ -516,7 +526,7 @@ redirect_from:
     }
   }
 </style>
-{% raw %}
+
 <div class="edge-to-edge-hero">
   <div class="hero-inner">
     <div class="hero-globe-shell" aria-hidden="true">
@@ -524,19 +534,19 @@ redirect_from:
     </div>
 
     <div class="hero-left">
-      <h1 class="hero-heading">Yashwanth <br /><span class="muted">Pandi.</span></h1>
-      <div class="hero-rule"></div>
-      <div class="hero-links">
-        <a href="https://github.com/YashwanthPandi" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <span>•</span>
-        <a href="mailto:pandiyashwanth@gmail.com">Email</a>
-        <span>•</span>
-        <a href="https://www.linkedin.com/in/yashwanthpandi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-    </div>
+      <div class="hero-card">
+        <h1 class="hero-heading">Yashwanth <br><span class="muted">Pandi.</span></h1>
+        
+        <div class="hero-links">
+          <a href="https://github.com/YashwanthPandi" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span>•</span>
+          <a href="mailto:pandiyashwanth@gmail.com">Email</a>
+          <span>•</span>
+          <a href="https://www.linkedin.com/in/yashwanthpandi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
 
-    <div class="hero-right">
-      <div class="intro-block">
+        <div class="hero-divider"></div>
+
         <span class="hero-eyebrow">— Introduction</span>
         <p class="hero-copy">Software and Data Engineer, based in California.</p>
         <p class="hero-description">
@@ -733,8 +743,7 @@ redirect_from:
         function buildGlobe(retries) {
           retries = retries || 0;
           var width = canvas.offsetWidth;
-          
-          // If DOM hasn't rendered width yet, retry in next frame (up to 10 times)
+
           if (!width || width === 0) {
             if (retries < 10) {
               requestAnimationFrame(function () {
@@ -747,7 +756,7 @@ redirect_from:
           var theme = getThemeConfig();
           var dpr = Math.min(window.devicePixelRatio || 1, 2);
           if (globe) globe.destroy();
-          
+
           globe = createGlobe(canvas, {
             devicePixelRatio: dpr,
             width: width * dpr,
@@ -784,8 +793,7 @@ redirect_from:
 
         routePoints = buildFlightPath();
         staticRouteMarkers = buildStaticRouteMarkers(routePoints);
-        
-        // Wait one frame to ensure CSS layout/dimensions are calculated
+
         requestAnimationFrame(function () {
           buildGlobe();
           animate();
@@ -826,7 +834,7 @@ redirect_from:
     function setupScheduleButtons() {
       var heroBtn = document.getElementById('hero-schedule-btn');
       var navBtn = document.getElementById('open-popup-button');
-      
+
       if (heroBtn && window.neetoCal) {
         heroBtn.addEventListener('click', function (e) {
           e.preventDefault();
@@ -842,21 +850,18 @@ redirect_from:
       }
       fitHero();
       setupScheduleButtons();
-      
-      // Delay initialization slightly to ensure layout repaints post-navigation
+
       requestAnimationFrame(function () {
         setupHeroGlobe();
       });
     }
 
-    // Handle initial direct load or immediate execution
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       init();
     } else {
       document.addEventListener('DOMContentLoaded', init);
     }
 
-    // Catch PJAX / Turbo / SWUP / InstantClick / custom SPA route transitions
     document.addEventListener('pjax:complete', init);
     document.addEventListener('pjax:end', init);
     document.addEventListener('turbo:load', init);
@@ -870,4 +875,3 @@ redirect_from:
     });
   })();
 </script>
-{% endraw %}

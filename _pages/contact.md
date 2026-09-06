@@ -9,7 +9,7 @@ author_profile: false
 
 {{ contact.intro }}
 
-<form action="{{ https://formsubmit.co/pandiyashwanth@gmail.com}}" method="{{ form.method | default: 'POST' }}" class="contact-form">
+<form action="{{ form.action | default: 'https://formsubmit.co/pandiyashwanth@gmail.com' }}" method="{{ form.method | default: 'POST' }}" class="contact-form">
   <label for="contact-name">Name</label>
   <input id="contact-name" name="name" type="text" required>
 
@@ -25,6 +25,7 @@ author_profile: false
   <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off">
   <input type="hidden" name="_subject" value="New message from portfolio contact form">
   <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="box">
 
   <button type="submit">Send message</button>
 

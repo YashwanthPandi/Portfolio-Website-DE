@@ -25,6 +25,11 @@
 
   .page__inner-wrap {
     @include full();
+    padding: 1.5rem 1.2rem 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 
     .page__content,
     .page__meta,
@@ -36,10 +41,13 @@
 
 .page__title {
   margin-top: 0;
-  line-height: 1;
+  margin-bottom: 0.7rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 3vw, 3rem);
 
   & + .page__meta {
-    margin-top: -0.5em;
+    margin-top: 0;
   }
 }
 
@@ -49,14 +57,35 @@
 }
 
 .page__content {
+  max-width: 72ch;
+  margin: 0 auto;
 
-  h2 {
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid var(--global-border-color);
+  > h2 {
+    margin-top: 2.2rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  > h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+    line-height: 1.25;
+  }
+
+  > h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.65rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   p, li, dl {
     font-size: 1em;
+    line-height: 1.75;
   }
 
   /* paragraph indents */
@@ -72,8 +101,19 @@
     }
   }
 
+  ul, ol {
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  li + li {
+    margin-top: 0.45rem;
+  }
+
   a {
     text-decoration: underline;
+    text-underline-offset: 0.18em;
 
     &:hover {
       text-decoration: underline;
@@ -226,10 +266,14 @@
    ========================================================================== */
 
 .page__meta {
-  margin-top: 2em;
+  margin-top: 1.5rem;
   color: var(--global-text-color-light);
   font-family: $sans-serif;
   font-size: $type-size-6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 1rem;
 
   p {
     margin: 0;
@@ -238,6 +282,10 @@
   a {
     color: inherit;
   }
+}
+
+.page__header {
+  margin-bottom: 1.25rem;
 }
 
 .page__meta-title {

@@ -6,45 +6,45 @@ author_profile: true
 ---
 {% include base_path %}
 
-<div class="res-filter-container">
-  <div class="res-filter-actions">
-    <button class="filter-btn active" onclick="setCategory('all')">All</button>
-    <button class="filter-btn" onclick="setCategory('career')">Career</button>
-    <button class="filter-btn" onclick="setCategory('data')">Data</button>
-    <button class="filter-btn" onclick="setCategory('engineering')">Engineering</button>
+<div class="blog-page-shell">
+  <div class="blog-toolbar">
+    <div class="filter-group" aria-label="Blog categories">
+      <button class="filter-btn active" type="button" data-category="all">All</button>
+      <button class="filter-btn" type="button" data-category="career">Career</button>
+      <button class="filter-btn" type="button" data-category="data">Data</button>
+      <button class="filter-btn" type="button" data-category="engineering">Engineering</button>
+    </div>
+
+    <div class="toolbar-meta">
+      <label for="postsPerPage">Posts per page</label>
+      <select id="postsPerPage" aria-label="Posts per page">
+        <option value="6" selected>6</option>
+        <option value="9">9</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+      </select>
+
+      <label for="sortOrder">Sort</label>
+      <select id="sortOrder" aria-label="Sort blog posts by date">
+        <option value="desc" selected>Newest first</option>
+        <option value="asc">Oldest first</option>
+      </select>
+    </div>
   </div>
 
-  <div class="res-filter-actions" style="margin-left:auto; justify-content:flex-end; gap: 0.75rem;">
-    <label for="postsPerPage" style="margin:0; font-weight: 600;">Posts per page:</label>
-    <select id="postsPerPage" onchange="setPostsPerPage(this.value)">
-      <option value="6" selected>6</option>
-      <option value="9">9</option>
-      <option value="12">12</option>
-      <option value="18">18</option>
-    </select>
-    <label for="sortOrder" style="margin:0; font-weight: 600;">Sort by date:</label>
-    <select id="sortOrder" onchange="setSortOrder(this.value)">
-      <option value="desc" selected>Newest first</option>
-      <option value="asc">Oldest first</option>
-    </select>
+  <div class="blog-search-wrap">
+    <label for="filterSearch" class="visually-hidden">Search blog posts</label>
+    <input id="filterSearch" type="search" placeholder="Search titles and excerpts..." aria-label="Search blog posts" />
   </div>
-
-  <input id="filterSearch" type="search" placeholder="Search titles & excerpts..." oninput="filterBlogs()" aria-label="Search blog posts" />
 </div>
 
-<div class="post-list-minimal">
-  {% assign written_year = "" %}
+<div class="post-list-minimal" aria-live="polite">
   {% for post in site.posts %}
-    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-    {% if year != written_year %} 
-      <!-- <span class="year-marker" data-year="{{ year }}">{{ year }}</span> -->
-      {% assign written_year = year %}
-    {% endif %}
-    <a href="{{ post.url | relative_url }}" 
-       class="res-item blog-post-item" 
-       data-category="{{ post.tags | join: ',' }}" 
+    <a href="{{ post.url | relative_url }}"
+       class="res-item blog-post-item"
+       data-category="{{ post.tags | join: ',' }}"
        data-date="{{ post.date | date: '%Y-%m-%d' }}">
-      
+
       <div class="res-info">
         <div class="res-meta">
           <span class="post-date-pill">{{ post.date | date: "%b %d %Y" }}</span>
@@ -53,19 +53,20 @@ author_profile: true
             <span class="res-tag">{{ post.categories.first }}</span>
           {% endif %}
         </div>
+
         {% if post.excerpt %}
           <p class="res-desc">
             {{ post.description | default: post.excerpt | strip_html | truncate: 120 }}
           </p>
         {% endif %}
       </div>
-      
-      <div class="res-arrow">→</div>
+
+      <div class="res-arrow" aria-hidden="true">→</div>
     </a>
   {% endfor %}
 </div>
 
-
+<div class="blog-empty-state" hidden>No posts match your current filters.</div>
 
 <script>
 const blogState = {
@@ -75,51 +76,56 @@ const blogState = {
   searchText: ''
 };
 
+function getCategoryMatch(tags) {
+  if (blogState.category === 'all') return true;
+
+  if (blogState.category === 'career') {
+    return tags.some(tag => tag.includes('career'));
+  }
+
+  if (blogState.category === 'data') {
+    return tags.some(tag => tag.includes('data') && !tag.includes('career'));
+  }
+
+  if (blogState.category === 'engineering') {
+    return tags.some(tag => tag.includes('engineering') || tag.includes('architecture'));
+  }
+
+  return true;
+}
+
 function applyFiltersAndSort() {
   const container = document.querySelector('.post-list-minimal');
+  const emptyState = document.querySelector('.blog-empty-state');
   if (!container) return;
-  
-  const allPosts = Array.from(container.querySelectorAll('.blog-post-item'));
 
-  // Filter + Search
+  const allPosts = Array.from(container.querySelectorAll('.blog-post-item'));
+  const searchLower = blogState.searchText.toLowerCase();
+
   const visiblePosts = allPosts.filter(post => {
     const tags = (post.getAttribute('data-category') || '')
       .split(',')
-      .map(c => c.trim().toLowerCase())
+      .map(tag => tag.trim().toLowerCase())
       .filter(Boolean);
 
     const title = (post.querySelector('.res-name')?.textContent || '').toLowerCase();
     const desc = (post.querySelector('.res-desc')?.textContent || '').toLowerCase();
-    const searchLower = blogState.searchText.toLowerCase();
-
-    // Category matching logic
-    let categoryMatch = blogState.category === 'all';
-    if (!categoryMatch) {
-      if (blogState.category === 'career') {
-        categoryMatch = tags.some(tag => tag.includes('career'));
-      } else if (blogState.category === 'data') {
-        categoryMatch = tags.some(tag => tag.includes('data') && !tag.includes('career'));
-      } else if (blogState.category === 'engineering') {
-        categoryMatch = tags.some(tag => tag.includes('engineering') || tag.includes('architecture'));
-      }
-    }
 
     const searchMatch = !searchLower || title.includes(searchLower) || desc.includes(searchLower);
-
-    return categoryMatch && searchMatch;
+    return getCategoryMatch(tags) && searchMatch;
   });
 
-  // Sort
   visiblePosts.sort((a, b) => {
     const dateA = new Date(a.dataset.date);
     const dateB = new Date(b.dataset.date);
     return blogState.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
   });
 
-  // Re-append sorted posts, set visibility based on pagination limit
-  let shown = 0;
-  allPosts.forEach(post => post.style.display = 'none');
+  allPosts.forEach(post => {
+    post.style.display = 'none';
+  });
 
+  let shown = 0;
   visiblePosts.forEach(post => {
     if (shown < blogState.postsPerPage) {
       post.style.display = 'flex';
@@ -129,26 +135,15 @@ function applyFiltersAndSort() {
 
   visiblePosts.forEach(post => container.appendChild(post));
 
-  // Update year markers
-  const yearMarkers = document.querySelectorAll('.year-marker');
-  yearMarkers.forEach(marker => {
-    let next = marker.nextElementSibling;
-    let hasVisible = false;
-    while (next && !next.classList.contains('year-marker')) {
-      if (next.style.display !== 'none') {
-        hasVisible = true;
-        break;
-      }
-      next = next.nextElementSibling;
-    }
-    marker.style.display = hasVisible ? 'block' : 'none';
-  });
+  if (emptyState) {
+    emptyState.hidden = visiblePosts.length > 0;
+  }
 }
 
 function setCategory(category) {
   blogState.category = category;
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === category);
+    btn.classList.toggle('active', btn.dataset.category === category);
   });
   applyFiltersAndSort();
   pushStateToUrl();
@@ -181,8 +176,9 @@ function pushStateToUrl() {
   if (blogState.sortOrder && blogState.sortOrder !== 'desc') params.set('sort', blogState.sortOrder);
   if (blogState.postsPerPage && blogState.postsPerPage !== 6) params.set('per_page', String(blogState.postsPerPage));
   if (blogState.searchText) params.set('search', blogState.searchText);
-  const url = `${location.pathname}?${params.toString()}`;
-  history.replaceState(blogState, '', url);
+
+  const fullUrl = `${location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+  history.replaceState(blogState, '', fullUrl);
 }
 
 function restoreStateFromUrl() {
@@ -192,9 +188,8 @@ function restoreStateFromUrl() {
   blogState.postsPerPage = Number(params.get('per_page') || 6);
   blogState.searchText = params.get('search') || '';
 
-  // Update UI elements
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === blogState.category);
+    btn.classList.toggle('active', btn.dataset.category === blogState.category);
   });
 
   const sortOrder = document.getElementById('sortOrder');
@@ -210,307 +205,299 @@ function restoreStateFromUrl() {
 }
 
 function initBlogControls() {
-  // Restore state from URL first
   restoreStateFromUrl();
 
-  // Setup filter buttons
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.removeEventListener('click', handleFilterClick);
-    btn.addEventListener('click', handleFilterClick);
+    btn.addEventListener('click', () => setCategory(btn.dataset.category || 'all'));
   });
 
-  function handleFilterClick() {
-    const category = this.innerText.trim().toLowerCase();
-    setCategory(category);
-  }
-
-  // Setup sort order
   const sortOrder = document.getElementById('sortOrder');
   if (sortOrder) {
-    sortOrder.removeEventListener('change', handleSortChange);
-    sortOrder.addEventListener('change', handleSortChange);
+    sortOrder.addEventListener('change', (event) => setSortOrder(event.target.value));
   }
 
-  function handleSortChange(e) {
-    setSortOrder(e.target.value);
-  }
-
-  // Setup posts per page
   const postsPerPage = document.getElementById('postsPerPage');
   if (postsPerPage) {
-    postsPerPage.removeEventListener('change', handlePostsPerPageChange);
-    postsPerPage.addEventListener('change', handlePostsPerPageChange);
+    postsPerPage.addEventListener('change', (event) => setPostsPerPage(event.target.value));
   }
 
-  function handlePostsPerPageChange(e) {
-    setPostsPerPage(e.target.value);
-  }
-
-  // Setup search - DIRECT BINDING
   const searchInput = document.getElementById('filterSearch');
   if (searchInput) {
-    searchInput.removeEventListener('input', filterBlogs);
     searchInput.addEventListener('input', filterBlogs);
   }
 
-  // Handle browser back/forward
-  window.removeEventListener('popstate', handlePopstate);
-  window.addEventListener('popstate', handlePopstate);
-
-  function handlePopstate() {
-    restoreStateFromUrl();
-  }
+  window.removeEventListener('popstate', restoreStateFromUrl);
+  window.addEventListener('popstate', restoreStateFromUrl);
 }
 
-// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initBlogControls);
-
-// Re-initialize on SPA page load
 window.onSpaPageLoad = initBlogControls;
 </script>
 
 <style>
-  /* Reuse Resource Styles & Adjust for Blog */
-  .post-list-minimal { display: flex; flex-direction: column; gap: 0.5rem; }
-  
-  .year-marker {
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin: 2rem 0 1rem 0;
-    color: var(--text-color);
-    border-bottom: 2px solid var(--primary-color, #007bff);
-    width: fit-content;
-    padding-right: 1rem;
+  .blog-page-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
   }
 
-  .post-date-pill {
-    font-family: var(--monospace-font, monospace);
-    font-size: 0.8rem;
-    background: rgba(128, 128, 128, 0.08);
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #555;
-    transition: all 0.2s ease;
-  }
-  
-  html[data-theme="dark"] .post-date-pill {
-    color: var(--global-text-color-light, #e0e0e0);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  /* Filter Styling (Consistent with Resources) */
-  .res-filter-container {
-    margin-bottom: 1.5rem;
+  .blog-toolbar {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 16px;
+    background: rgba(148, 163, 184, 0.04);
+  }
+
+  .filter-group,
+  .toolbar-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 0.5rem;
   }
-/* 
-  .filter-btn {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid var(--border-color, rgba(128,128,128,0.3));
-    background: transparent;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: inherit;
-    opacity: 0.7;
-  } */
 
-  .filter-btn:hover, .filter-btn.active {
-    opacity: 1;
-    border-color: var(--primary-color, #007bff);
+  .filter-group {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
-  .res-filter-container {
-    margin-bottom: 1.2rem;
+  .filter-btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: transparent;
+    color: var(--text-color, #111827);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.2;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--primary-color, #2563eb);
+    border-color: var(--primary-color, #2563eb);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+  }
+
+  .toolbar-meta {
+    margin-left: auto;
+    justify-content: flex-end;
+    font-size: 0.82rem;
+    color: var(--text-color, #111827);
+  }
+
+  .toolbar-meta label {
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .toolbar-meta select,
+  #filterSearch {
+    border: 1px solid rgba(148, 163, 184, 0.38);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text-color, #111827);
+    border-radius: 10px;
+    padding: 0.48rem 0.7rem;
+    font-size: 0.82rem;
+    min-height: 38px;
+  }
+
+  .blog-search-wrap {
+    width: 100%;
+  }
+
+  #filterSearch {
+    width: 100%;
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255, 255, 255, 0.72);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  #filterSearch:focus,
+  .toolbar-meta select:focus {
+    outline: none;
+    border-color: var(--primary-color, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  }
+
+  .post-list-minimal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .res-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.38);
+    text-decoration: none !important;
+    color: var(--text-color, #111827) !important;
+    transition: all 0.2s ease;
+    min-height: 76px;
+  }
+
+  .res-item:hover,
+  .res-item:focus-visible {
+    border-color: rgba(37, 99, 235, 0.4);
+    background: rgba(37, 99, 235, 0.03);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    transform: translateY(-1px);
+    text-decoration: none !important;
+  }
+
+  .res-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .res-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.6rem;
-    background: var(--surface-alt, #f5f7fb);
-    padding: 0.75rem 0.9rem;
-    border-radius: 14px;
-    border: 1px solid rgba(120, 130, 150, 0.2);
-    box-shadow: 0 2px 8px rgba(22, 27, 35, 0.05);
+    margin-bottom: 0.35rem;
+    min-width: 0;
   }
 
-  a, a:link, a:visited {
-    color: var(--text-color, #1a202c);
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-
-  a:hover, a:focus {
-    color: #1d4ed8;
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-
-  .res-item:hover {
-    border-color: #1d4ed8;
-    box-shadow: 0 8px 24px rgba(29,78,216,0.18);
-    background: rgba(29,78,216,0.04);
-  }
-
-  .pagination-link {
-    color: #1d4ed8;
-    border: 1px solid transparent;
-    padding: 0.4rem 0.7rem;
-    border-radius: 5px;
-    transition: background 0.2s ease, transform 0.15s ease;
-  }
-
-  .pagination-link:hover {
-    background: rgba(29, 78, 216, 0.12);
-    transform: translateY(-1px);
-  }
-
-  .filter-btn:hover {
-    border-color: #1d4ed8;
-    color: #1d4ed8;
-  }
-
-  .filter-btn.active {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
-    color: #fff;
-  }
-
-  .spa-loader {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    inset: 0;
+  .post-date-pill {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(2px);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.12);
+    color: var(--text-color, #111827);
+    font-size: 0.72rem;
+    font-family: var(--monospace-font, monospace);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
-  .spinner-border {
-    width: 3rem;
-    height: 3rem;
-    border: 0.35rem solid rgba(29, 78, 216, 0.35);
-    border-top-color: #1d4ed8;
-    border-radius: 50%;
-    animation: spinner 0.75s linear infinite;
+  .res-name {
+    font-size: 1.04rem;
+    font-weight: 700;
+    line-height: 1.3;
   }
 
-  @keyframes spinner {
-    to { transform: rotate(360deg); }
+  .res-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.52rem;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-color, #2563eb);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .res-desc {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .res-arrow {
+    margin-left: auto;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: rgba(15, 23, 42, 0.45);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .res-item:hover .res-arrow {
+    color: var(--primary-color, #2563eb);
+    transform: translateX(2px);
+  }
+
+  .blog-empty-state {
+    padding: 1.25rem 1rem;
+    border: 1px dashed rgba(148, 163, 184, 0.45);
+    border-radius: 12px;
+    text-align: center;
+    color: rgba(15, 23, 42, 0.72);
+    background: rgba(148, 163, 184, 0.03);
   }
 
   .visually-hidden {
     position: absolute;
     width: 1px;
     height: 1px;
-    margin: -1px;
-    border: 0;
     padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
+    margin: -1px;
     overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  #filterSearch {
-    flex: 1 1 100%;
-    min-width: 200px;
-    max-width: 100%;
+  html[data-theme="dark"] .blog-toolbar,
+  html[data-theme="dark"] .res-item,
+  html[data-theme="dark"] .blog-empty-state {
+    background: rgba(15, 23, 42, 0.42);
+    border-color: rgba(148, 163, 184, 0.18);
   }
 
-  .res-filter-actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    flex: 1 1 auto;
-    min-width: 220px;
+  html[data-theme="dark"] .toolbar-meta select,
+  html[data-theme="dark"] #filterSearch {
+    background: rgba(15, 23, 42, 0.62);
+    color: #e5e7eb;
   }
 
-  .filter-btn {
-    padding: 0.45rem 0.9rem;
-    border: 1px solid rgba(100, 110, 130, 0.3);
-    border-radius: 999px;
-    background: white;
-    color: rgba(22, 25, 32, 0.96);
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
+  html[data-theme="dark"] .res-desc {
+    color: rgba(226, 232, 240, 0.74);
   }
 
-  .filter-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(15, 20, 26, 0.12);
-    border-color: var(--primary-color, #1c7ef9);
+  html[data-theme="dark"] .res-arrow {
+    color: rgba(226, 232, 240, 0.5);
   }
 
-  .filter-btn.active {
-    background: var(--primary-color, #1c7ef9);
-    border-color: var(--primary-color, #1c7ef9);
-    color: white;
-    box-shadow: 0 2px 8px rgba(29, 90, 195, 0.25);
-  }
+  @media (max-width: 720px) {
+    .blog-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
 
-  #filterSearch {
-    border: 1px solid rgba(120, 130, 150, 0.35);
-    border-radius: 999px;
-    padding: 0.55rem 0.95rem;
-    min-width: 220px;
-    max-width: 100%;
-    color: rgba(32, 40, 55, 0.92);
-    background: white;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
+    .filter-group,
+    .toolbar-meta {
+      width: 100%;
+    }
 
-  #filterSearch:focus {
-    outline: none;
-    border-color: var(--primary-color, #007bff);
-    box-shadow: 0 0 0 2px rgba(0,123,255,0.12);
-  }
+    .toolbar-meta {
+      margin-left: 0;
+      justify-content: flex-start;
+    }
 
-  #sortOrder {
-    border: 1px solid var(--border-color, rgba(128,128,128,0.3));
-    background: #fff;
-    color: inherit;
-    border-radius: 4px;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.85rem;
-  }
+    .res-item {
+      align-items: flex-start;
+      padding: 0.85rem 0.9rem;
+    }
 
-  .filter-btn.active {
-    background: var(--primary-color, #007bff);
-    color: white;
-  }
-
-  /* Shared List Item Style */
-  .res-item {
-    display: flex;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    text-decoration: none !important;
-    border: 1px solid var(--border-color, rgba(128,128,128,0.15));
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    color: inherit !important;
-  }
-
-  .res-item:hover {
-    background: var(--hover-background, rgba(128, 128, 128, 0.04));
-    border-color: var(--primary-color, #007bff);
-    transform: translateX(5px);
-  }
-
-  .res-info { flex-grow: 1; }
-  .res-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
-  .res-name { font-weight: 600; font-size: 1.05rem; }
-  .res-tag { font-size: 0.65rem; text-transform: uppercase; opacity: 0.5; font-weight: bold; }
-  .res-desc { margin: 0; font-size: 0.85rem; opacity: 0.7; }
-  .res-arrow { margin-left: 1rem; opacity: 0.2; font-weight: bold; }
-  .res-item:hover .res-arrow { opacity: 1; color: var(--primary-color, #007bff); }
-
-  @media (max-width: 600px) {
-    .res-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .res-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
   }
 </style>
