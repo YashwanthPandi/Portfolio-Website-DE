@@ -137,7 +137,7 @@ redirect_from:
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
-    padding: clamp(3.5rem, 6vw, 6rem) clamp(2rem, 5vw, 4rem);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4rem);
     height: auto;
     min-height: auto;
     max-height: none;
@@ -145,7 +145,7 @@ redirect_from:
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     align-items: center;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
     position: relative;
     z-index: 1;
   }
@@ -184,9 +184,9 @@ redirect_from:
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     font-weight: 900;
     color: var(--hero-text);
     overflow-wrap: break-word;
@@ -207,8 +207,8 @@ redirect_from:
     align-items: flex-start;
     width: 100%;
     max-width: 100%;
-    gap: 1.25rem;
-    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    gap: 0.85rem;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
     border-radius: 1.5rem;
     background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(20px);
@@ -364,12 +364,31 @@ redirect_from:
     }
   }
 
-  .hero-notification-banner .banner-sep {
-    opacity: 0.4;
+  .hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.55rem;
+    margin: 0;
   }
 
-  .hero-notification-banner .banner-loc {
-    color: var(--hero-text-soft);
+  .hero-highlight-pill {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: var(--hero-accent);
+  }
+
+  .hero-highlight-sep {
+    opacity: 0.4;
+    color: var(--hero-muted);
+  }
+
+  .hero-highlight-recruiter {
+    color: #22c55e;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
   }
 
   .hero-eyebrow {
@@ -612,12 +631,10 @@ redirect_from:
       <div class="hero-card">
         <div class="hero-notification-banner">
           <span class="dot"></span>
-          <span>{{ hero.status | default: 'Available for new challenges' }}</span>
-          <span class="banner-sep">•</span>
-          <span class="banner-loc">{{ hero.location | default: 'San Francisco, CA' }}</span>
+          <span>{{ hero.status | default: 'Open to new frontend & Angular engineering roles' }}</span>
         </div>
 
-        <h1 class="hero-heading">{{ hero.heading_line1 | default: 'Yashwanth' }} <br><span class="muted">{{ hero.heading_line2 | default: 'Pandi.' }}</span></h1>
+        <h1 class="hero-heading">{{ hero.heading_line1 | default: "Hi, I'm Yashwanth Pandi" }} <br><span class="muted">{{ hero.heading_line2 | default: 'a Frontend Developer in the Angular Ecosystem' }}</span></h1>
         
         <div class="hero-links">
           <a href="{{ hero.github_url | default: 'https://github.com/YashwanthPandi' }}" target="_blank" rel="noopener noreferrer" class="hero-social-link">
@@ -636,13 +653,17 @@ redirect_from:
 
         <div class="hero-divider"></div>
 
-        <p class="hero-copy">{{ hero.copy | default: 'Software and Data Engineer, based in California.' }}</p>
-        <p class="hero-description">
-          {{ hero.description | default: 'Specializing in building robust front-end web applications, scalable cloud software architectures, and automated high-performance data pipelines.' }}
-        </p>
+        <p class="hero-copy">{{ hero.copy | default: "I just love building web apps that feel fast, work reliably, and are actually a joy to use — Angular's my go-to, but really I'm just chasing clean code and a great experience for whoever's on the other side of the screen." }}</p>
+        <div class="hero-highlights">
+          {% if hero.highlights %}{% assign highlights = hero.highlights %}{% else %}{% assign highlights = 'Angular Framework,RxJS Streams,Modular UI,Full Lifecycle Dev' | split: ',' %}{% endif %}
+          {% for highlight in highlights %}
+            <span class="hero-highlight-pill">{{ highlight }}</span><span class="hero-highlight-sep">•</span>
+          {% endfor %}
+          <span class="hero-highlight-pill hero-highlight-recruiter">{{ hero.recruiter_text | default: "Recruiters — Let's Talk" }}</span>
+        </div>
         <div class="hero-actions">
-          <a id="hero-schedule-btn" class="hero-button primary" href="#" role="button">{{ hero.schedule_call_text | default: 'Schedule a Call' }}</a>
-          <a href="{{ hero.view_projects_url | default: '/projects' }}" class="hero-button secondary">{{ hero.view_projects_text | default: 'View Projects' }}</a>
+          <a href="{{ hero.view_projects_url | default: '/projects' }}" class="hero-button primary">{{ hero.view_projects_text | default: 'Explore My Work' }}</a>
+          <a href="{{ hero.resume_url | default: '/resume/' }}" class="hero-button secondary">{{ hero.resume_text | default: 'View Resume' }}</a>
         </div>
       </div>
     </div>
@@ -929,21 +950,8 @@ redirect_from:
       });
     }
 
-    function setupScheduleButtons() {
-      var heroBtn = document.getElementById('hero-schedule-btn');
-      var navBtn = document.getElementById('open-popup-button');
-
-      if (heroBtn && window.neetoCal) {
-        heroBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          navBtn.click();
-        });
-      }
-    }
-
     function init() {
       fitHero();
-      setupScheduleButtons();
 
       requestAnimationFrame(function () {
         setupHeroGlobe();
