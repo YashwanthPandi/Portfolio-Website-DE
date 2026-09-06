@@ -2,8 +2,17 @@
    ARCHIVE
    ========================================================================== */
 
+#main {
+  @include breakpoint($large) {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}
+
 .archive {
   margin-bottom: 2em;
+  min-width: 0;
 
   @include breakpoint($medium) {
     @include span(12 of 12);
@@ -11,6 +20,9 @@
 
   @include breakpoint($large) {
     @include span(9 of 12 last);
+    float: none;
+    margin-left: 0;
+    flex: 1 1 auto;
   }
 
   a {
