@@ -47,6 +47,19 @@
       gap: 0.75rem;
     }
 
+    .made-in-california {
+      width: min(100%, 460px);
+      display: block;
+      margin: 0.25rem 0 0.5rem;
+      filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.14));
+    }
+
+    .made-in-california svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .footer-brand p {
       margin: 0;
       font-weight: 700;
@@ -113,11 +126,8 @@
 
   <div class="footer-container">
     <div class="footer-brand">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}.</p>
-      <div class="footer-license">
-        Content licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a>.<br>
-        Requires attribution to Yashwanth Pandi, non-commercial use only, no major modifications.
-      </div>
+  
+
     </div>
 
     <div>
