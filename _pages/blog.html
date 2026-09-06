@@ -274,7 +274,7 @@ window.onSpaPageLoad = initBlogControls;
     justify-content: center;
     border: 1px solid rgba(148, 163, 184, 0.35);
     background: transparent;
-    color: var(--text-color, #111827);
+    color: inherit;
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     font-size: 0.82rem;
@@ -286,17 +286,17 @@ window.onSpaPageLoad = initBlogControls;
 
   .filter-btn:hover,
   .filter-btn.active {
-    background: var(--primary-color, #2563eb);
-    border-color: var(--primary-color, #2563eb);
-    color: #fff;
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+    background: #38bdf8;
+    border-color: #38bdf8;
+    color: #0f172a;
+    box-shadow: 0 8px 18px rgba(56, 189, 248, 0.25);
   }
 
   .toolbar-meta {
     margin-left: auto;
     justify-content: flex-end;
     font-size: 0.82rem;
-    color: var(--text-color, #111827);
+    color: inherit;
   }
 
   .toolbar-meta label {
@@ -308,12 +308,17 @@ window.onSpaPageLoad = initBlogControls;
   .toolbar-meta select,
   #filterSearch {
     border: 1px solid rgba(148, 163, 184, 0.38);
-    background: rgba(255, 255, 255, 0.7);
-    color: var(--text-color, #111827);
+    background: rgba(15, 23, 42, 0.6);
+    color: inherit;
     border-radius: 10px;
     padding: 0.48rem 0.7rem;
     font-size: 0.82rem;
     min-height: 38px;
+  }
+
+  html[data-theme="light"] .toolbar-meta select,
+  html[data-theme="light"] #filterSearch {
+    background: rgba(255, 255, 255, 0.8);
   }
 
   .blog-search-wrap {
@@ -324,15 +329,14 @@ window.onSpaPageLoad = initBlogControls;
     width: 100%;
     border-radius: 12px;
     padding: 0.7rem 0.9rem;
-    background: rgba(255, 255, 255, 0.72);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   #filterSearch:focus,
   .toolbar-meta select:focus {
     outline: none;
-    border-color: var(--primary-color, #2563eb);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
   }
 
   .post-list-minimal {
@@ -348,18 +352,22 @@ window.onSpaPageLoad = initBlogControls;
     padding: 0.9rem 1rem;
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.38);
+    background: rgba(15, 23, 42, 0.6);
     text-decoration: none !important;
-    color: var(--text-color, #111827) !important;
+    color: inherit !important;
     transition: all 0.2s ease;
     min-height: 76px;
   }
 
+  html[data-theme="light"] .res-item {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
   .res-item:hover,
   .res-item:focus-visible {
-    border-color: rgba(37, 99, 235, 0.4);
-    background: rgba(37, 99, 235, 0.03);
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(56, 189, 248, 0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
     text-decoration: none !important;
   }

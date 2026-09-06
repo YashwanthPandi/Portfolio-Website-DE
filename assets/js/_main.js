@@ -2,30 +2,23 @@
    Various functions that we want to use within the template
    ========================================================================== */
 
-// Determine the expected state of the theme toggle, which can be "dark", "light", or
-// "system". Default is "system".
+// Determine the expected state of the theme toggle, which can be "dark" or "light".
+// Default is "dark".
 let determineThemeSetting = () => {
   try {
     let themeSetting = localStorage.getItem("theme");
-    return (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") ? "system" : themeSetting;
+    return (themeSetting === "light" || themeSetting === "dark") ? themeSetting : "dark";
   } catch (e) {
-    return "system";
+    return "dark";
   }
 };
 
-// Determine the computed theme, which can be "dark" or "light". If the theme setting is
-// "system", the computed theme is determined based on the user's system preference.
+// Determine the computed theme, which can be "dark" or "light".
 let determineComputedTheme = () => {
-  let themeSetting = determineThemeSetting();
-  if (themeSetting != "system") {
-    return themeSetting;
-  }
-
-  const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-  return (mediaQuery && mediaQuery.matches) ? "dark" : "light";
+  return determineThemeSetting();
 };
 
-const browserPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const browserPref = 'dark';
 
 const updateThemeIcon = (theme) => {
   const icon = document.getElementById('theme-icon');
