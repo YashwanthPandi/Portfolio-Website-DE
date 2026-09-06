@@ -25,7 +25,7 @@
   }
 
   @include breakpoint($large) {
-    @include span(2 of 12);
+    @include span(3 of 12);
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
             transition: opacity 0.2s ease-in-out;
@@ -36,7 +36,7 @@
   }
 
   @include breakpoint($x-large) {
-    max-width: $sidebar-link-max-width;
+    max-width: 280px;
     padding-right: 0;
   }
 
@@ -141,14 +141,19 @@
    ========================================================================== */
 
 .author-card {
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-border-color);
+  border-radius: 16px;
+  padding: 1rem 1rem 0.85rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
   @include breakpoint($large) {
-    background: var(--global-bg-color);
-    border: 1px solid var(--global-border-color);
-    border-radius: 16px;
-    padding: 2rem 1.5rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 1.25rem 1.25rem;
     margin-bottom: 2rem;
-    transition: all 0.3s ease;
   }
 
   @include breakpoint($large) {
@@ -162,42 +167,51 @@
   /* Dark mode */
   html[data-theme="dark"] &,
   html.dark & {
-    background: var(--global-bg-color);
+    background: rgba(15, 23, 42, 0.9);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(148, 163, 184, 0.25);
 
     &:hover {
-      box-shadow: 0 8px 24px rgba(124, 110, 230, 0.2);
-      border-color: #a78bfa;
+      @include breakpoint($large) {
+        box-shadow: 0 8px 24px rgba(124, 110, 230, 0.25);
+        border-color: #a78bfa;
+      }
     }
   }
 }
 
 .author__avatar {
   display: table-cell;
-  vertical-align: top;
-  width: 36px;
-  // set width only, for non-square avatars
-  // height: 36px;
+  vertical-align: middle;
+  width: 44px;
+  min-width: 44px;
 
   @include breakpoint($large) {
     display: block;
-    width: auto;
+    width: 100%;
     height: auto;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.25rem;
     text-align: center;
   }
 
   img {
-    width: 36px;
-    height: 36px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
     transition: all 0.3s ease;
 
     @include breakpoint($large) {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      min-height: 120px;
+      margin: 0 auto;
       padding: 0;
       border: 3px solid #7c6ee6;
       box-shadow: 0 8px 24px rgba(124, 110, 230, 0.15);
@@ -205,7 +219,7 @@
 
     @include breakpoint($large) {
       &:hover {
-        transform: scale(1.05);
+        transform: scale(1.04);
         box-shadow: 0 12px 32px rgba(124, 110, 230, 0.25);
       }
     }
@@ -225,10 +239,9 @@
 
 .author__content {
   display: table-cell;
-  vertical-align: top;
-  padding-left: 15px;
-  padding-right: 25px;
-  line-height: 1;
+  vertical-align: middle;
+  padding-left: 12px;
+  padding-right: 12px;
 
   @include breakpoint($large) {
     display: block;
@@ -242,17 +255,19 @@
 .author__name {
   margin: 0;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   @include breakpoint($large) {
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+    font-size: 1.35rem;
   }
 }
 .sidebar .author__name {
   font-family: $sans-serif;
-  font-size: $type-size-5;
 }
 
 .sidebar .author__desktop {
@@ -393,7 +408,11 @@
   }
 
   li {
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-size: 0.875rem;
+    line-height: 1.45;
   }
 
   a {

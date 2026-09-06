@@ -14,12 +14,16 @@ redirect_from:
     width: 100%;
   }
 
-  /* 2. Strip top/bottom spacing added by Minimal Mistakes layout containers */
+  /* 2. Strip padding, margins, borders, and shadows from layout containers on homepage */
   #main, .page, .page__inner-wrap, .page__content, .initial-content {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
     position: relative;
     z-index: auto;
   }
@@ -48,8 +52,8 @@ redirect_from:
     --hero-globe-filter: saturate(1.08) brightness(1.05);
     background: var(--hero-bg);
     color: var(--hero-text);
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100% !important;
+    margin-left: 0 !important;
     padding: 0;
     box-sizing: border-box;
     transition: background 0.3s ease, color 0.2s ease;
@@ -180,11 +184,14 @@ redirect_from:
 
   .hero-heading {
     margin: 0;
-    font-size: clamp(2.75rem, 6vw, 5rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
+    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
     font-weight: 900;
     color: var(--hero-text);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .hero-divider {
@@ -199,8 +206,9 @@ redirect_from:
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    max-width: 100%;
     gap: 1.25rem;
-    padding: clamp(1.75rem, 3vw, 2.5rem);
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
     border-radius: 1.5rem;
     background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(20px);
@@ -208,6 +216,8 @@ redirect_from:
     border: 1px solid var(--hero-line);
     box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.4);
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   html[data-theme="light"] .hero-card,
@@ -318,16 +328,18 @@ redirect_from:
   .hero-notification-banner {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.55rem;
     padding: 0.4rem 0.9rem;
     border-radius: 9999px;
     background: rgba(34, 197, 94, 0.12);
     border: 1px solid rgba(34, 197, 94, 0.3);
     color: var(--hero-text);
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.1vw, 0.825rem);
     font-weight: 600;
     margin-bottom: 0.25rem;
-    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-notification-banner .dot {
@@ -372,22 +384,26 @@ redirect_from:
 
   .hero-copy {
     margin: 0;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    line-height: 1.25;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
     font-weight: 700;
     color: var(--hero-text);
     text-align: left;
     max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-description {
     margin: 0;
     max-width: 100%;
-    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-    line-height: 1.6;
+    font-size: clamp(0.875rem, 1.1vw, 1.05rem);
+    line-height: 1.65;
     color: var(--hero-text-soft);
     text-align: left;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-cta {
@@ -438,9 +454,9 @@ redirect_from:
 
   @media (min-width: 1536px) {
     .edge-to-edge-hero .hero-inner {
-      padding-left: clamp(5rem, 12vw, 9rem);
-      padding-right: clamp(5rem, 12vw, 9rem);
-      gap: clamp(6rem, 12vw, 9rem);
+      padding-left: clamp(3rem, 6vw, 6rem);
+      padding-right: clamp(3rem, 6vw, 6rem);
+      gap: clamp(3rem, 6vw, 6rem);
     }
 
     .hero-left {
@@ -448,22 +464,15 @@ redirect_from:
     }
 
     .hero-heading {
-      font-size: clamp(5rem, 11vw, 8.5rem);
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-rule {
-      width: 5.5rem;
-      margin-bottom: 2.5rem;
+      font-size: clamp(3rem, 4vw, 4.5rem);
     }
 
     .hero-copy {
-      font-size: clamp(2rem, 3.2vw, 3rem);
-      margin-bottom: 2rem;
+      font-size: clamp(1.35rem, 1.8vw, 1.75rem);
     }
 
     .hero-description {
-      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
     }
   }
 
@@ -642,7 +651,15 @@ redirect_from:
 
 <script>
   (function () {
-    var disposeHeroGlobe = null;
+    var globeInstance = null;
+    var frameId = 0;
+    var resizeObserver = null;
+    var mutationObserver = null;
+    var themeClickHandler = null;
+    var cobeModule = null;
+    var cobeLoadingPromise = null;
+    var phi = 0;
+    var flightIndex = 0;
 
     function fitHero() {
       var hero = document.querySelector('.edge-to-edge-hero');
@@ -658,20 +675,60 @@ redirect_from:
       hero.style.minHeight = Math.max(available, 0) + 'px';
     }
 
-    function setupHeroGlobe() {
-      var canvas = document.getElementById('hero-globe-canvas');
-      if (!canvas) return;
+    function loadCobe() {
+      if (cobeModule) return Promise.resolve(cobeModule);
+      if (cobeLoadingPromise) return cobeLoadingPromise;
+      cobeLoadingPromise = import('https://cdn.skypack.dev/cobe').then(function (mod) {
+        cobeModule = mod.default;
+        return cobeModule;
+      });
+      return cobeLoadingPromise;
+    }
 
-      import('https://cdn.skypack.dev/cobe').then(function (mod) {
-        var createGlobe = mod.default;
-        var globe = null;
-        var frameId = 0;
-        var phi = 0;
-        var flightIndex = 0;
-        var observer = null;
-        var themeClickHandler = null;
-        var routePoints = [];
-        var staticRouteMarkers = [];
+    function cleanupGlobe() {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+        resizeObserver = null;
+      }
+      if (mutationObserver) {
+        mutationObserver.disconnect();
+        mutationObserver = null;
+      }
+      var themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle && themeClickHandler) {
+        themeToggle.removeEventListener('click', themeClickHandler);
+        themeClickHandler = null;
+      }
+      if (globeInstance) {
+        try {
+          globeInstance.destroy();
+        } catch (e) {}
+        globeInstance = null;
+      }
+    }
+
+    function setupHeroGlobe() {
+      var oldCanvas = document.getElementById('hero-globe-canvas');
+      if (!oldCanvas) return;
+
+      cleanupGlobe();
+
+      // Replace canvas DOM element to guarantee a fresh, uncorrupted WebGL context
+      var freshCanvas = document.createElement('canvas');
+      freshCanvas.id = 'hero-globe-canvas';
+      freshCanvas.className = 'hero-globe-canvas';
+      if (oldCanvas.parentNode) {
+        oldCanvas.parentNode.replaceChild(freshCanvas, oldCanvas);
+      }
+      var canvas = freshCanvas;
+
+      loadCobe().then(function (createGlobe) {
+        var currentCanvas = document.getElementById('hero-globe-canvas');
+        if (!currentCanvas || currentCanvas !== canvas) return;
 
         var cityCoordinates = {
           Eluru: [16.7107, 81.0952],
@@ -705,13 +762,8 @@ redirect_from:
           return root.classList.contains('dark') || root.getAttribute('data-theme') === 'dark';
         }
 
-        function toRadians(value) {
-          return value * Math.PI / 180;
-        }
-
-        function toDegrees(value) {
-          return value * 180 / Math.PI;
-        }
+        function toRadians(v) { return v * Math.PI / 180; }
+        function toDegrees(v) { return v * 180 / Math.PI; }
 
         function latLonToVector(location) {
           var lat = toRadians(location[0]);
@@ -724,51 +776,39 @@ redirect_from:
         }
 
         function vectorToLatLon(vector) {
-          var x = vector[0];
-          var y = vector[1];
-          var z = vector[2];
+          var x = vector[0], y = vector[1], z = vector[2];
           var hyp = Math.sqrt(x * x + z * z);
-          return [
-            toDegrees(Math.atan2(y, hyp)),
-            toDegrees(Math.atan2(z, x))
-          ];
+          return [toDegrees(Math.atan2(y, hyp)), toDegrees(Math.atan2(z, x))];
         }
 
-        function interpolateGreatCircle(startLocation, endLocation, steps) {
-          var start = latLonToVector(startLocation);
-          var end = latLonToVector(endLocation);
-          var dot = start[0] * end[0] + start[1] * end[1] + start[2] * end[2];
-          dot = Math.min(1, Math.max(-1, dot));
+        function interpolateGreatCircle(startLoc, endLoc, steps) {
+          var start = latLonToVector(startLoc);
+          var end = latLonToVector(endLoc);
+          var dot = Math.min(1, Math.max(-1, start[0] * end[0] + start[1] * end[1] + start[2] * end[2]));
           var omega = Math.acos(dot);
           var sinOmega = Math.sin(omega);
           var points = [];
 
-          if (sinOmega < 0.0001) {
-            points.push(startLocation);
-            points.push(endLocation);
-            return points;
-          }
+          if (sinOmega < 0.0001) return [startLoc, endLoc];
 
-          for (var step = 0; step <= steps; step += 1) {
-            var t = step / steps;
-            var scaleStart = Math.sin((1 - t) * omega) / sinOmega;
-            var scaleEnd = Math.sin(t * omega) / sinOmega;
-            var point = [
-              start[0] * scaleStart + end[0] * scaleEnd,
-              start[1] * scaleStart + end[1] * scaleEnd,
-              start[2] * scaleStart + end[2] * scaleEnd
-            ];
-            points.push(vectorToLatLon(point));
+          for (var s = 0; s <= steps; s++) {
+            var t = s / steps;
+            var sStart = Math.sin((1 - t) * omega) / sinOmega;
+            var sEnd = Math.sin(t * omega) / sinOmega;
+            points.push(vectorToLatLon([
+              start[0] * sStart + end[0] * sEnd,
+              start[1] * sStart + end[1] * sEnd,
+              start[2] * sStart + end[2] * sEnd
+            ]));
           }
-
           return points;
         }
 
         function buildFlightPath() {
           var points = [];
-          for (var index = 0; index < routeStops.length - 1; index += 1) {
-            var start = cityCoordinates[routeStops[index]];
-            var end = cityCoordinates[routeStops[index + 1]];
+          for (var i = 0; i < routeStops.length - 1; i++) {
+            var start = cityCoordinates[routeStops[i]];
+            var end = cityCoordinates[routeStops[i + 1]];
             if (!start || !end) continue;
             var segment = interpolateGreatCircle(start, end, 120);
             if (points.length > 0) segment = segment.slice(1);
@@ -777,62 +817,42 @@ redirect_from:
           return points;
         }
 
-        function buildStaticRouteMarkers(pathPoints) {
-          var markers = [];
-          for (var i = 0; i < pathPoints.length; i += 1) {
-            markers.push({ location: pathPoints[i], size: 0.0039 });
-          }
-          return markers;
-        }
+        var routePoints = buildFlightPath();
+        var staticRouteMarkers = routePoints.map(function (pt) {
+          return { location: pt, size: 0.0039 };
+        });
 
         function getFlightMarkers() {
           if (!routePoints.length) return [];
           var markers = staticRouteMarkers.slice();
-          var totalPoints = routePoints.length;
-          var head = Math.floor(flightIndex) % totalPoints;
+          var head = Math.floor(flightIndex) % routePoints.length;
           markers.push({ location: routePoints[head], size: 0.022 });
-
           return markers;
         }
 
         function getThemeConfig() {
-          if (isDarkTheme()) {
-            return {
-              dark: 1,
-              mapBrightness: 6,
-              baseColor: [0.07, 0.18, 0.35],
-              glowColor: [0.2, 0.52, 0.95],
-              markerColor: [0.55, 0.85, 1]
-            };
-          }
-
           return {
             dark: 1,
             mapBrightness: 6,
             baseColor: [0.07, 0.18, 0.35],
             glowColor: [0.2, 0.52, 0.95],
-            markerColor: [1, 1, 1]
+            markerColor: isDarkTheme() ? [0.55, 0.85, 1] : [1, 1, 1]
           };
         }
 
-        function buildGlobe(retries) {
-          retries = retries || 0;
-          var width = canvas.offsetWidth;
-
-          if (!width || width === 0) {
-            if (retries < 10) {
-              requestAnimationFrame(function () {
-                buildGlobe(retries + 1);
-              });
-            }
-            return;
-          }
+        function renderGlobe() {
+          var width = canvas.offsetWidth || canvas.clientWidth || (canvas.parentElement ? canvas.parentElement.offsetWidth : 0);
+          if (!width || width === 0) return false;
 
           var theme = getThemeConfig();
           var dpr = Math.min(window.devicePixelRatio || 1, 2);
-          if (globe) globe.destroy();
 
-          globe = createGlobe(canvas, {
+          if (globeInstance) {
+            try { globeInstance.destroy(); } catch (e) {}
+            globeInstance = null;
+          }
+
+          globeInstance = createGlobe(canvas, {
             devicePixelRatio: dpr,
             width: width * dpr,
             height: width * dpr,
@@ -850,57 +870,60 @@ redirect_from:
             offset: [0, 0],
             markers: getFlightMarkers()
           });
+          return true;
         }
+
+        var retryCount = 0;
+        function tryRender() {
+          var success = renderGlobe();
+          if (!success && retryCount < 30) {
+            retryCount++;
+            requestAnimationFrame(tryRender);
+          }
+        }
+        tryRender();
 
         function animate() {
           phi += 0.003;
           flightIndex += 0.2;
-          if (globe) globe.update({
-            phi: phi,
-            markers: getFlightMarkers()
-          });
+          if (globeInstance) {
+            globeInstance.update({ phi: phi, markers: getFlightMarkers() });
+          }
           frameId = window.requestAnimationFrame(animate);
         }
 
-        function refreshGlobe() {
-          buildGlobe();
+        if (!frameId) {
+          animate();
         }
 
-        routePoints = buildFlightPath();
-        staticRouteMarkers = buildStaticRouteMarkers(routePoints);
+        if (window.ResizeObserver) {
+          resizeObserver = new ResizeObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (entries[i].contentRect && entries[i].contentRect.width > 0) {
+                renderGlobe();
+              }
+            }
+          });
+          resizeObserver.observe(canvas);
+        }
 
-        requestAnimationFrame(function () {
-          buildGlobe();
-          animate();
-        });
-
-        window.addEventListener('resize', refreshGlobe);
-
-        observer = new MutationObserver(function (changes) {
-          for (var i = 0; i < changes.length; i += 1) {
+        mutationObserver = new MutationObserver(function (changes) {
+          for (var i = 0; i < changes.length; i++) {
             if (changes[i].attributeName === 'class' || changes[i].attributeName === 'data-theme') {
-              refreshGlobe();
+              renderGlobe();
               break;
             }
           }
         });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+        mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
 
         var themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
           themeClickHandler = function () {
-            window.setTimeout(refreshGlobe, 50);
+            window.setTimeout(renderGlobe, 50);
           };
           themeToggle.addEventListener('click', themeClickHandler);
         }
-
-        disposeHeroGlobe = function () {
-          window.cancelAnimationFrame(frameId);
-          window.removeEventListener('resize', refreshGlobe);
-          if (observer) observer.disconnect();
-          if (themeToggle && themeClickHandler) themeToggle.removeEventListener('click', themeClickHandler);
-          if (globe) globe.destroy();
-        };
       }).catch(function (error) {
         console.error('Unable to initialize globe animation:', error);
       });
@@ -919,10 +942,6 @@ redirect_from:
     }
 
     function init() {
-      if (disposeHeroGlobe) {
-        disposeHeroGlobe();
-        disposeHeroGlobe = null;
-      }
       fitHero();
       setupScheduleButtons();
 
@@ -941,12 +960,14 @@ redirect_from:
     document.addEventListener('pjax:end', init);
     document.addEventListener('turbo:load', init);
     document.addEventListener('page:load', init);
+    document.addEventListener('spaPageLoad', init);
+    window.addEventListener('pageshow', init);
+    window.addEventListener('popstate', init);
 
     window.addEventListener('load', fitHero);
     window.addEventListener('resize', fitHero);
     window.addEventListener('orientationchange', fitHero);
-    window.addEventListener('beforeunload', function () {
-      if (disposeHeroGlobe) disposeHeroGlobe();
-    });
+    window.addEventListener('beforeunload', cleanupGlobe);
+    window.addEventListener('pagehide', cleanupGlobe);
   })();
 </script>

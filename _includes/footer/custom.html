@@ -5,9 +5,8 @@
       background-color: #ffffff;
       color: #4b5563;
       transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
-      padding-top: 2.5rem !important;
-      padding-bottom: 2rem !important;
-      margin-top: 4rem !important;
+      padding: 3rem 0 2.5rem 0 !important;
+      margin-top: 0 !important;
       position: relative;
       z-index: 10;
       clear: both;
@@ -17,64 +16,138 @@
     html[data-theme="dark"] footer,
     html.dark footer {
       background-color: #0f1419;
-      color: #f5f7fb;
+      color: #94a3b8;
       border-color: rgba(255, 255, 255, 0.1);
     }
 
-    footer .footer-brand,
-    footer .footer-meta {
-      color: inherit;
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
     }
 
-    footer .footer-brand {
-      font-size: 0.875rem;
-      line-height: 1.5;
-      letter-spacing: 0.02em;
+    @media (max-width: 868px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    footer .footer-brand p {
-      margin: 0;
-      font-weight: 600;
+    @media (max-width: 540px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .footer-meta {
-      font-size: 0.75rem;
-      margin-top: 0.6rem;
+    .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-      opacity: 0.8;
+      gap: 0.75rem;
     }
 
-    footer a {
-      color: #7c6ee6;
+    .footer-brand p {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    html[data-theme="dark"] .footer-brand p,
+    html.dark .footer-brand p {
+      color: #f8fbff;
+    }
+
+    .footer-license {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    .footer-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+      color: #0f172a;
+    }
+
+    html[data-theme="dark"] .footer-section-title,
+    html.dark .footer-section-title {
+      color: #f8fbff;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #64748b;
       text-decoration: none;
+      font-size: 0.875rem;
       transition: color 0.2s ease;
     }
 
-    footer a:hover {
-      color: #6854d6;
+    .footer-links a:hover {
+      color: #0f172a;
       text-decoration: underline;
     }
 
-    html[data-theme="dark"] footer a,
-    html.dark footer a {
-      color: #a78bfa;
+    html[data-theme="dark"] .footer-links a,
+    html.dark .footer-links a {
+      color: #94a3b8;
     }
 
-    html[data-theme="dark"] footer a:hover,
-    html.dark footer a:hover {
-      color: #c4b5fd;
+    html[data-theme="dark"] .footer-links a:hover,
+    html.dark .footer-links a:hover {
+      color: #38bdf8;
     }
   </style>
 
-  <div class="mx-auto flex max-w-7xl flex-col items-center gap-2 px-4 py-6 text-center sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:text-left">
+  <div class="footer-container">
     <div class="footer-brand">
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}.</p>
-      <div class="footer-meta">
-        <div>Updated {{ "now" | date: "%A, %B %d, %Y %I:%M %p %Z" }}</div>
-        <div>Built: {{ site.time | date: '%Y-%m-%d %H:%M:%S' }}</div>
+      <div class="footer-license">
+        Content licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a>.<br>
+        Requires attribution to Yashwanth Pandi, non-commercial use only, no major modifications.
       </div>
+    </div>
+
+    <div>
+      <div class="footer-section-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/resources/">Resources</a></li>
+        <li><a href="/resume/">Resume</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-section-title">Directory & Legal</div>
+      <ul class="footer-links">
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms of Service</a></li>
+        <li><a href="/sitemap/">Sitemap</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-section-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/YashwanthPandi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/yashwanthpandi" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="mailto:pandiyashwanth@gmail.com">Email</a></li>
+      </ul>
     </div>
   </div>
 </footer>

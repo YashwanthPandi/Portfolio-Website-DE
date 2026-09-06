@@ -10,6 +10,17 @@ function updateContent(htmlText, url) {
   const existing = document.getElementById('page-content');
   existing.innerHTML = newMain.innerHTML;
 
+  // Re-execute scripts inside the injected SPA content
+  const scripts = Array.from(existing.querySelectorAll('script'));
+  scripts.forEach(oldScript => {
+    const newScript = document.createElement('script');
+    Array.from(oldScript.attributes).forEach(attr => {
+      newScript.setAttribute(attr.name, attr.value);
+    });
+    newScript.textContent = oldScript.textContent;
+    oldScript.parentNode.replaceChild(newScript, oldScript);
+  });
+
   document.title = doc.title || document.title;
   window.history.pushState({ url }, '', url);
   window.scrollTo(0, 0);
@@ -21,6 +32,8 @@ function updateContent(htmlText, url) {
   if (typeof window.onSpaPageLoad === 'function') {
     window.onSpaPageLoad();
   }
+
+  window.dispatchEvent(new CustomEvent('spaPageLoad'));
 }
 
 async function handleInternalNavigation(event) {
