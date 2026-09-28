@@ -49,19 +49,20 @@ author_profile: false
     </div>
   </form>
 
-  <div id="contact-status" class="contact-status" style="display: none;"></div>
-
-  <div class="contact-direct">
-    <span>Or reach out directly:</span>
-    <a href="mailto:{{ contact.email }}" class="contact-email-link">{{ contact.email }}</a>
-  </div>
+  <div id="contact-status" class="contact-status" style="display: none;" role="status" aria-live="polite"></div>
 </div>
 
 <script>
   (function () {
-    // FormSubmit (https://formsubmit.co) is free and requires no signup/API key
-    var FORM_ENDPOINT = "{{ contact.form.action }}".replace('formsubmit.co/', 'formsubmit.co/ajax/');
-    var SUCCESS_MESSAGE = "{{ contact.form.success_message }}";
+    // In _data/contact.yml use the random alias FormSubmit emails you after activation:
+    //   form:
+    //     action: "https://formsubmit.co/YOUR_RANDOM_ALIAS"
+    //     success_message: "Thanks! Your message has been sent."
+    var action = {{ contact.form.action | jsonify }};
+    var FORM_ENDPOINT = action.indexOf('/ajax/') === -1
+      ? action.replace('formsubmit.co/', 'formsubmit.co/ajax/')
+      : action;
+    var SUCCESS_MESSAGE = {{ contact.form.success_message | jsonify }};
 
     var form = document.getElementById('contact-form');
     var statusDiv = document.getElementById('contact-status');
@@ -70,6 +71,12 @@ author_profile: false
     var submitBtnDefaultHTML = submitBtn ? submitBtn.innerHTML : '';
 
     if (!form) return;
+
+    function showStatus(type, text) {
+      statusDiv.className = 'contact-status ' + type;
+      statusDiv.innerText = text;
+      statusDiv.style.display = 'block';
+    }
 
     function buildFormattedBody(name, email, subject, message) {
       return "Hi Yashwanth,\n\n" +
@@ -85,55 +92,37 @@ author_profile: false
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var name = document.getElementById('contact-name').value.trim();
-      var email = document.getElementById('contact-email').value.trim();
-      var subject = document.getElementById('contact-subject').value.trim();
-      var message = document.getElementById('contact-message').value.trim();
-
-      if (!name || !email || !subject || !message) return;
-
-      var recipient = "{{ contact.email }}";
+      // Honeypot filled = bot; silently do nothing
+      var honey = form.querySelector('[name="_honey"]');
+      if (honey && honey.value) return;
 
       submitBtn.disabled = true;
       submitBtn.innerHTML = 'Sending...';
+      statusDiv.style.display = 'none';
 
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
       }).then(function (response) {
-        if (!response.ok) throw new Error('FormSubmit request failed with status ' + response.status);
-        return response.json();
-      }).then(function () {
-        statusDiv.className = 'contact-status success';
-        statusDiv.innerText = '✓ ' + SUCCESS_MESSAGE;
-        statusDiv.style.display = 'block';
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: response.ok, data: data };
+        });
+      }).then(function (result) {
+        var success = result.data && (result.data.success === true || result.data.success === 'true');
+        if (!result.ok || !success) {
+          throw new Error((result.data && result.data.message) || 'Request failed');
+        }
+        showStatus('success', '✓ ' + SUCCESS_MESSAGE);
         form.reset();
       }).catch(function (err) {
         console.error('FormSubmit error:', err);
-        // Fallback to direct client mailto only if the API call itself failed
-        sendViaMailto(recipient, name, email, subject, message);
+        showStatus('error', 'Sorry, your message could not be sent. Please try again in a moment.');
       }).finally(function () {
         submitBtn.disabled = false;
         submitBtn.innerHTML = submitBtnDefaultHTML;
       });
     });
-
-    function sendViaMailto(recipient, name, email, subject, message) {
-      var emailSubject = encodeURIComponent("[" + subject + "] Inquiry from " + name);
-      var bodyText = buildFormattedBody(name, email, subject, message);
-      var emailBody = encodeURIComponent(bodyText);
-
-      var mailtoUrl = "mailto:" + recipient + "?subject=" + emailSubject + "&body=" + emailBody;
-
-      // Launch email client directly from browser JS
-      window.location.href = mailtoUrl;
-
-      statusDiv.className = 'contact-status success';
-      statusDiv.innerHTML = '✓ Opening your email client to send the message...<br>' +
-        '<small>If your email app did not open automatically, <a href="' + mailtoUrl + '">click here to send</a> or click "Copy Formatted Message" below.</small>';
-      statusDiv.style.display = 'block';
-    }
 
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
@@ -142,14 +131,10 @@ author_profile: false
         var subject = document.getElementById('contact-subject').value.trim() || 'General Inquiry';
         var message = document.getElementById('contact-message').value.trim() || '';
 
-        var bodyText = buildFormattedBody(name, email, subject, message);
-
-        navigator.clipboard.writeText(bodyText).then(function () {
+        navigator.clipboard.writeText(buildFormattedBody(name, email, subject, message)).then(function () {
           var origText = copyBtn.innerText;
           copyBtn.innerText = '✓ Copied to Clipboard!';
-          setTimeout(function () {
-            copyBtn.innerText = origText;
-          }, 2500);
+          setTimeout(function () { copyBtn.innerText = origText; }, 2500);
         }).catch(function (err) {
           console.error('Clipboard copy error:', err);
         });
@@ -262,6 +247,12 @@ author_profile: false
     box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4);
   }
 
+  .contact-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
   .contact-copy-btn {
     border: 1px solid rgba(148, 163, 184, 0.35);
     border-radius: 9999px;
@@ -298,24 +289,15 @@ author_profile: false
     color: #15803d;
   }
 
-  .contact-direct {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.2);
-    flex-wrap: wrap;
+  .contact-status.error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #f87171;
   }
 
-  .contact-email-link {
-    font-weight: 700;
-    color: #38bdf8;
-    text-decoration: none;
-  }
-
-  .contact-email-link:hover {
-    text-decoration: underline;
+  html[data-theme="light"] .contact-status.error,
+  html:not(.dark):not([data-theme="dark"]) .contact-status.error {
+    color: #b91c1c;
   }
 
   @media (max-width: 640px) {
@@ -335,4 +317,3 @@ author_profile: false
     }
   }
 </style>
-
