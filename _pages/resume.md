@@ -262,7 +262,7 @@ author_profile: true
 
 ## Professional Summary
 
-Software Engineer equipped with a Master's in IT and over 6+ years of expertise in delivering enterprise-grade web applications. Proficient in architecting modular Angular (v16+) structures and reactive data management via RxJS to streamline complex legacy migrations.
+Software Engineer equipped with a Master's in IT and over 7 years of expertise in delivering enterprise-grade web applications. Proficient in architecting modular Angular (v16+) structures and reactive data management via RxJS to streamline complex legacy migrations.
 
 ## Experience
 
@@ -272,7 +272,7 @@ Software Engineer equipped with a Master's in IT and over 6+ years of expertise 
       <div class="job-title">Application Developer</div>
       <div class="job-company">Genentech Inc</div>
     </div>
-    <div class="job-meta"><span>Jan 2026 – Present</span><span>South San Francisco, CA</span></div>
+    <div class="job-meta"><span>Nov 2024 – Present</span><span>South San Francisco, CA</span></div>
   </div>
 </div>
 
@@ -296,7 +296,7 @@ Software Engineer equipped with a Master's in IT and over 6+ years of expertise 
       <div class="job-title">UI Developer II</div>
       <div class="job-company">California Lutheran University</div>
     </div>
-    <div class="job-meta"><span>Jun 2023 – Sept 2025</span><span>Thousand Oaks, CA</span></div>
+    <div class="job-meta"><span>Jun 2023 – Aug 2024</span><span>Thousand Oaks, CA</span></div>
   </div>
 </div>
 
