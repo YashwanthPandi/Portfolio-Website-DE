@@ -52,7 +52,7 @@ author_profile: false
   <div id="contact-status" class="contact-status" style="display: none;" role="status" aria-live="polite"></div>
 </div>
 
-<script>
+<script data-cfasync="false">
   (function () {
     // In _data/contact.yml use the random alias FormSubmit emails you after activation:
     //   form:
@@ -103,6 +103,10 @@ author_profile: false
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
+        // Overrides any site-wide "no-referrer" policy, which would make the
+        // browser send "Origin: null" and trigger FormSubmit's
+        // "open this page through a web server" error.
+        referrerPolicy: 'strict-origin-when-cross-origin',
         body: new FormData(form)
       }).then(function (response) {
         return response.json().catch(function () { return {}; }).then(function (data) {
