@@ -4,12 +4,16 @@
       background-color: #f8fafc;
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     /* Dark mode for header */
@@ -70,13 +74,13 @@
       transition: all 0.2s ease;
     }
 
-    .nav-item:hover { 
-      background-color: #f9fafb; 
-      color: #111827; 
+    .nav-item:hover {
+      background-color: #f9fafb;
+      color: #111827;
     }
-    .nav-item.active { 
-      background-color: #f3f4f6; 
-      color: #111827; 
+    .nav-item.active {
+      background-color: #f3f4f6;
+      color: #111827;
     }
 
     /* Dark mode for nav items */
@@ -121,8 +125,12 @@
       color: #9ca3af;
     }
 
-    .icon-spotify:hover { color: #1DB954; }
-    .icon-settings:hover { color: #111827; }
+    .icon-spotify:hover {
+      color: #1db954;
+    }
+    .icon-settings:hover {
+      color: #111827;
+    }
 
     html[data-theme="dark"] .icon-settings:hover,
     html.dark .icon-settings:hover {
@@ -157,7 +165,7 @@
     }
 
     .neetocal-nav-btn {
-      background-color: #1DB954 !important;
+      background-color: #1db954 !important;
       color: white !important;
       padding: 0.6rem 1.1rem !important;
       border-radius: 9999px !important;
@@ -210,7 +218,9 @@
         z-index: 100;
       }
 
-      .mobile-toggle { display: block; }
+      .mobile-toggle {
+        display: block;
+      }
 
       .nav-menu {
         display: none;
@@ -221,7 +231,7 @@
         right: 0;
         background: #fff;
         padding: 1rem 1.5rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         gap: 1rem;
         z-index: 99;
         transition: background-color 0.3s ease;
@@ -231,13 +241,24 @@
       html[data-theme="dark"] .nav-menu,
       html.dark .nav-menu {
         background: #1a1f2e;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
 
-      .nav-menu.is-open { display: flex; }
-      .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 0.5rem; }
-      .nav-actions { flex-direction: column; width: 100%; gap: 1rem; }
-      
+      .nav-menu.is-open {
+        display: flex;
+      }
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      .nav-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+      }
+
       .neetocal-nav-btn {
         width: 100%;
         padding: 0.6rem 1rem !important;
@@ -247,33 +268,61 @@
 
   <nav class="navbar">
     <a href="{{ base_path }}/" class="nav-brand">
-      <img src="{{ base_path }}/images/logo.svg" alt="Yashwanth Pandi" class="logo-img" />
+      <img
+        src="{{ base_path }}/images/logo.svg"
+        alt="Yashwanth Pandi"
+        class="logo-img"
+      />
     </a>
 
-    <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+    <button
+      class="mobile-toggle"
+      id="mobile-menu-btn"
+      aria-label="Toggle navigation"
+    >
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
       </svg>
     </button>
 
     <div class="nav-menu" id="nav-menu">
       <ul class="nav-links">
         <li><a href="{{ base_path }}/" class="nav-item active">Home</a></li>
-        <li><a href="{{ base_path }}/projects/" class="nav-item">Projects</a></li>
+        <li>
+          <a href="{{ base_path }}/projects/" class="nav-item">Projects</a>
+        </li>
         <li><a href="{{ base_path }}/blog/" class="nav-item">Blog</a></li>
-        <li><a href="{{ base_path }}/resources/" class="nav-item">Resources</a></li>
+        <li><a href="{{ base_path }}/notes/" class="nav-item">Digital Space</a></li>
+
+        <!-- <li><a href="{{ base_path }}/resources/" class="nav-item">Resources</a></li> -->
         <li><a href="{{ base_path }}/resume/" class="nav-item">Resume</a></li>
         <li><a href="{{ base_path }}/contact/" class="nav-item">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
         <div class="nav-icons">
-          <a id="spotify-toggle" href="#" role="button" aria-label="Spotify" class="icon-spotify">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.563.387-.857.207-2.35-1.434-5.305-1.76-8.786-.963-.335.077-.67-.133-.746-.467-.077-.334.132-.67.467-.745 3.808-.87 7.076-.496 9.715 1.115.293.18.386.563.207.853zm1.268-2.828c-.225.367-.704.482-1.072.258-2.687-1.65-6.785-2.13-9.965-1.166-.413.127-.85-.104-.977-.517-.126-.413.104-.85.517-.978 3.635-1.106 8.143-.566 11.24 1.33.367.225.482.705.257 1.073zm.105-2.92c-3.23-1.92-8.56-2.096-11.64-1.16-.505.153-1.03-.13-1.183-.635-.152-.505.13-1.03.635-1.183 3.553-1.077 9.447-.87 13.164 1.34.453.27.597.87.327 1.32-.27.453-.87.598-1.32.327z"/></svg>
+          <a
+            id="spotify-toggle"
+            href="#"
+            role="button"
+            aria-label="Spotify"
+            class="icon-spotify"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.563.387-.857.207-2.35-1.434-5.305-1.76-8.786-.963-.335.077-.67-.133-.746-.467-.077-.334.132-.67.467-.745 3.808-.87 7.076-.496 9.715 1.115.293.18.386.563.207.853zm1.268-2.828c-.225.367-.704.482-1.072.258-2.687-1.65-6.785-2.13-9.965-1.166-.413.127-.85-.104-.977-.517-.126-.413.104-.85.517-.978 3.635-1.106 8.143-.566 11.24 1.33.367.225.482.705.257 1.073zm.105-2.92c-3.23-1.92-8.56-2.096-11.64-1.16-.505.153-1.03-.13-1.183-.635-.152-.505.13-1.03.635-1.183 3.553-1.077 9.447-.87 13.164 1.34.453.27.597.87.327 1.32-.27.453-.87.598-1.32.327z"
+              />
+            </svg>
           </a>
         </div>
 
-        <a id="open-popup-button" class="neetocal-nav-btn" href="#" role="button">Schedule a Call</a>
+        <a
+          id="open-popup-button"
+          class="neetocal-nav-btn"
+          href="#"
+          role="button"
+          >Schedule a Call</a
+        >
       </div>
     </div>
   </nav>
@@ -281,40 +330,51 @@
   <div id="spotify-drawer" class="spotify-dropdown">
     <div class="spotify-container">
       <iframe
-        style="border-radius:12px"
+        style="border-radius: 12px"
         src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbITWG1ZJKYt?utm_source=generator&theme=0"
         width="100%"
         height="80"
         frameborder="0"
         allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
+        allow="
+          autoplay;
+          clipboard-write;
+          encrypted-media;
+          fullscreen;
+          picture-in-picture;
+        "
+        loading="lazy"
+      >
       </iframe>
     </div>
   </div>
 
   <script>
-    window.neetoCal = window.neetoCal || { embed: function () { (neetoCal.q = neetoCal.q || []).push(arguments); } };
+    window.neetoCal = window.neetoCal || {
+      embed: function () {
+        (neetoCal.q = neetoCal.q || []).push(arguments);
+      },
+    };
   </script>
   <script async src="https://cdn.neetocal.com/javascript/embed.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const navMenu = document.getElementById('nav-menu');
-      const spotifyBtn = document.getElementById('spotify-toggle');
-      const spotifyDrawer = document.getElementById('spotify-drawer');
+    document.addEventListener("DOMContentLoaded", function () {
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const navMenu = document.getElementById("nav-menu");
+      const spotifyBtn = document.getElementById("spotify-toggle");
+      const spotifyDrawer = document.getElementById("spotify-drawer");
 
       if (mobileBtn && navMenu) {
-        mobileBtn.addEventListener('click', function () {
-          navMenu.classList.toggle('is-open');
+        mobileBtn.addEventListener("click", function () {
+          navMenu.classList.toggle("is-open");
         });
       }
 
       if (spotifyBtn && spotifyDrawer) {
-        spotifyBtn.addEventListener('click', function (e) {
+        spotifyBtn.addEventListener("click", function (e) {
           e.preventDefault();
-          spotifyDrawer.classList.toggle('is-open');
+          spotifyDrawer.classList.toggle("is-open");
         });
       }
 
@@ -325,7 +385,7 @@
           organization: "yashwanth-pandi",
           elementSelector: "#open-popup-button",
           isSidebarAndCoverImgHidden: "false",
-          shouldForwardQueryParams: "false"
+          shouldForwardQueryParams: "false",
         });
       }
     });
