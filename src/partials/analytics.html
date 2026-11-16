@@ -1,6 +1,9 @@
 <!-- Google Analytics 4 + Microsoft Clarity -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHWXL0Z4MN"></script>
 <script>
+  // Don't count the owner's editing sessions in /admin
+  var gaOff = /^\/admin/.test(location.pathname);
+  if (gaOff) window['ga-disable-G-GHWXL0Z4MN'] = true;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   gtag('js', new Date());
@@ -34,10 +37,20 @@
       trackGaEvent('click', 'interaction', t.getAttribute('aria-label') || t.textContent.trim().slice(0, 60) || 'button');
     }
   });
+  // Scroll depth, as on the previous site
+  var scrollSeen = {};
+  function trackScrollDepth() {
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var pct = max > 0 ? Math.round(scrollY / max * 100) : 0;
+    [25, 50, 75, 100].forEach(function (d) {
+      if (!scrollSeen[d] && pct >= d) { scrollSeen[d] = true; trackGaEvent('scroll', 'engagement', d + '%'); }
+    });
+  }
+  window.addEventListener('scroll', trackScrollDepth, { passive: true });
   document.addEventListener('submit', function (e) { if (e.target && e.target.tagName === 'FORM') trackGaEvent('form_submit', 'form', e.target.id || 'form'); });
 </script>
 <script>
-  (function(c,l,a,r,i,t,y){
+  if (!/^\/admin/.test(location.pathname)) (function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
