@@ -1,0 +1,59 @@
+<header class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Contact</h1>
+    <p class="page-head__lede" data-bind="contact.intro">Have a project, collaboration, or question? Send a message and I will get back to you.</p>
+  </div>
+</header>
+
+<div class="wrap contact">
+  <div class="contact__layout">
+    <form class="form" id="contact-form" novalidate>
+      <div class="form__row">
+        <div class="field">
+          <label for="contact-name">Name</label>
+          <input class="field-input" id="contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="contact-email">Email</label>
+          <input class="field-input" id="contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="contact-subject">Subject <span class="field__hint">· role, team, or question</span></label>
+        <input class="field-input" id="contact-subject" name="subject" type="text" required>
+      </div>
+      <div class="field">
+        <label for="contact-message">Message</label>
+        <textarea class="field-input" id="contact-message" name="message" rows="6" required></textarea>
+      </div>
+
+      <input type="hidden" name="_subject" value="New portfolio contact form submission">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" aria-hidden="true" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+
+      <div class="status" id="contact-status" role="status" aria-live="polite" hidden></div>
+
+      <div class="form__actions">
+        <button type="submit" class="btn btn--primary" id="contact-submit">Send message</button>
+        <span class="field__hint">I usually reply within two working days.</span>
+      </div>
+    </form>
+
+    <aside class="contact__direct" aria-label="Other ways to reach me">
+      <div class="props" data-spec="Contact">
+        <div class="props__head"><span class="props__name">&lt;<b>Direct</b>&gt;</span></div>
+        <table class="props__table">
+          <tbody>
+            <tr><th scope="row">email</th><td><a href="mailto:pandiyashwanth@gmail.com" data-bind-href="mailto:hero.email" data-bind="hero.email">pandiyashwanth@gmail.com</a></td></tr>
+            <tr><th scope="row">linkedin</th><td><a href="https://www.linkedin.com/in/yashwanthpandi" data-bind-href="hero.linkedin_url" rel="noopener">yashwanthpandi</a></td></tr>
+            <tr><th scope="row">github</th><td><a href="https://github.com/YashwanthPandi" data-bind-href="hero.github_url" rel="noopener">YashwanthPandi</a></td></tr>
+            <tr><th scope="row">location</th><td data-bind="hero.location">San Francisco, CA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="btn btn--primary" href="/schedule/">Book a call</a>
+      <button class="btn copy-btn" type="button" data-copy="pandiyashwanth@gmail.com" data-bind-copy="hero.email"><span data-label>Copy email address</span></button>
+    </aside>
+  </div>
+</div>

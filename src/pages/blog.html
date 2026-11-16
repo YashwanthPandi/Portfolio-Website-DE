@@ -1,0 +1,27 @@
+<header class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Writing</h1>
+    <p class="page-head__lede">Notes on building Angular applications: signals and RxJS, component design, accessibility, performance, and testing.</p>
+  </div>
+</header>
+
+<div class="wrap section" style="padding-top: var(--s-6);">
+  <div data-filter-scope-pending data-filter-noun="posts" data-render="blog" aria-busy="true">
+    <div class="toolbar">
+      <div class="segmented" role="group" aria-label="Filter by topic" data-topics>
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+      </div>
+      <label class="search">
+        <span class="visually-hidden">Search posts</span>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+        <input type="search" placeholder="Search titles and summaries" data-filter-search autocomplete="off">
+      </label>
+    </div>
+    <p class="result-count" data-filter-count aria-live="polite"></p>
+    <ul class="index" role="list" data-render="posts"></ul>
+    <div class="empty" data-filter-empty hidden>
+      <strong>No posts match</strong>
+      Try another topic or a shorter search. <button class="btn btn--sm btn--ghost" type="button" data-filter-reset>Clear filters</button>
+    </div>
+  </div>
+</div>

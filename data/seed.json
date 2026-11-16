@@ -1,0 +1,480 @@
+{
+  "site": {
+    "hero": {
+      "status": "Open to new frontend & Angular engineering roles",
+      "location": "San Francisco, CA",
+      "email": "pandiyashwanth@gmail.com",
+      "github_url": "https://github.com/YashwanthPandi",
+      "linkedin_url": "https://www.linkedin.com/in/yashwanthpandi"
+    },
+    "contact": {
+      "intro": "Have a project, collaboration, or question? Send a message and I will get back to you.",
+      "form_action": "https://formsubmit.co/3be01f802d67aab97ee97e6edd7d30bc",
+      "success_message": "Thanks for your message. I will reply soon."
+    },
+    "experience": {
+      "summary": "Software Engineer with a Master's in IT and over 7 years of experience delivering enterprise-grade web applications. I architect modular Angular (v16+) applications, manage reactive data with RxJS, and lead legacy UI migrations.",
+      "resume_pdf": "https://docs.google.com/document/d/1sSmgIuFysQsX43NZrhy8fRxy6_P7pqySGvY8-53p054/export?format=pdf",
+      "resume_docx": "https://docs.google.com/document/d/1sSmgIuFysQsX43NZrhy8fRxy6_P7pqySGvY8-53p054/export?format=docx",
+      "phone": "(805) 501-5991",
+      "phone_href": "tel:8055015991",
+      "roles": [
+        {
+          "title": "Application Developer",
+          "company": "Genentech Inc",
+          "location": "South San Francisco, CA",
+          "start": "Nov 2024",
+          "end": "Present",
+          "current": true,
+          "stack": [
+            "Angular 16",
+            "TypeScript",
+            "RxJS",
+            "D3.js",
+            "MongoDB",
+            "Redis"
+          ],
+          "notes": [
+            "Engineered Angular 16 front-end features and integrated RESTful Web APIs for client-server data transfer.",
+            "Led interns through a UI migration to Angular, covering TypeScript, components, services, Observables, and build pipelines.",
+            "Built dynamic D3.js data visualizations and model-driven Angular modules for the CARES screening platform.",
+            "Architected modular Angular components and UI services following a component-based architecture.",
+            "Implemented two-way data binding and dependency injection, connecting to Web API controllers for CRUD operations.",
+            "Configured the Angular router for SPA navigation using modern TypeScript.",
+            "Managed async reactive streams with RxJS Observables and built reusable custom directives with isolated scope.",
+            "Partnered with stakeholders to design intuitive interfaces for core business fulfillment workflows.",
+            "Led peer code reviews to enforce quality standards and took part in Agile/Scrum ceremonies.",
+            "Optimized TypeScript build configs via tsconfig and used Angular pipes for real-time data transformation.",
+            "Managed tasks and user data in MongoDB, using Redis for active user sessions and initial state caching.",
+            "Implemented injectable Angular services to manage shared state across components."
+          ]
+        },
+        {
+          "title": "UI Developer II",
+          "company": "California Lutheran University",
+          "location": "Thousand Oaks, CA",
+          "start": "Jun 2023",
+          "end": "Aug 2024",
+          "stack": [
+            "Angular",
+            "Express.js",
+            "Node.js",
+            "MongoDB",
+            "D3.js",
+            "Kafka"
+          ],
+          "notes": [
+            "Developed and maintained high-traffic university web properties in Angular, integrating secure APIs and relational databases with 99.9% uptime.",
+            "Architected reusable, semantic Angular components that meet WCAG 2.1 accessibility standards for campus-wide inclusivity.",
+            "Built reusable D3.js chart modules to analyze multi-year sales metrics with dynamic data interaction.",
+            "Optimized front-end performance by profiling enterprise applications and troubleshooting complex TypeScript issues.",
+            "Translated design mock-ups and wireframes into production-ready, standards-compliant Angular components.",
+            "Developed RESTful web services with Express.js and Node.js connecting Angular frontends to backend endpoints.",
+            "Integrated MongoDB with Express.js APIs for JSON document persistence, asynchronous querying, and schema management.",
+            "Implemented interactive data visualizations with D3.js and Angular, binding JSON/CSV datasets directly to DOM elements.",
+            "Used Kafka to stream high-throughput events while caching live data points in Redis for instant retrieval.",
+            "Designed loading animations and asynchronous UI state transitions with RxJS observables during backend HTTP requests.",
+            "Built dashboard visualizations (heat maps, line, bar, and pie charts) with D3.js, Highcharts, HTML5 Canvas, and SVG."
+          ]
+        },
+        {
+          "title": "Software Engineer",
+          "company": "Cisco Systems",
+          "location": "Bangalore, IN",
+          "start": "Apr 2020",
+          "end": "Feb 2023",
+          "stack": [
+            "Angular",
+            "REST APIs",
+            "Load testing"
+          ],
+          "notes": [
+            "Designed and implemented a high-availability (99.99% uptime) REST API for a high-volume internal web application.",
+            "Documented solution architecture for external web applications, reducing time-to-market by 58%.",
+            "Set development best practices on a 4-developer coding standards team, reducing code complexity and improving library maintainability.",
+            "Delivered mission-critical single-page applications from MVP through product-market fit with cross-functional teams.",
+            "Integrated third-party services and external APIs into high-profile internal web applications.",
+            "Ran unit and load tests to find performance bottlenecks during development, improving stability and scalability.",
+            "Deployed website updates, landing pages, and digital content aligned with enterprise branding."
+          ]
+        },
+        {
+          "title": "Software Engineer",
+          "company": "Cisco Systems",
+          "location": "Hyderabad, IN",
+          "start": "Nov 2019",
+          "end": "Mar 2020",
+          "stack": [
+            "Angular",
+            "TypeScript",
+            "SCSS"
+          ],
+          "notes": [
+            "Designed and developed a responsive supply-chain single-page application in Angular, TypeScript, and SCSS, turning design systems into reusable components.",
+            "Used Angular directives and semantic HTML5 for on-page SEO, optimizing metadata and accessibility."
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "group": "Languages",
+          "items": [
+            "TypeScript",
+            "JavaScript (ES6+)",
+            "Python",
+            "C#",
+            "C",
+            "HTML5",
+            "SCSS",
+            "SQL (PostgreSQL, MSSQL)"
+          ]
+        },
+        {
+          "group": "Frontend",
+          "items": [
+            "Angular (v16+)",
+            "RxJS",
+            "NgRx",
+            "Signals",
+            "Material UI",
+            "Tailwind CSS",
+            "AG-Grid",
+            "D3.js"
+          ]
+        },
+        {
+          "group": "Backend",
+          "items": [
+            "Node.js",
+            "Express.js",
+            "RESTful APIs",
+            "Distributed systems"
+          ]
+        },
+        {
+          "group": "Data & DevOps",
+          "items": [
+            "AWS",
+            "Docker",
+            "Jenkins",
+            "CI/CD",
+            "Kafka",
+            "MongoDB",
+            "Redis",
+            "Git"
+          ]
+        },
+        {
+          "group": "Practice",
+          "items": [
+            "WCAG accessibility",
+            "Unit & E2E testing (Jasmine, Jest)",
+            "SEO",
+            "Full SDLC",
+            "Scalability"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "Master of Science in Information Technology",
+          "school": "California Lutheran University",
+          "location": "Thousand Oaks, CA",
+          "start": "Mar 2023",
+          "end": "Nov 2024"
+        },
+        {
+          "degree": "Bachelor of Engineering in Electronics & Communication",
+          "school": "Andhra University",
+          "location": "Visakhapatnam, IN",
+          "start": "Jun 2016",
+          "end": "Mar 2020"
+        }
+      ],
+      "certifications": [
+        "Meta Front-End Developer Professional Certificate",
+        "AWS Certified Cloud Practitioner",
+        "Google UX Design Professional Certificate"
+      ]
+    },
+    "resources": {
+      "items": [
+        {
+          "name": "Angular documentation",
+          "desc": "The official guides and API reference for Angular, covering signals, control flow, standalone components, routing, forms, and testing.",
+          "link": "https://angular.dev",
+          "tag": "Docs"
+        },
+        {
+          "name": "RxJS documentation",
+          "desc": "Operator reference and guides for RxJS, with marble diagrams that show how each operator transforms a stream over time.",
+          "link": "https://rxjs.dev",
+          "tag": "Docs"
+        },
+        {
+          "name": "NgRx",
+          "desc": "State management for Angular, including the Signal Store, the classic Redux-style Store, Effects, and Entity.",
+          "link": "https://ngrx.io",
+          "tag": "Docs"
+        },
+        {
+          "name": "Angular CDK",
+          "desc": "Behavior primitives for building components: accessibility utilities, overlays, drag and drop, virtual scrolling, and test harnesses.",
+          "link": "https://material.angular.dev/cdk/categories",
+          "tag": "Docs"
+        },
+        {
+          "name": "D3.js",
+          "desc": "The documentation and examples for D3, the low-level toolkit for building custom data visualizations on the web.",
+          "link": "https://d3js.org",
+          "tag": "Docs"
+        },
+        {
+          "name": "MDN Web Docs",
+          "desc": "The reference for HTML, CSS, and JavaScript, including browser compatibility tables for every web platform feature.",
+          "link": "https://developer.mozilla.org",
+          "tag": "Web platform"
+        },
+        {
+          "name": "web.dev",
+          "desc": "Google's guidance on web performance, Core Web Vitals, and modern CSS and browser APIs.",
+          "link": "https://web.dev",
+          "tag": "Web platform"
+        },
+        {
+          "name": "WAI-ARIA Authoring Practices Guide",
+          "desc": "The W3C's patterns for accessible widgets such as menus, tabs, dialogs, and comboboxes, with keyboard interaction rules for each.",
+          "link": "https://www.w3.org/WAI/ARIA/apg/",
+          "tag": "Accessibility"
+        },
+        {
+          "name": "Angular Roadmap by roadmap.sh",
+          "desc": "A step-by-step map of the skills and concepts for Angular developers, from fundamentals to advanced topics.",
+          "link": "https://roadmap.sh/angular",
+          "tag": "Roadmap"
+        },
+        {
+          "name": "NeetCode",
+          "desc": "Data structures and algorithms explained with clear walkthroughs, useful for technical interview preparation.",
+          "link": "https://neetcode.io/",
+          "tag": "Practice"
+        }
+      ]
+    }
+  },
+  "projects": [
+    {
+      "slug": "timber-dynamics-material-tracking-tool",
+      "title": "Timber Dynamics & Material Tracking Tool",
+      "published": true,
+      "date": "2026-08-26",
+      "modified": "2026-08-26",
+      "tagline": "Paper-and-pen timber depot operations, rebuilt as one multi-store web app.",
+      "summary": "An enterprise web application that digitizes a timber depot: raw log intake and volume estimation, inventory balanced across store locations, employee payroll, expense tracking, and invoicing.",
+      "description": "Timber Depot Management System: Enterprise Architecture & Operational Guide",
+      "project_type": "Full-stack web application",
+      "status": "Live",
+      "modules": [
+        "Multi-store inventory",
+        "Volume & yield calculators",
+        "Payroll & expenses",
+        "Automated invoicing"
+      ],
+      "tags": [],
+      "external_url": "https://tdmt.yashwanth.co.in",
+      "github_url": "https://github.com/YashwanthPandi/DepotIQ",
+      "body": "# Timber Depot Management System: Enterprise Architecture & Operational Guide\n\nTransitioning a traditional timber depot from paper-and-pen record-keeping to a modern, multi-store digital enterprise requires a robust, scalable system architecture. This application is engineered to digitize the entire lifecycle of timber operations—from raw log intake and volume estimation to multi-location inventory balancing, employee payroll, expense tracking, and automated invoicing.\n\n---\n\n## 🏗️ Detailed Project Overview\n\nThe system is designed as a centralized enterprise web application capable of synchronizing operations across multiple physical store locations. It eliminates manual calculation errors and inventory discrepancies by standardizing data flows across four core pillars:\n\n### 1. Multi-Store Inventory & Stock Control\n* **Granular Product Categorization**: Manages diverse inventory types, including raw round logs, squared beams, finished lumber, and specialty wood products.\n* **Store-Specific Tracking**: Assigns inventory to specific warehouses or depot branches, allowing managers to monitor stock levels, initiate inter-branch transfers, and prevent stockouts.\n* **Attribute Metadata**: Tracks species, grade, dimensions (length, girth/diameter), moisture content, and storage batch markers for compliance and quality control.\n\n### 2. Timber Volume & Yield Calculators\n* **Standardized Log Scaling**: Built-in computational tools that apply industry-standard volume formulas (such as Doyle, Scribner, or metric cylindrical calculations) based on length and diameter measurements.\n* **Conversion & Yield Analytics**: Tracks the transformation ratio from raw logs to finished timber products, helping depot managers measure waste percentage and optimize milling output and profitability.\n\n### 3. Order Management & Invoicing (`/features/invoice/`)\n* **Dynamic Invoice Generation**: Instantly generates professional client invoices incorporating tax rates, delivery fees, volume discounts, and itemized timber breakdowns.\n* **Order Tracking**: Manages the complete order lifecycle from quotation and deposit to dispatch and final fulfillment across any selected store location.\n\n### 4. Financial & Administrative Control (`/features/dashboard/`, `/features/calculator/`)\n* **Expense & Overhead Tracking**: Records day-to-day depot expenditures, transportation costs, equipment maintenance, and utility bills.\n* **Employee Payroll Management**: Tracks staff hours, wage calculations, and store-level operational costs to provide a clear picture of net profitability per branch.\n\n---\n\n## 🛠️ Key Operational Challenges Solved\n\n* **Eliminating Log-Scaling Discrepancies**: Manual timber measurements often lead to pricing disputes and miscalculated volumes. Built-in calculators standardize formulas (like Doyle or metric scales) to ensure consistent pricing.\n* **Bridging Multi-Store Silos**: Traditional depots struggle with visibility across different yards. The system centralizes stock tracking to prevent inter-depot stockouts and optimize inventory balancing.\n* **Tracking Milling Yield & Waste**: Converting raw round logs into finished lumber creates unseen waste. Yield analytics track this transformation ratio, helping managers curb losses and boost margins.\n* **Consolidating Branch Finances**: Fragmented paper records obscure true profitability. The platform links daily expenses, equipment upkeep, and employee payroll directly to specific store branches.\n\n---\n\n## 💻 Technology Stack & Enterprise Architecture\n\n* **Frontend Framework**: **Angular** utilizing TypeScript and modular, lazy-loaded feature routes to ensure high performance and maintainability across large codebases.\n* **State Management & UI**: **RxJS** for handling asynchronous data streams (such as real-time inventory adjustments) coupled with a responsive component layout.\n* **Backend & Security**: **NestJS (Node.js)** powering secure RESTful or GraphQL microservices, protected by JSON Web Tokens (JWT) and role-based access control (RBAC).\n* **Database Layer**: **PostgreSQL** chosen for its robust relational integrity, handling complex inventory trees, batch tracking markers, and multi-tenant store structures safely.\n\n---\n\n## 📁 Architectural Breakdown & Source Structure\n\nThe application is structured using a clean, feature-driven modular architecture in Angular, separating core routing security from isolated business domains.\n\n```text\nsrc/app/\n├── core/\n│   ├── guards/\n│   │   └── auth.guard.ts         # Intercepts unauthenticated navigation attempts\n│   └── services/\n│       └── auth.service.ts       # Manages user session state, JWT tokens, and role permissions\n├── features/\n│   ├── auth/\n│   │   └── login/                # Secure credential portal for depot staff and admins\n│   ├── dashboard/                # Central hub for real-time analytics, KPIs, and multi-store metrics\n│   ├── inventory/                # Multi-depot stock tracking, adjustments, and transfer logs\n│   ├── invoice/                  # Order processing, billing, and customer receipt generation\n│   └── calculator/               # Timber volume estimators, metric converters, and yield analysis tools\n├── app.routes.ts                 # Main application routing configuration with lazy-loading support\n└── app.component.ts              # Root component hosting the application layout and navigation shell\n```\n"
+    }
+  ],
+  "posts": [
+    {
+      "slug": "typed-reactive-forms",
+      "title": "Typed Reactive Forms in Angular: Validation, Errors, and Dynamic Fields",
+      "published": true,
+      "date": "2026-04-03",
+      "modified": "2026-04-03",
+      "description": "Typed reactive forms catch mistakes at compile time. Here's how to structure a real form: typed controls, custom and cross-field validators, helpful error messages, and fields that appear on demand.",
+      "tags": [
+        "Angular",
+        "Forms",
+        "TypeScript",
+        "Accessibility"
+      ],
+      "body": "Forms are where most business apps earn or lose user trust. Angular's reactive forms are fully typed, which means a typo in a control name or a wrong value type is a compile error rather than a runtime surprise.\n\n## A typed form\n\n```typescript\nimport { NonNullableFormBuilder, Validators } from '@angular/forms';\n\nexport class ShippingFormComponent {\n  private fb = inject(NonNullableFormBuilder);\n\n  form = this.fb.group({\n    name: ['', [Validators.required, Validators.maxLength(80)]],\n    email: ['', [Validators.required, Validators.email]],\n    country: ['US', Validators.required],\n    express: [false],\n  });\n\n  submit() {\n    if (this.form.invalid) {\n      this.form.markAllAsTouched();\n      return;\n    }\n    const value = this.form.getRawValue();\n    // value is typed: { name: string; email: string; country: string; express: boolean }\n  }\n}\n```\n\n`NonNullableFormBuilder` means `reset()` returns controls to their initial values instead of `null`, so the types stay `string` rather than `string | null`.\n\n## Custom validators\n\nA validator is a function that returns `null` when valid, or an error object:\n\n```typescript\nexport function noWhitespace(control: AbstractControl<string>): ValidationErrors | null {\n  return control.value.trim().length === 0 && control.value.length > 0\n    ? { whitespace: true }\n    : null;\n}\n```\n\n### Cross-field validation\n\nRules that involve two fields belong on the group:\n\n```typescript\nexport const datesInOrder: ValidatorFn = group => {\n  const start = group.get('start')?.value;\n  const end = group.get('end')?.value;\n  return start && end && start > end ? { datesOutOfOrder: true } : null;\n};\n\nrange = this.fb.group(\n  { start: [''], end: [''] },\n  { validators: datesInOrder }\n);\n```\n\n### Async validators\n\n```typescript\nusername: ['', {\n  validators: [Validators.required],\n  asyncValidators: [this.usernameAvailable()],\n  updateOn: 'blur',\n}],\n```\n\n`updateOn: 'blur'` matters here: without it, the async check fires on every keystroke.\n\n## Error messages people can act on\n\nMap error keys to messages in one place:\n\n```typescript\nconst MESSAGES: Record<string, (e: any) => string> = {\n  required: () => 'This field is required.',\n  email: () => 'Enter an email address like name@company.com.',\n  maxlength: e => `Use ${e.requiredLength} characters or fewer.`,\n  whitespace: () => 'This field can’t be only spaces.',\n};\n\nexport function firstError(control: AbstractControl): string | null {\n  const errors = control.errors;\n  if (!errors) return null;\n  const key = Object.keys(errors)[0];\n  return MESSAGES[key]?.(errors[key]) ?? 'Check this field.';\n}\n```\n\n```html\n<label for=\"email\">Email</label>\n<input id=\"email\" formControlName=\"email\"\n       [attr.aria-invalid]=\"form.controls.email.invalid && form.controls.email.touched\"\n       aria-describedby=\"email-error\" />\n@if (form.controls.email.touched && firstError(form.controls.email); as msg) {\n  <p id=\"email-error\" class=\"error\">{{ msg }}</p>\n}\n```\n\nShow errors after the user leaves a field (`touched`), not while they're still typing. And link each message to its input with `aria-describedby` so screen readers announce it.\n\n## Dynamic fields with FormArray\n\n```typescript\nform = this.fb.group({\n  contacts: this.fb.array([this.contact()]),\n});\n\ncontact() {\n  return this.fb.group({ name: ['', Validators.required], phone: [''] });\n}\n\nget contacts() { return this.form.controls.contacts; }\n\naddContact() { this.contacts.push(this.contact()); }\nremoveContact(i: number) { this.contacts.removeAt(i); }\n```\n\n```html\n<div formArrayName=\"contacts\">\n  @for (c of contacts.controls; track c; let i = $index) {\n    <fieldset [formGroupName]=\"i\">\n      <legend>Contact {{ i + 1 }}</legend>\n      <label [for]=\"'name-' + i\">Name</label>\n      <input [id]=\"'name-' + i\" formControlName=\"name\" />\n      <button type=\"button\" (click)=\"removeContact(i)\">Remove contact {{ i + 1 }}</button>\n    </fieldset>\n  }\n</div>\n<button type=\"button\" (click)=\"addContact()\">Add contact</button>\n```\n\nTracking by the control instance (`track c`) is correct here: each `FormGroup` keeps its identity for its whole life, so removing the second contact won't scramble the inputs of the third.\n\n## Submit states\n\n- Disable the submit button only while a request is in flight. Disabling it while the form is invalid hides *why* the user can't proceed.\n- On a failed submit, call `markAllAsTouched()` and move focus to the first invalid field.\n- Keep the user's input after a server error, and show what went wrong next to the button.\n\n## Summary\n\nTyped controls catch mistakes early, validators belong on the narrowest scope they need, error messages should say how to fix the problem, and dynamic fields are just `FormArray`s of groups. Get these right once in a shared form toolkit, and every new form in the app inherits them.\n"
+    },
+    {
+      "slug": "migrating-legacy-ui-to-angular",
+      "title": "Migrating a Legacy UI to Angular Without a Big-Bang Rewrite",
+      "published": true,
+      "date": "2026-04-01",
+      "modified": "2026-04-01",
+      "description": "Rewrites stall because nothing ships until everything ships. The strangler pattern lets you move a legacy front end to Angular one screen at a time while users keep working.",
+      "tags": [
+        "Angular",
+        "Migration",
+        "Architecture"
+      ],
+      "body": "The tempting plan for a legacy front end, whether it's jQuery, server-rendered pages, or an old AngularJS app, is a full rewrite: freeze features, rebuild everything, switch over on launch day. These projects tend to run long, because the old app keeps changing and the new one is always chasing it.\n\nAn incremental migration ships value every few weeks instead.\n\n## The strangler pattern\n\nNamed after the strangler fig, which grows around a host tree until it can stand on its own, the approach is:\n\n1. Put a routing layer in front of the app.\n2. Rebuild one screen or feature in Angular.\n3. Route that path to the new code.\n4. Repeat until the old app serves nothing, then delete it.\n\nAt every step, users have a working product.\n\n## Step 1: Inventory and prioritize\n\nList every screen and rate each one on two axes:\n\n- **Value:** traffic, business importance, pain users report\n- **Risk:** complexity, coupling to other screens, test coverage\n\nStart with something **valuable but low-risk**. A read-only reporting page is a better first target than checkout. The first migration is mostly about proving the build, deploy, auth, and shared-layout story. You want those problems solved on an easy screen.\n\n## Step 2: Share the shell\n\nUsers shouldn't feel the seam. Before migrating any feature, make sure both apps share:\n\n- **Authentication:** the same session cookie or token, so moving between old and new pages never asks users to log in again.\n- **Visual design:** extract colors, type, and spacing into CSS custom properties that both apps load. Even if components differ underneath, the pages look like one product.\n- **Navigation:** one header, owned by one side, linking to both.\n\n## Step 3: Choose how they coexist\n\nThere are a few options, from loosest to tightest coupling:\n\n- **Route-level split.** A reverse proxy or the web server sends `/reports/*` to the Angular app and everything else to the legacy app. Simple and robust. Each page load is fully one app or the other.\n- **Angular Elements.** Package Angular components as standard custom elements (`createCustomElement`) and drop them into legacy pages. Useful when a single widget, like a new data grid, needs to appear inside an old screen.\n- **Hybrid AngularJS + Angular** (`@angular/upgrade`). Both frameworks run in one page and share services. Powerful, but it adds complexity and bundle size. Reserve it for large AngularJS apps where a route-level split isn't practical.\n\nPrefer the route-level split whenever you can. It keeps the two codebases independent.\n\n## Step 4: Migrate behavior, not code\n\nDon't port code line by line. Port *behavior*:\n\n1. Write down what the screen does, including edge cases (empty data, errors, permissions).\n2. If you can, add end-to-end tests against the old screen first. They become the acceptance criteria for the new one.\n3. Build the Angular version with a proper component structure, typed API models, and services.\n4. Run the same end-to-end tests against the new route.\n\nMigrations are also the cheapest time to fix accessibility: semantic markup and keyboard support cost almost nothing when you're writing the template from scratch.\n\n## Step 5: Ship behind a flag\n\nRoute a small slice of users to the new screen first, using a feature flag or a cookie. Watch error rates and support tickets, then widen. Keep the old route available for quick rollback until confidence is high.\n\n## Step 6: Delete the old code\n\nMigration isn't done until the legacy screen is removed. Track \"screens remaining\" as a visible metric. It keeps the project honest and stops two versions of the same page from living on indefinitely.\n\n## Bringing a team along\n\nIncremental migrations are a good way to ramp up developers who are new to Angular. Each screen is a bounded piece of work with a clear definition of done: the same behavior, now in Angular, passing the same tests. Pair on the first one or two, agree on folder structure and patterns, and then let people take screens independently, with code review as the place where conventions are taught.\n\n## Summary\n\nMigrate by screen, share the shell, keep the codebases loosely coupled, define \"done\" with tests, and delete as you go. The product never stops shipping, and the migration never becomes the project that's always six months from done.\n"
+    },
+    {
+      "slug": "reusable-directives-and-pipes",
+      "title": "Reusable Angular Directives and Pipes: Small Tools That Remove Repetition",
+      "published": true,
+      "date": "2026-04-01",
+      "modified": "2026-04-01",
+      "description": "Directives add behavior to any element; pipes transform values for display. Here are practical examples of each, and when to use host directives for composition.",
+      "tags": [
+        "Angular",
+        "Directives",
+        "Pipes",
+        "Component Design"
+      ],
+      "body": "Components get most of the attention in Angular, but directives and pipes are often the better tool. If you find yourself copying the same event handler or formatting logic across templates, one of them probably belongs in your shared library.\n\n## Attribute directives add behavior\n\nA directive attaches behavior to an existing element without wrapping it in a new component. Here's one that auto-focuses an input when it appears:\n\n```typescript\n@Directive({ selector: '[appAutofocus]' })\nexport class AutofocusDirective {\n  private el = inject<ElementRef<HTMLElement>>(ElementRef);\n\n  constructor() {\n    afterNextRender(() => this.el.nativeElement.focus());\n  }\n}\n```\n\n```html\n<input appAutofocus formControlName=\"search\" />\n```\n\n### Click outside\n\nA common need for dropdowns and popovers:\n\n```typescript\n@Directive({\n  selector: '[appClickOutside]',\n  host: { '(document:click)': 'onDocumentClick($event)' },\n})\nexport class ClickOutsideDirective {\n  private el = inject(ElementRef);\n  clickOutside = output<void>();\n\n  onDocumentClick(event: MouseEvent) {\n    if (!this.el.nativeElement.contains(event.target)) {\n      this.clickOutside.emit();\n    }\n  }\n}\n```\n\n```html\n<div class=\"menu\" (appClickOutside)=\"close()\">...</div>\n```\n\nThe `host` property is the modern alternative to `@HostListener` and `@HostBinding`: all host bindings live in one place in the decorator.\n\n### Permission-based rendering\n\nA structural directive that shows content only to users with a given permission:\n\n```typescript\n@Directive({ selector: '[appIfCan]' })\nexport class IfCanDirective {\n  private auth = inject(AuthService);\n  private tpl = inject(TemplateRef);\n  private vcr = inject(ViewContainerRef);\n\n  appIfCan = input.required<Permission>();\n\n  constructor() {\n    effect(() => {\n      this.vcr.clear();\n      if (this.auth.can(this.appIfCan())) {\n        this.vcr.createEmbeddedView(this.tpl);\n      }\n    });\n  }\n}\n```\n\n```html\n<button *appIfCan=\"'orders.delete'\" (click)=\"delete()\">Delete</button>\n```\n\nHiding a button is a UX courtesy, not security. The server must still enforce the permission.\n\n## Pipes transform values\n\nPipes are for display formatting. Pure pipes (the default) run only when their input changes, so they're cheap even in large lists.\n\n```typescript\n@Pipe({ name: 'relativeTime' })\nexport class RelativeTimePipe implements PipeTransform {\n  private rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });\n\n  transform(value: Date | string): string {\n    const diffSec = (new Date(value).getTime() - Date.now()) / 1000;\n    const units: [Intl.RelativeTimeFormatUnit, number][] = [\n      ['year', 31536000], ['month', 2592000], ['day', 86400],\n      ['hour', 3600], ['minute', 60], ['second', 1],\n    ];\n    for (const [unit, sec] of units) {\n      if (Math.abs(diffSec) >= sec || unit === 'second') {\n        return this.rtf.format(Math.round(diffSec / sec), unit);\n      }\n    }\n    return '';\n  }\n}\n```\n\n```html\n<time [attr.datetime]=\"order.createdAt\">{{ order.createdAt | relativeTime }}</time>\n```\n\nLeaning on `Intl` APIs gives you correct localization for free.\n\nKeep pipes pure and free of side effects. If a \"pipe\" needs to fetch data, it should be a service or a computed signal instead.\n\n## Composing behavior with host directives\n\nHost directives let a component include directive behavior without the consumer adding attributes:\n\n```typescript\n@Component({\n  selector: 'app-menu-trigger',\n  hostDirectives: [\n    { directive: ClickOutsideDirective, outputs: ['clickOutside'] },\n  ],\n  template: `<ng-content />`,\n})\nexport class MenuTriggerComponent {}\n```\n\nThis is composition over inheritance: small, single-purpose directives combined into richer components.\n\n## When to reach for which\n\n- **Component:** it has its own template.\n- **Attribute directive:** it adds behavior or styling to an element someone else renders.\n- **Structural directive:** it decides whether or how often a template is rendered.\n- **Pipe:** it turns a value into display text.\n\nA shared library with a dozen well-tested directives and pipes removes a surprising amount of duplicated code from feature components.\n"
+    },
+    {
+      "slug": "testing-angular-components",
+      "title": "Testing Angular Components the Way Users Use Them",
+      "published": true,
+      "date": "2026-04-01",
+      "modified": "2026-04-01",
+      "description": "Tests that check private fields break on every refactor. Tests that click buttons and read the screen survive. Here's how to write the second kind with TestBed, component harnesses, and HTTP testing.",
+      "tags": [
+        "Angular",
+        "Testing",
+        "Jest",
+        "Jasmine"
+      ],
+      "body": "A test that asserts `component.isOpen === true` breaks the moment you rename that field, even if the app still works. A test that clicks \"Filters\" and checks that the filter panel is visible keeps passing through any refactor that doesn't change behavior. Aim for the second kind.\n\nThe examples below use Jasmine-style syntax, which Jest also supports.\n\n## Set up with TestBed\n\n```typescript\ndescribe('OrderListComponent', () => {\n  let fixture: ComponentFixture<OrderListComponent>;\n  let httpMock: HttpTestingController;\n\n  beforeEach(async () => {\n    await TestBed.configureTestingModule({\n      imports: [OrderListComponent],\n      providers: [provideHttpClient(), provideHttpClientTesting()],\n    }).compileComponents();\n\n    fixture = TestBed.createComponent(OrderListComponent);\n    httpMock = TestBed.inject(HttpTestingController);\n  });\n\n  afterEach(() => httpMock.verify());\n});\n```\n\nStandalone components go straight into `imports`. `httpMock.verify()` fails the test if any request was made that you didn't expect.\n\n## Test what the user sees\n\n```typescript\nit('shows orders returned by the API', async () => {\n  fixture.detectChanges();\n\n  httpMock.expectOne('/api/orders').flush([\n    { id: '1', customer: 'Acme', status: 'open' },\n    { id: '2', customer: 'Globex', status: 'shipped' },\n  ]);\n  await fixture.whenStable();\n  fixture.detectChanges();\n\n  const rows = fixture.nativeElement.querySelectorAll('[data-testid=\"order-row\"]');\n  expect(rows.length).toBe(2);\n  expect(rows[0].textContent).toContain('Acme');\n});\n\nit('shows an error message when loading fails', async () => {\n  fixture.detectChanges();\n\n  httpMock.expectOne('/api/orders').flush('fail', { status: 500, statusText: 'Server Error' });\n  await fixture.whenStable();\n  fixture.detectChanges();\n\n  expect(fixture.nativeElement.querySelector('[role=\"alert\"]').textContent)\n    .toContain('Could not load orders');\n});\n```\n\nTesting the error state matters as much as the happy path. It's the state users hit at the worst moment, and the one least likely to be checked by hand.\n\n## Use component harnesses for library components\n\nAngular Material and the CDK ship *harnesses*: test APIs that interact with components the way a user would, without depending on their internal DOM.\n\n```typescript\nit('filters by status', async () => {\n  const loader = TestbedHarnessEnvironment.loader(fixture);\n  const select = await loader.getHarness(MatSelectHarness.with({ selector: '#status' }));\n\n  await select.open();\n  await select.clickOptions({ text: 'Shipped' });\n\n  const table = await loader.getHarness(MatTableHarness);\n  const rows = await table.getRows();\n  expect(rows.length).toBe(1);\n});\n```\n\nWhen Material changes its markup in an upgrade, the harness is updated with it and your tests keep passing.\n\nYou can write harnesses for your own shared components too, by extending `ComponentHarness`. It's worth it for anything used in dozens of tests.\n\n## Testing signal inputs\n\n```typescript\nfixture.componentRef.setInput('order', { id: '1', customer: 'Acme', status: 'open' });\nfixture.detectChanges();\n```\n\n`setInput` works for both signal inputs and classic `@Input()`, and it triggers change detection correctly for `OnPush` components.\n\n## Test services and pure logic without TestBed\n\nNot everything needs a component fixture. A `computed`-heavy store or a pipe can be tested directly:\n\n```typescript\nit('totals the cart', () => {\n  TestBed.configureTestingModule({});\n  const store = TestBed.inject(CartStore);\n  store.add({ id: 'a', price: 10, qty: 2 });\n  store.add({ id: 'b', price: 5, qty: 1 });\n  expect(store.total()).toBe(25);\n});\n```\n\nFast unit tests for logic, a smaller number of rendered component tests for behavior, and a handful of end-to-end tests (Playwright or Cypress) for the critical flows give you a healthy pyramid.\n\n## What not to test\n\n- Private methods and fields\n- That Angular itself works (a binding updating the DOM)\n- Exact CSS classes, unless the class *is* the behavior\n\n## The payoff\n\nWhen tests describe behavior, refactoring becomes safe: you change the implementation and the tests tell you whether users would notice. That confidence is what lets a team keep a large Angular codebase moving.\n"
+    },
+    {
+      "slug": "angular-performance-checklist",
+      "title": "An Angular Performance Checklist: Change Detection, Bundles, and Rendering",
+      "published": true,
+      "date": "2026-03-28",
+      "modified": "2026-03-28",
+      "description": "Most Angular apps are slow for a handful of predictable reasons. This checklist covers the fixes with the biggest payoff, in the order I'd apply them.",
+      "tags": [
+        "Angular",
+        "Performance",
+        "Web Vitals"
+      ],
+      "body": "Performance work goes best when you measure first and fix second. Before changing anything, record a baseline: a Lighthouse run for load performance and a Chrome DevTools Performance recording of the slowest interaction. Angular DevTools' profiler also shows exactly which components run change detection and how long each takes.\n\nThen work through this list.\n\n## 1. Use OnPush change detection\n\n```typescript\n@Component({\n  selector: 'app-order-row',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  ...\n})\n```\n\nWith the default strategy, Angular checks every component on every event. With `OnPush`, a component is checked only when an input reference changes, an event fires inside it, or a signal it reads changes. In a large list this can cut change detection work dramatically.\n\n`OnPush` requires immutable updates: `items.push(x)` won't be seen, `items = [...items, x]` will. Signals make this natural.\n\n## 2. Don't call functions in templates\n\n```html\n<!-- Runs on every change detection cycle -->\n<p>{{ formatTotal(order) }}</p>\n\n<!-- Runs only when order changes -->\n<p>{{ order.total | currency }}</p>\n<p>{{ formattedTotal() }}</p>  <!-- a computed signal -->\n```\n\nPure pipes and `computed` signals are memoized. Template method calls are not.\n\n## 3. Track list items properly\n\n```html\n@for (row of rows(); track row.id) { ... }\n```\n\nA stable `track` key lets Angular reuse DOM nodes when the list changes. Tracking by index or by object identity causes the whole list to re-render after each fetch.\n\n## 4. Virtualize long lists\n\nRendering 5,000 rows creates 5,000 sets of DOM nodes, even though only 20 are visible. The CDK's virtual scroll renders only what's on screen:\n\n```html\n<cdk-virtual-scroll-viewport itemSize=\"48\" class=\"viewport\">\n  <div *cdkVirtualFor=\"let row of rows; trackBy: trackById\" class=\"row\">{{ row.name }}</div>\n</cdk-virtual-scroll-viewport>\n```\n\n## 5. Shrink the initial bundle\n\n- **Lazy-load routes** with `loadChildren` and `loadComponent`.\n- **Defer heavy components** inside a page with `@defer (on viewport)`. Charts, editors, and maps are prime candidates.\n- **Set budgets** in `angular.json` so the build fails when the bundle grows unexpectedly:\n\n```json\n\"budgets\": [\n  { \"type\": \"initial\", \"maximumWarning\": \"500kB\", \"maximumError\": \"1MB\" },\n  { \"type\": \"anyComponentStyle\", \"maximumWarning\": \"4kB\" }\n]\n```\n\n- **Inspect what's in the bundle.** Build with `ng build --stats-json` and open the output in a bundle analyzer such as `esbuild-visualizer` or `source-map-explorer`. A single date or charting library imported in full often accounts for a surprising share.\n\n## 6. Optimize images\n\n`NgOptimizedImage` enforces good defaults: explicit dimensions (preventing layout shift), lazy loading below the fold, and `fetchpriority=\"high\"` for the hero image when you mark it `priority`.\n\n```html\n<img ngSrc=\"/assets/hero.jpg\" width=\"1200\" height=\"600\" priority alt=\"Dashboard overview\" />\n```\n\n## 7. Consider server-side rendering and hydration\n\nFor public pages where first paint matters, SSR with hydration renders HTML on the server and then attaches Angular to it without re-rendering. Combined with `@defer`, parts of the page can hydrate only when needed.\n\n## 8. Consider going zoneless\n\nZone.js patches browser APIs to trigger change detection after any async event. Modern Angular supports zoneless change detection, driven by signals and explicit notifications instead. If your app already uses signals and `OnPush` throughout, removing Zone.js reduces bundle size and avoids unnecessary detection cycles.\n\n## Measure again\n\nAfter each change, rerun the same recording. Keep the fixes that move the numbers and revert the ones that don't. Performance work without measurement is guessing.\n"
+    },
+    {
+      "slug": "d3-charts-in-angular",
+      "title": "D3 Charts in Angular: Who Owns the DOM?",
+      "published": true,
+      "date": "2026-03-28",
+      "modified": "2026-03-28",
+      "description": "D3 and Angular both want to control the DOM. Splitting the work cleanly, with D3 for the math and Angular for rendering, gives you charts that are reactive, testable, and accessible.",
+      "tags": [
+        "Angular",
+        "D3.js",
+        "Data Visualization"
+      ],
+      "body": "D3 is the most flexible charting library on the web, and Angular is a framework built around owning the DOM. Put them together naively and they fight: D3's `selection.append()` creates elements Angular doesn't know about, change detection doesn't see them, and cleanup becomes your problem.\n\nThere are two workable approaches.\n\n## Approach 1: D3 for math, Angular for rendering\n\nD3 is really several libraries. Its scales, shapes, and layout modules (`d3-scale`, `d3-shape`, `d3-array`) are pure functions that compute numbers and SVG path strings. They don't touch the DOM at all. Use those, and let Angular's template render the SVG.\n\n```typescript\nimport { Component, computed, input } from '@angular/core';\nimport { scaleLinear, scaleBand } from 'd3-scale';\nimport { max } from 'd3-array';\n\n@Component({\n  selector: 'app-bar-chart',\n  template: `\n    <svg [attr.viewBox]=\"'0 0 ' + width + ' ' + height\" role=\"img\" [attr.aria-label]=\"title()\">\n      @for (bar of bars(); track bar.label) {\n        <rect [attr.x]=\"bar.x\" [attr.y]=\"bar.y\" [attr.width]=\"bar.w\" [attr.height]=\"bar.h\">\n          <title>{{ bar.label }}: {{ bar.value }}</title>\n        </rect>\n      }\n    </svg>\n  `,\n})\nexport class BarChartComponent {\n  data = input.required<{ label: string; value: number }[]>();\n  title = input('Bar chart');\n\n  width = 600;\n  height = 300;\n\n  bars = computed(() => {\n    const d = this.data();\n    const x = scaleBand().domain(d.map(i => i.label)).range([0, this.width]).padding(0.2);\n    const y = scaleLinear().domain([0, max(d, i => i.value) ?? 0]).range([this.height, 0]);\n    return d.map(i => ({\n      label: i.label,\n      value: i.value,\n      x: x(i.label)!,\n      y: y(i.value),\n      w: x.bandwidth(),\n      h: this.height - y(i.value),\n    }));\n  });\n}\n```\n\nWhat you get:\n\n- **Reactivity for free:** when `data` changes, `bars` recomputes and Angular updates only the changed `<rect>` elements.\n- **Testability:** `bars` is a plain computed value you can assert against without rendering.\n- **Accessibility:** you control every element in the template, so adding `role`, `aria-label`, and `<title>` is trivial.\n- **Smaller bundles:** you import only the D3 modules you use.\n\nThis approach suits bar, line, area, and scatter charts, which covers most dashboards.\n\n## Approach 2: hand D3 a container\n\nSome D3 features are inherently imperative: zoom and pan behaviors, brushing, force simulations, animated transitions. For those, give D3 an element it owns completely and keep Angular out of it.\n\n```typescript\n@Component({\n  selector: 'app-force-graph',\n  template: `<svg #host class=\"graph\"></svg>`,\n})\nexport class ForceGraphComponent {\n  nodes = input.required<GraphNode[]>();\n  private host = viewChild.required<ElementRef<SVGSVGElement>>('host');\n  private destroyRef = inject(DestroyRef);\n\n  constructor() {\n    afterNextRender(() => {\n      const svg = select(this.host().nativeElement);\n      const sim = forceSimulation(this.nodes()).on('tick', () => this.draw(svg));\n      this.destroyRef.onDestroy(() => sim.stop());\n    });\n  }\n\n  private draw(svg: Selection<SVGSVGElement, unknown, null, undefined>) { /* ... */ }\n}\n```\n\nRules for this approach:\n\n- Initialize in `afterNextRender`, so the element exists and you skip server rendering.\n- Never put Angular bindings inside the D3-owned element.\n- Stop simulations and remove listeners on destroy, or you'll leak memory each time the route changes.\n- For high-frequency ticks, consider running outside Angular's zone (`NgZone.runOutsideAngular`) if your app still uses Zone.js, so each tick doesn't trigger change detection.\n\n## Which to choose\n\nStart with approach 1. Switch to approach 2 only when you need behavior D3 implements imperatively. In a larger dashboard you'll often mix both: static charts rendered by Angular, and one interactive graph that D3 owns outright.\n"
+    },
+    {
+      "slug": "angular-state-management",
+      "title": "State Management in Angular: Signal Services, NgRx Signal Store, or NgRx Store?",
+      "published": true,
+      "date": "2026-03-28",
+      "modified": "2026-03-28",
+      "description": "You don't need a state library on day one. Here's how far a signal-based service gets you, and the signs that it's time for NgRx.",
+      "tags": [
+        "Angular",
+        "State Management",
+        "NgRx",
+        "Signals"
+      ],
+      "body": "\"Which state management library should we use?\" is often asked too early. Many Angular apps are well served by a plain service holding signals. The trick is knowing when that stops being enough.\n\n## Level 1: a service with signals\n\n```typescript\n@Injectable({ providedIn: 'root' })\nexport class CartStore {\n  private readonly _items = signal<CartItem[]>([]);\n\n  readonly items = this._items.asReadonly();\n  readonly count = computed(() => this._items().length);\n  readonly total = computed(() =>\n    this._items().reduce((sum, i) => sum + i.price * i.qty, 0)\n  );\n\n  add(item: CartItem) {\n    this._items.update(items => [...items, item]);\n  }\n\n  remove(id: string) {\n    this._items.update(items => items.filter(i => i.id !== id));\n  }\n}\n```\n\nThe important details:\n\n- State is private and writable; the public API is read-only (`asReadonly()`). Components can't change state except through named methods.\n- Updates are immutable (`[...items, item]`), so `computed` values and `OnPush` components see the change.\n- Derived values are `computed`, never duplicated state.\n\nThis scales surprisingly far: one store per feature, scoped with route-level `providers` when it shouldn't outlive the feature.\n\n## Level 2: NgRx Signal Store\n\nWhen several features follow the same pattern (load a collection, track loading and error, select an item), the boilerplate repeats. `@ngrx/signals` gives you a structured, composable version of the service above:\n\n```typescript\nexport const OrdersStore = signalStore(\n  { providedIn: 'root' },\n  withState({ orders: [] as Order[], loading: false, error: null as string | null }),\n  withComputed(({ orders }) => ({\n    openOrders: computed(() => orders().filter(o => o.status === 'open')),\n  })),\n  withMethods((store, api = inject(OrdersApi)) => ({\n    async load() {\n      patchState(store, { loading: true, error: null });\n      try {\n        patchState(store, { orders: await api.list(), loading: false });\n      } catch {\n        patchState(store, { loading: false, error: 'Could not load orders.' });\n      }\n    },\n  }))\n);\n```\n\nIt's still signals underneath, so components read `store.openOrders()` exactly as before. You also get reusable features (like entity collections) and a consistent shape across the team.\n\n## Level 3: NgRx Store (Redux pattern)\n\nThe classic store, with actions, reducers, effects, and selectors, costs more ceremony. In return you get:\n\n- **A log of everything that happened.** Redux DevTools shows each action and lets you replay state, which is invaluable when debugging complex flows.\n- **Decoupling.** A component dispatches `orderSubmitted`; any number of effects and reducers can react without the component knowing about them.\n- **Enforced conventions** across a large team.\n\n## Signs you've outgrown a simple service\n\n- Several features update the same state, and you can't tell who changed what.\n- You need undo or redo, optimistic updates with rollback, or time-travel debugging.\n- Side effects chain together (\"when an order is submitted, refresh inventory, then notify the user\").\n- New team members keep inventing different patterns for the same problem.\n\n## My default\n\nStart with signal services. Move a feature to Signal Store when the boilerplate starts repeating. Reach for the full NgRx Store when the app's complexity is really about *events* and how they interact, not just about holding data.\n\nWhichever you choose, the rules don't change: keep state private, expose it read-only, update immutably, and derive instead of duplicating.\n"
+    },
+    {
+      "slug": "accessible-angular-components",
+      "title": "Building Accessible Angular Components: A Practical WCAG 2.1 Checklist",
+      "published": true,
+      "date": "2026-03-27",
+      "modified": "2026-03-27",
+      "description": "Accessibility is mostly about using the right element, managing focus, and announcing changes. Here's how to do each in Angular, with the CDK doing the heavy lifting.",
+      "tags": [
+        "Angular",
+        "Accessibility",
+        "WCAG",
+        "Angular CDK"
+      ],
+      "body": "Accessibility often gets treated as an audit at the end of a project. It's far cheaper as a habit while building components. Most issues come down to four things: semantic HTML, keyboard support, focus management, and announcing changes. Angular and its Component Dev Kit (CDK) help with all four.\n\n## 1. Use the native element first\n\n```html\n<!-- Inaccessible -->\n<div class=\"btn\" (click)=\"save()\">Save</div>\n\n<!-- Accessible, with no extra work -->\n<button type=\"button\" (click)=\"save()\">Save</button>\n```\n\nThe `<div>` isn't focusable, doesn't respond to Enter or Space, and isn't announced as a button. Fixing that by hand takes `tabindex`, `role`, and a keydown handler, and it's easy to get one wrong. The `<button>` does all of it for free.\n\nThe same applies to links (`<a href>` for navigation), form labels (`<label for>`), and headings (in order, no skipped levels).\n\n## 2. Every input needs a name\n\n```html\n<label for=\"email\">Work email</label>\n<input id=\"email\" type=\"email\" formControlName=\"email\"\n       [attr.aria-invalid]=\"email.invalid && email.touched\"\n       aria-describedby=\"email-error\" />\n\n@if (email.invalid && email.touched) {\n  <p id=\"email-error\">Enter an email address like name&#64;company.com.</p>\n}\n```\n\nPlaceholder text is not a label: it disappears when the user types, and its contrast is usually too low. Error messages should say what's wrong and how to fix it, and be linked to the field with `aria-describedby`.\n\n## 3. Manage focus when the UI changes\n\nWhen a dialog opens, focus should move into it, stay trapped inside, and return to the trigger when it closes. The CDK handles this:\n\n```typescript\nimport { Dialog } from '@angular/cdk/dialog';\n\nexport class OrdersComponent {\n  private dialog = inject(Dialog);\n\n  openFilters() {\n    this.dialog.open(FilterDialogComponent, { ariaLabelledBy: 'filter-title' });\n  }\n}\n```\n\nFor your own overlays, `cdkTrapFocus` keeps Tab inside a region:\n\n```html\n<div class=\"panel\" cdkTrapFocus [cdkTrapFocusAutoCapture]=\"true\">...</div>\n```\n\nAfter route changes, move focus to the new page's main heading so screen reader users know the page changed:\n\n```typescript\nthis.router.events.pipe(filter(e => e instanceof NavigationEnd))\n  .subscribe(() => document.querySelector<HTMLElement>('main h1')?.focus());\n```\n\n(Give that `h1` `tabindex=\"-1\"` so it can receive focus.)\n\n## 4. Announce changes that happen without a page load\n\nWhen a list filters or a save succeeds, sighted users see it; screen reader users hear nothing unless you tell them. Use `LiveAnnouncer`:\n\n```typescript\nimport { LiveAnnouncer } from '@angular/cdk/a11y';\n\nexport class SearchComponent {\n  private announcer = inject(LiveAnnouncer);\n\n  onResults(count: number) {\n    this.announcer.announce(`${count} results`, 'polite');\n  }\n}\n```\n\n## 5. Keyboard navigation in composite widgets\n\nMenus, listboxes, and tab lists should move with arrow keys, not Tab. `ActiveDescendantKeyManager` and `FocusKeyManager` from `@angular/cdk/a11y` implement the WAI-ARIA patterns so you don't have to:\n\n```typescript\n@ViewChildren(OptionComponent) options!: QueryList<OptionComponent>;\nprivate keyManager!: FocusKeyManager<OptionComponent>;\n\nngAfterViewInit() {\n  this.keyManager = new FocusKeyManager(this.options).withWrap().withTypeAhead();\n}\n\nonKeydown(event: KeyboardEvent) {\n  this.keyManager.onKeydown(event);\n}\n```\n\n## 6. Visual checks\n\n- **Contrast:** body text at least 4.5:1, large text 3:1 (WCAG 1.4.3).\n- **Focus visible:** never remove outlines without a replacement. `:focus-visible` lets you show rings for keyboard users only.\n- **Don't rely on color alone:** pair a red error border with text or an icon.\n- **Reduced motion:** respect `prefers-reduced-motion` for animations.\n\n## 7. Test it\n\n- Unplug the mouse and complete the main task with the keyboard.\n- Run axe (browser extension or `axe-core` in your test suite) on each page.\n- Try VoiceOver (macOS) or NVDA (Windows) on one key flow per release.\n\nAutomated tools catch maybe a third of issues. The keyboard test catches a surprising share of the rest.\n\n## The habit\n\nTreat accessibility like types: part of the component's contract, checked as you build. A component that's accessible from the start never needs a retrofit.\n"
+    },
+    {
+      "slug": "standalone-components-lazy-routes",
+      "title": "Standalone Components and Lazy-Loaded Routes: Structuring an Angular App Without NgModules",
+      "published": true,
+      "date": "2026-03-17",
+      "modified": "2026-03-17",
+      "description": "Standalone components remove a whole layer of boilerplate. Here's how to organize features, lazy-load routes, and provide services in an app without NgModules.",
+      "tags": [
+        "Angular",
+        "Architecture",
+        "Routing",
+        "Performance"
+      ],
+      "body": "NgModules used to be the unit of organization in Angular: every component belonged to one, and you had to declare, import, and export things in the right places. Standalone components remove that layer. Each component declares its own dependencies, and modern Angular projects are standalone by default.\n\n## A standalone component\n\n```typescript\nimport { Component, input } from '@angular/core';\nimport { CurrencyPipe } from '@angular/common';\nimport { RouterLink } from '@angular/router';\n\n@Component({\n  selector: 'app-product-card',\n  imports: [CurrencyPipe, RouterLink],\n  template: `\n    <a [routerLink]=\"['/products', product().id]\">\n      <h3>{{ product().name }}</h3>\n      <p>{{ product().price | currency }}</p>\n    </a>\n  `,\n})\nexport class ProductCardComponent {\n  product = input.required<Product>();\n}\n```\n\nEverything the template uses is listed in `imports`. You can read one file and know exactly what it depends on.\n\n## Bootstrapping\n\n```typescript\n// main.ts\nbootstrapApplication(AppComponent, {\n  providers: [\n    provideRouter(routes, withComponentInputBinding()),\n    provideHttpClient(withInterceptors([authInterceptor])),\n  ],\n});\n```\n\n`withComponentInputBinding()` is worth turning on: route params and query params bind straight to component inputs, so you don't need to inject `ActivatedRoute` just to read an ID.\n\n## Organize by feature\n\n```\nsrc/app/\n  core/            # app-wide singletons: auth, http interceptors, layout shell\n  shared/          # dumb, reusable UI: buttons, badges, form fields\n  features/\n    orders/\n      orders.routes.ts\n      order-list.component.ts\n      order-detail.component.ts\n      orders.store.ts\n    reports/\n      reports.routes.ts\n      ...\n```\n\nEach feature owns its routes, components, and state. Features don't import each other; shared code moves to `shared/` or `core/`.\n\n## Lazy-loading a feature\n\n```typescript\n// app.routes.ts\nexport const routes: Routes = [\n  { path: '', component: HomeComponent },\n  {\n    path: 'orders',\n    loadChildren: () => import('./features/orders/orders.routes').then(m => m.ORDER_ROUTES),\n  },\n  {\n    path: 'settings',\n    loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent),\n  },\n];\n```\n\n```typescript\n// features/orders/orders.routes.ts\nexport const ORDER_ROUTES: Routes = [\n  { path: '', component: OrderListComponent },\n  { path: ':id', component: OrderDetailComponent },\n];\n```\n\nThe orders code becomes its own chunk and downloads only when someone visits `/orders`. `loadComponent` does the same for a single page.\n\n## Providing services at the right scope\n\nMost services should be app-wide singletons:\n\n```typescript\n@Injectable({ providedIn: 'root' })\nexport class AuthService { }\n```\n\nBut state that belongs to one feature can be scoped to its routes:\n\n```typescript\n{\n  path: 'orders',\n  providers: [OrdersStore],\n  loadChildren: () => import('./features/orders/orders.routes').then(m => m.ORDER_ROUTES),\n}\n```\n\nNow `OrdersStore` is created when the user enters the orders section, and every component under that route shares the same instance.\n\n## Migrating an existing app\n\nThe CLI includes a migration that converts NgModule-based code in stages:\n\n```bash\nng generate @angular/core:standalone\n```\n\nIt runs in three passes: convert declarations to standalone, remove unnecessary NgModules, then switch to `bootstrapApplication`. Run and test each pass separately. Committing between passes makes any problem easy to bisect.\n\n## Why it matters\n\nStandalone components make dependencies explicit, make lazy loading a per-route decision, and make the codebase easier for new teammates to navigate. Fewer files also means fewer places for a missing import to hide.\n"
+    },
+    {
+      "slug": "rxjs-http-patterns",
+      "title": "RxJS Patterns for HTTP in Angular: Cancellation, Errors, and Loading State",
+      "published": true,
+      "date": "2026-03-16",
+      "modified": "2026-03-16",
+      "description": "switchMap, concatMap, exhaustMap, and mergeMap each solve a different problem. Picking the right one prevents race conditions, duplicate saves, and stale data.",
+      "tags": [
+        "Angular",
+        "RxJS",
+        "HTTP"
+      ],
+      "body": "Most RxJS bugs in Angular apps come from picking the wrong flattening operator. All four take an outer stream (clicks, keystrokes, route changes) and map each value to an inner Observable (usually an HTTP call). They differ in what happens when a new value arrives while a request is still running.\n\n## The four operators\n\n| Operator | When a new value arrives mid-request | Use it for |\n|---|---|---|\n| `switchMap` | Cancels the old request | Search, route params, filters |\n| `concatMap` | Queues the new one until the old finishes | Ordered saves, sequential updates |\n| `exhaustMap` | Ignores the new one | Submit buttons, login |\n| `mergeMap` | Runs both in parallel | Independent uploads, bulk fetches |\n\n### switchMap: only the latest matters\n\n```typescript\nproduct$ = this.route.paramMap.pipe(\n  map(params => params.get('id')!),\n  switchMap(id => this.api.getProduct(id))\n);\n```\n\nIf the user clicks through three products quickly, only the last response is shown. With `mergeMap`, a slow first response could arrive last and overwrite the correct product. That's a race condition you'd struggle to reproduce.\n\n### exhaustMap: no double submits\n\n```typescript\nthis.save$.pipe(\n  exhaustMap(() => this.api.saveOrder(this.form.value))\n).subscribe();\n```\n\nWhile the save is in flight, extra clicks are dropped. You should still disable the button, but this protects you even if the UI doesn't.\n\n### concatMap: order matters\n\n```typescript\nthis.edits$.pipe(\n  concatMap(edit => this.api.patch(edit))\n).subscribe();\n```\n\nEach PATCH waits for the previous one, so the server sees edits in the order the user made them.\n\n## Handle errors inside the inner Observable\n\nThis is the mistake I see most:\n\n```typescript\n// Wrong: one failed request kills the whole stream\nsearch$ = this.query$.pipe(\n  switchMap(q => this.api.search(q)),\n  catchError(() => of([]))\n);\n```\n\nWhen `catchError` sits on the outer stream, the first error completes it. Every later search silently does nothing. Put it on the inner one:\n\n```typescript\nsearch$ = this.query$.pipe(\n  switchMap(q => this.api.search(q).pipe(\n    catchError(() => of([]))\n  ))\n);\n```\n\n## Model loading and error as data\n\nInstead of three separate flags, emit one state object:\n\n```typescript\ntype Load<T> =\n  | { status: 'loading' }\n  | { status: 'ok'; data: T }\n  | { status: 'error'; message: string };\n\nproduct$ = this.id$.pipe(\n  switchMap(id => this.api.getProduct(id).pipe(\n    map(data => ({ status: 'ok', data }) as const),\n    catchError(() => of({ status: 'error', message: 'Could not load this product.' } as const)),\n    startWith({ status: 'loading' } as const)\n  ))\n);\n```\n\n```html\n@let state = productState();\n@switch (state.status) {\n  @case ('loading') { <app-skeleton /> }\n  @case ('error') { <p role=\"alert\">{{ state.message }}</p> }\n  @case ('ok') { <app-product [product]=\"state.data\" /> }\n}\n```\n\nIn the component, expose it to the template with `productState = toSignal(this.product$, { initialValue: { status: 'loading' } as const });`.\n\nThe type makes impossible states impossible: you can't be \"loading\" and \"error\" at the same time.\n\n## Retrying with backoff\n\n```typescript\nthis.api.getProduct(id).pipe(\n  retry({ count: 2, delay: (_, attempt) => timer(attempt * 1000) })\n)\n```\n\nRetry only idempotent requests (GETs). Retrying a POST can create duplicate orders.\n\n## Summary\n\nPick the operator by asking what should happen to an in-flight request when a new one arrives. Then catch errors on the inner Observable, and represent loading state as a single typed value. Those three habits remove most async bugs from an Angular codebase.\n"
+    },
+    {
+      "slug": "signals-vs-rxjs",
+      "title": "Signals vs RxJS: Which One Should Hold Your State?",
+      "published": true,
+      "date": "2026-03-08",
+      "modified": "2026-03-08",
+      "description": "Signals and Observables solve different problems. Signals hold values; Observables describe events over time. Here's how to choose, and how to bridge them.",
+      "tags": [
+        "Angular",
+        "Signals",
+        "RxJS",
+        "State Management"
+      ],
+      "body": "When Signals arrived in Angular, a common question was whether RxJS was on its way out. It isn't. They answer different questions, and most real apps use both.\n\n**A signal is a value that changes.** You can read it at any time and it always has a current value.\n\n**An Observable is a stream of events.** It may never emit, emit once, or emit forever, and it can be cancelled.\n\n## Signals for component and UI state\n\n```typescript\nimport { Component, signal, computed } from '@angular/core';\n\n@Component({\n  selector: 'app-cart',\n  template: `\n    <p>{{ itemCount() }} items · {{ total() | currency }}</p>\n    <button (click)=\"clear()\">Clear cart</button>\n  `,\n})\nexport class CartComponent {\n  items = signal<CartItem[]>([]);\n\n  itemCount = computed(() => this.items().length);\n  total = computed(() => this.items().reduce((sum, i) => sum + i.price * i.qty, 0));\n\n  clear() {\n    this.items.set([]);\n  }\n}\n```\n\n`computed` values are lazy and memoized: `total` recalculates only when `items` changes, and only if something reads it. There's no subscription to manage and nothing to unsubscribe from.\n\nUse signals for:\n\n- Form and UI state (open/closed, selected tab, filters)\n- Derived values (`computed`)\n- State shared through a service that components read synchronously\n\n## RxJS for async workflows\n\nRxJS shines when *time* is part of the problem: debouncing, cancellation, retries, combining streams.\n\n```typescript\nresults$ = this.query$.pipe(\n  debounceTime(300),\n  distinctUntilChanged(),\n  switchMap(q => this.api.search(q).pipe(\n    catchError(() => of([]))\n  ))\n);\n```\n\n`switchMap` cancels the previous request when a new query arrives. Doing that with signals alone means hand-writing cancellation logic.\n\nUse RxJS for:\n\n- HTTP requests and anything cancellable\n- User input that needs debouncing or throttling\n- WebSockets and server-sent events\n- Combining several async sources with timing rules\n\n## Bridging the two\n\n`@angular/core/rxjs-interop` gives you converters in both directions:\n\n```typescript\nimport { toSignal, toObservable } from '@angular/core/rxjs-interop';\n\nexport class SearchComponent {\n  query = signal('');\n\n  results = toSignal(\n    toObservable(this.query).pipe(\n      debounceTime(300),\n      switchMap(q => this.api.search(q))\n    ),\n    { initialValue: [] }\n  );\n}\n```\n\nThe component keeps a simple signal for the input, RxJS handles the timing and cancellation, and the template reads `results()` like any other signal. `toSignal` also unsubscribes automatically when the component is destroyed.\n\n## About effect()\n\n`effect()` runs side effects when signals change. It's tempting to use it to copy one signal into another. Don't: that's what `computed` (or `linkedSignal` for writable derived state) is for. Keep `effect()` for things that leave Angular's world: logging, `localStorage`, imperative third-party libraries.\n\n## A rule of thumb\n\n- If you'd describe it as \"the current X,\" use a **signal**.\n- If you'd describe it as \"when X happens, do Y,\" use an **Observable**.\n- Convert at the boundary with `toSignal` and `toObservable`, and let each tool do what it's good at.\n"
+    },
+    {
+      "slug": "angular-control-flow",
+      "title": "Angular's Built-in Control Flow: @if, @for, @switch, and @defer",
+      "published": true,
+      "date": "2026-03-07",
+      "modified": "2026-03-07",
+      "description": "The new template syntax is easier to read, type-checks better, and makes lazy loading a one-line change. Here's how each block works and the mistakes to avoid.",
+      "tags": [
+        "Angular",
+        "Templates",
+        "Performance"
+      ],
+      "body": "For years, Angular templates used structural directives: `*ngIf`, `*ngFor`, `*ngSwitch`. They worked, but they needed imports, the `else` syntax was clumsy, and `trackBy` required a separate method. Built-in control flow replaces all of them with blocks that are part of the template language itself.\n\n## @if\n\n```html\n@if (user(); as u) {\n  <p>Welcome back, {{ u.name }}</p>\n} @else if (loading()) {\n  <app-spinner />\n} @else {\n  <a routerLink=\"/login\">Sign in</a>\n}\n```\n\nNo `ng-template`, no template reference variables. The `as` alias narrows the type, so inside the block the compiler knows `u` isn't null.\n\n## @for and why `track` is required\n\n```html\n@for (order of orders(); track order.id) {\n  <app-order-row [order]=\"order\" />\n} @empty {\n  <p>No orders yet.</p>\n}\n```\n\n`track` is mandatory, and that's a good thing. It tells Angular how to match items between renders. With a stable key like `order.id`, Angular moves existing DOM nodes instead of destroying and recreating them when the list changes. That keeps focus, scroll position, and component state intact.\n\nCommon mistakes:\n\n- **`track $index`** on a list that gets sorted or filtered. Every item now \"changes\" when its position does, so you lose the benefit.\n- **`track order`** (the object itself) when your data layer returns new objects on every fetch. Identity changes every time, so everything re-renders.\n\nUse a real ID whenever you have one.\n\n`@for` also gives you contextual variables: `$index`, `$first`, `$last`, `$even`, `$odd`, `$count`.\n\n## @switch\n\n```html\n@switch (status()) {\n  @case ('shipped') { <app-badge tone=\"success\" label=\"Shipped\" /> }\n  @case ('pending') { <app-badge tone=\"warning\" label=\"Pending\" /> }\n  @default { <app-badge label=\"Unknown\" /> }\n}\n```\n\n## @defer: lazy loading without the router\n\n`@defer` is the most powerful of the four. It splits the contents into a separate JavaScript chunk and loads it only when a trigger fires.\n\n```html\n@defer (on viewport) {\n  <app-sales-chart [data]=\"sales()\" />\n} @placeholder (minimum 300ms) {\n  <div class=\"chart-skeleton\"></div>\n} @loading (after 150ms; minimum 400ms) {\n  <app-spinner />\n} @error {\n  <p>The chart failed to load. <button (click)=\"retry()\">Retry</button></p>\n}\n```\n\nTriggers include:\n\n- `on viewport`: when the placeholder scrolls into view\n- `on idle`: when the browser is idle (the default)\n- `on interaction`: on click or keydown on the placeholder\n- `on hover`, `on timer(2s)`, `on immediate`\n- `when condition()`: when a signal or expression becomes truthy\n\nA heavy chart library below the fold is the ideal use. It's no longer in the initial bundle, and users who never scroll down never download it.\n\nThe `minimum` and `after` options exist to prevent flicker: a spinner that flashes for 50ms looks broken.\n\n## Migrating\n\nThe Angular CLI ships a schematic that rewrites existing templates:\n\n```bash\nng generate @angular/core:control-flow\n```\n\nRun it, review the diff, and pay special attention to every `track` expression it generates. It can't always infer the right key, so check that each one is a stable ID.\n\n## Takeaway\n\nThe new syntax is shorter and the type checking is tighter, but the real win is `@defer`: lazy loading moves from a router-level decision to a one-line template decision.\n"
+    },
+    {
+      "slug": "from-mockup-to-component-api",
+      "title": "From Mockup to Component API: Designing Angular Components Before Writing Them",
+      "published": true,
+      "date": "2026-02-21",
+      "modified": "2026-02-21",
+      "description": "A mockup shows what a component looks like. Before you build it, decide its inputs, outputs, states, and what it refuses to do.",
+      "tags": [
+        "Angular",
+        "Component Design",
+        "Design Systems"
+      ],
+      "body": "A design mockup tells you what a component looks like on one good day. It rarely tells you what happens when the title is three lines long, when the data hasn't loaded, or when someone navigates to it with a keyboard. The work between \"here's the Figma frame\" and \"here's the component\" is mostly about answering those questions before they turn into bugs.\n\nThis is the checklist I run through before writing any Angular template.\n\n## 1. Name the job, not the look\n\nA component called `BlueCardComponent` is going to be wrong the first time the design changes color. Name it for what it does: `OrderSummaryComponent`, `UserAvatarComponent`, `StatusBadgeComponent`. If you can't describe its job in one sentence, it's probably two components.\n\n## 2. List the inputs as a type first\n\nWrite the public API before the template. With signal inputs this is short and readable:\n\n```typescript\nimport { Component, input, output, computed } from '@angular/core';\n\nexport type BadgeTone = 'neutral' | 'success' | 'warning' | 'danger';\n\n@Component({\n  selector: 'app-status-badge',\n  template: `<span class=\"badge\" [attr.data-tone]=\"tone()\">{{ label() }}</span>`,\n})\nexport class StatusBadgeComponent {\n  label = input.required<string>();\n  tone = input<BadgeTone>('neutral');\n}\n```\n\nNotice what's *not* there: no `color` input, no `backgroundHex`. A union type like `BadgeTone` keeps the design system in charge of the palette. Consumers pick a meaning; the component picks the color.\n\n## 3. Enumerate every state\n\nFor each component, write the states down. A data table might have:\n\n| State | What the user sees |\n|---|---|\n| Loading | Skeleton rows that keep the layout from jumping |\n| Empty | A message saying why it's empty and what to do next |\n| Error | What failed and a retry action |\n| Populated | The data |\n| Partial | Some rows failed to load |\n\nMockups usually cover one or two of these. The rest are yours to design, and they are where users decide whether your app feels solid.\n\n## 4. Decide what flows out\n\nOutputs describe what *happened*, not what the parent should do. Prefer `selected` over `openDetailsPanel`:\n\n```typescript\nexport class OrderRowComponent {\n  order = input.required<Order>();\n  selected = output<Order>();\n}\n```\n\nThe parent decides that selection opens a panel. Next quarter, when selection should also update the URL, the row component doesn't change.\n\n## 5. Plan for real content\n\nPaste the longest realistic value into the mockup: a 60-character product name, a German translation, a user with no avatar. Then decide: does it wrap, truncate with a tooltip, or scale? Write that decision into the component's styles before someone files a bug about it.\n\n## 6. Keyboard and screen reader behavior\n\nAsk three questions:\n\n- Can you reach it with Tab, and is the focus visible?\n- Does it announce what it is (`button`, `link`, `tab`) and its state (`aria-expanded`, `aria-selected`)?\n- If it opens something, where does focus go, and where does it return?\n\nNative elements answer most of these for free. A `<button>` beats a `<div (click)>` every time.\n\n## 7. Write the usage example first\n\nBefore the implementation, write how a teammate will use it:\n\n```html\n<app-status-badge label=\"Shipped\" tone=\"success\" />\n```\n\nIf the usage looks awkward, the API is wrong, and it's far cheaper to fix now than after twenty call sites exist.\n\n## The payoff\n\nThis takes maybe twenty minutes per component. In return you get components that survive design changes, edge-case data, and accessibility reviews, and a pull request that reviewers can understand from the type signature alone.\n"
+    }
+  ]
+}

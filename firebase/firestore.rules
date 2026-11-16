@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Keep in sync with ADMIN_EMAILS in assets/js/firebase-config.js
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in ['pandiyashwanth@gmail.com'];
+    }
+
+    // Page data: hero, experience, resources, contact
+    match /site/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Posts and projects: the public sees published entries only.
+    // A missing doc is readable so the site can tell "deleted" from "offline".
+    match /{kind}/{slug} {
+      allow get: if (kind == 'posts' || kind == 'projects')
+        && (resource == null || resource.data.published == true || isAdmin());
+      allow list: if (kind == 'posts' || kind == 'projects')
+        && (resource.data.published == true || isAdmin());
+      allow write: if (kind == 'posts' || kind == 'projects') && isAdmin();
+    }
+  }
+}

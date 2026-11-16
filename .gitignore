@@ -1,29 +1,24 @@
-# Ignore the contents of the _site directory and other cache directories
-_site/
-.sass-cache/
-.jekyll-metadata
-.jekyll-cache/
-# Ignore the directory for local files during development
+# Build output (GitHub Actions builds it on every deploy)
+dist/
+
+# Firebase CLI
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+node_modules/
+package-lock.json
+.vscode/
+.DS_Store
 local/
 
-# Ignore the Gemfile that is generated
-Gemfile.lock
-
-# Ignore files created by npm
-node_modules
-package-lock.json
-
-# Ignore the vendor file at root level and bundle for alternative installation
-/vendor/
+# Leftovers from the old Jekyll setup and local tooling
+_site/
+.jekyll-cache/
+.sass-cache/
+vendor/
 .bundle/
 
-# Ignore folders related to IDEs
-.vscode/
-
-# Ignore files created by MacOS
-.DS_Store
-Gemfile
-_config.yml
-Gemfile
-.gitignore
-_config.yml
+# Impeccable runtime captures (the surface briefs in .impeccable/surfaces stay committed)
+.impeccable/review/
+.impeccable/mocks/

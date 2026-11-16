@@ -1,110 +1,44 @@
-<a href="https://jekyll-themes.com//[GITHUB REPOSITORY NAME]">
-  <img
-    src="https://img.shields.io/badge/featured%20on-JT-red.svg"
-    height="20"
-    alt="Jekyll Themes Shield"
-  />
-</a>
+# yashwanth.co.in
 
-# My Personal Portfolio
-**Based on the Academic Pages framework for Jekyll.**
+Portfolio of Yashwanth Pandi. Plain HTML/CSS/JS pages served by **GitHub Pages**; posts, projects and page data live in **Firebase** (Firestore for content, Storage for images, Auth for the editor).
 
-This repository hosts my professional portfolio and academic website. It is powered by [Jekyll](https://jekyllrb.com/) and hosted via **GitHub Pages**.
+## How it fits together
 
----
+| Piece | Where |
+| --- | --- |
+| Page markup | `src/pages/*.html`, shared bits in `src/partials/`, frame in `src/layout.html` |
+| Styles / behaviour | `assets/css/spec.css`, `assets/js/spec.js` |
+| Firestore rendering | `assets/js/app.js` (pages) and `assets/js/content.js` (data access, markdown) |
+| Editor | `/admin/` → `src/pages/admin.html` + `assets/js/admin.js` |
+| Starter content / offline fallback | `data/seed.json` |
+| Security rules | `firebase/firestore.rules`, `firebase/storage.rules` |
+| Build | `scripts/build.mjs` → `dist/` (no npm install needed) |
+| Deploy | `.github/workflows/deploy.yml` |
 
-## 🚀 Quick Start for Updates
+Pages fetch content from Firestore in the browser, so a post saved in `/admin/` is live immediately. If Firestore can't be reached, page data falls back to `data/seed.json` so the site never renders blank.
 
-* **Content:** Add or edit Markdown files in `_publications/`, `_talks/`, or `_posts/`.
-* **Configuration:** Global settings (site title, social links, etc.) are in `_config.yml`.
-* **Files:** Drop PDFs, CVs, or images into the `files/` directory. They will be accessible at `https://[your-username].github.io/files/your-file.pdf`.
-* **Automation:** Use the scripts in `markdown_generator/` to bulk-import publications from a TSV file.
+## Firestore data
 
----
+- `site/hero`, `site/experience` (includes resume PDF/DOCX links), `site/resources`, `site/contact`
+- `posts/{slug}`: `title, date (YYYY-MM-DD), description, tags[], body (markdown), published` → `/posts/YYYY/MM/slug/`
+- `projects/{slug}`: the same fields plus `tagline, summary, project_type, status, modules[], external_url, github_url, modified` → `/projects/slug/`
 
-## 🛠 Local Development
-To preview changes before pushing them live, I run the site locally.
+## Deploy
 
-### Prerequisites
-I need **Ruby**, **Bundler**, and **NodeJS** installed.
+Push to `prod`. The workflow builds `dist/` and publishes it to GitHub Pages (custom domain from `CNAME`). It also runs daily and from the Actions tab (**Run workflow**), which gives newly published entries their own pre-built page and adds them to `sitemap.xml` and `feed.xml`. Until then, new entry URLs are served through the `404.html` fallback, which renders them from Firestore.
 
-* **macOS:** `brew install ruby node && gem install bundler`
-* **Linux:** `sudo apt install ruby-dev ruby-bundler nodejs build-essential`
+## Local preview
 
-### Running the Server
-1.  **Install dependencies:**
-    ```bash
-    bundle config set --local path 'vendor/bundle'
-    bundle install
-    ```
-2.  **Launch the preview:**
-    ```bash
-    bundle exec jekyll serve -l -H localhost
-    ```
-3.  **View the site at:** `http://localhost:4000`
-
----
-
-## 🐳 Docker Alternative
-If I don't want to mess with local Ruby environments:
-
-```bash
-chmod -R 777 .
-docker compose up
+```sh
+npm run serve        # builds, then serves dist/ at http://localhost:4000
 ```
 
----
+To sign in to `/admin/` locally, add `localhost` under Firebase console → Authentication → Settings → Authorized domains.
 
-## 🧩 CMS Content Management (Blogs + All Main Sections)
+## Updating Firebase rules
 
-You can manage content from the browser at `/cms/`:
+```sh
+npm run firebase:deploy-rules   # uses the Firebase CLI via npx; run `npx firebase-tools login` first
+```
 
-- **Blogs** (`_posts`)
-- **Projects** (`_projects`)
-- **Talks** (`_talks`)
-- **Publications** (`_publications`)
-- **Resources section data** (`_data/resources.yml`)
-- **Navigation menu** (`_data/navigation.yml`)
-- **Contact form settings** (`_data/contact.yml`)
-
-### Contact Form Service
-
-The contact page is available at `/contact/` and submits to the configured service endpoint in `_data/contact.yml`.
-
-Default provider is **FormSubmit**.  
-If you prefer Formspree, replace `form.action` with your Formspree endpoint.
-
-### Decap CMS GitHub Login (Cloudflare Worker)
-
-If `/cms/` loads but login fails, deploy the OAuth worker in [cms-auth-worker/](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/cms-auth-worker):
-
-1. Create a GitHub OAuth app:
-   - Homepage URL: `https://yashwanth.co.in`
-   - Authorization callback URL: `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/callback`
-2. Deploy worker:
-   ```bash
-   cd cms-auth-worker
-   npm i -D wrangler
-   npx wrangler login
-   npx wrangler secret put GITHUB_CLIENT_ID
-   npx wrangler secret put GITHUB_CLIENT_SECRET
-   npx wrangler deploy
-   ```
-3. Verify:
-   - `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/health` should return `{ "ok": true, ... }`
-   - Then open `https://yashwanth.co.in/cms/` and sign in.
-
-#### Optional: auto-deploy from GitHub Actions
-
-Workflow: [deploy-cms-auth-worker.yml](/Users/yashwanthpandi/Projects/Portfolio-Website-DE.worktrees/blogs-section-management-tools/.github/workflows/deploy-cms-auth-worker.yml)
-
-Add repository secrets:
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
-- `DECAP_GITHUB_CLIENT_ID`
-- `DECAP_GITHUB_CLIENT_SECRET`
-
-After adding secrets, run this workflow once from GitHub Actions using **Run workflow** on branch `prod`.
-Then confirm:
-- `https://decap-cms-auth.pandiyashwanth-8d9.workers.dev/health` returns `ok: true`
-- `https://yashwanth.co.in/cms/` login works
+Admin access is limited to the emails in `assets/js/firebase-config.js` **and** the rules files; change both together.

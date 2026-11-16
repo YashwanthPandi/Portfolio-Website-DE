@@ -1,0 +1,45 @@
+<!-- Google Analytics 4 + Microsoft Clarity -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GHWXL0Z4MN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-GHWXL0Z4MN', { send_page_view: false });
+
+  function trackGaEvent(action, category, label) {
+    var payload = { event_category: category || 'engagement' };
+    if (label) payload.event_label = label;
+    gtag('event', action, payload);
+  }
+  window.trackGaEvent = trackGaEvent;
+
+  // One page_view per page, sent after Firestore content has set the final title.
+  window.trackGaPageView = function () {
+    if (window.__gaViewSent) return;
+    window.__gaViewSent = true;
+    gtag('event', 'page_view', { page_title: document.title, page_location: location.href, page_path: location.pathname + location.search });
+  };
+  window.addEventListener('load', function () { setTimeout(window.trackGaPageView, 2500); });
+
+  document.addEventListener('click', function (event) {
+    var t = event.target && event.target.closest ? event.target.closest('a, button') : null;
+    if (!t) return;
+    if (t.tagName === 'A') {
+      var href = t.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#') return;
+      var url = new URL(href, location.href);
+      if (/export\?format=(pdf|docx)|\.(pdf|docx?)$/i.test(href)) trackGaEvent('download', 'file_download', href);
+      else if (url.origin !== location.origin) trackGaEvent('click', 'outbound_link', href);
+    } else {
+      trackGaEvent('click', 'interaction', t.getAttribute('aria-label') || t.textContent.trim().slice(0, 60) || 'button');
+    }
+  });
+  document.addEventListener('submit', function (e) { if (e.target && e.target.tagName === 'FORM') trackGaEvent('form_submit', 'form', e.target.id || 'form'); });
+</script>
+<script>
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "x9k6ejbncz");
+</script>

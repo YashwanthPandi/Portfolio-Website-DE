@@ -1,0 +1,31 @@
+<header class="masthead">
+  <div class="wrap masthead__bar">
+    <a class="wordmark" href="/" aria-label="Yashwanth Pandi, home">
+      <img class="wordmark__logo" src="/images/logo.svg" alt="Yashwanth Pandi" width="1310" height="414">
+    </a>
+
+    <button class="btn btn--ghost btn--sm nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span data-label>Menu</span>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main" data-open="false">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="/" data-nav="home">Home</a></li>
+        <li class="nav__item"><a class="nav__link" href="/projects/" data-nav="projects">Projects</a></li>
+        <li class="nav__item"><a class="nav__link" href="/blog/" data-nav="blog">Writing</a></li>
+        <li class="nav__item"><a class="nav__link" href="/resources/" data-nav="resources">Resources</a></li>
+        <li class="nav__item nav__item--resume"><a class="nav__link" href="/resume/" data-nav="resume">Resume</a></li>
+        <li class="nav__item"><a class="nav__link" href="/contact/" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="masthead__actions">
+      <button class="btn btn--ghost btn--sm inspect-toggle" type="button" data-inspect-toggle aria-pressed="true" hidden title="Show component outlines and sizes on hover">
+        <span class="inspect-toggle__dot" aria-hidden="true"></span>
+        <span data-label>Inspect on</span>
+      </button>
+      <a class="btn btn--sm btn--resume" href="/resume/">Resume</a>
+    </div>
+  </div>
+</header>

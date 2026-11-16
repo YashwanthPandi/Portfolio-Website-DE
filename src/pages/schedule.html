@@ -1,0 +1,35 @@
+<header class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Book a call</h1>
+    <p class="page-head__lede">Pick a time for a conversation about frontend and Angular engineering roles. The booking window opens automatically; if it doesn't, use the button below.</p>
+  </div>
+</header>
+
+<div class="wrap section" style="padding-top: var(--s-6);">
+  <div class="hero__actions">
+    <button id="open-popup-button" type="button" class="btn btn--primary">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+      Schedule a call
+    </button>
+    <a class="btn" href="mailto:pandiyashwanth@gmail.com?subject=Schedule%20a%20call">Email directly</a>
+  </div>
+  <p class="status status--err" id="schedule-status" role="status" hidden style="margin-top: var(--s-5);">The booking window didn't load. Email me and I'll send times that work.</p>
+</div>
+
+<!-- NeetoCal booking popup (organization: yashwanth-pandi) -->
+<script>window.neetoCal = window.neetoCal || { embed: function () { (neetoCal.q = neetoCal.q || []).push(arguments); } };</script>
+<script async src="https://cdn.neetocal.com/javascript/embed.js" onerror="document.getElementById('schedule-status').hidden=false"></script>
+<script>
+  neetoCal.embed({
+    type: "elementClick",
+    id: "ecca8270-0daf-44ba-b85b-95ee9b4a3b57",
+    organization: "yashwanth-pandi",
+    elementSelector: "#open-popup-button",
+    kind: "introPage",
+    isImageAndTitleHidden: "false"
+  });
+  // Open the booking window on arrival, once the embed has attached its click handler.
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('open-popup-button').click(); }, 400);
+  });
+</script>

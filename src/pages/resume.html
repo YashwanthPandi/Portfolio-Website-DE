@@ -1,0 +1,54 @@
+<header class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Resume</h1>
+    <p class="page-head__lede">UI / Software Engineer · <span data-bind="hero.location">San Francisco, CA</span></p>
+  </div>
+</header>
+
+<div class="wrap resume">
+  <div class="resume__layout">
+    <div class="resume__sheet">
+      <h2>Summary</h2>
+      <p class="resume__summary" data-bind="experience.summary"></p>
+
+      <h2>Experience</h2>
+      <ol class="history" role="list" data-render="history" data-full="true" aria-busy="true"></ol>
+
+      <h2>Skills</h2>
+      <table class="tokens"><tbody data-render="skills"></tbody></table>
+
+      <h2>Education</h2>
+      <ul class="edu" role="list" data-render="education"></ul>
+
+      <h2>Certifications</h2>
+      <ul class="plain" role="list" data-render="certifications"></ul>
+    </div>
+
+    <aside class="resume__aside" aria-label="Download and contact">
+      <div class="download" data-dropdown data-open="false">
+        <button class="btn btn--primary" type="button" aria-expanded="false" aria-controls="resume-formats" aria-haspopup="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+          Download resume
+          <svg class="icon caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="download__menu" id="resume-formats" role="list">
+          <li><a href="https://docs.google.com/document/d/1sSmgIuFysQsX43NZrhy8fRxy6_P7pqySGvY8-53p054/export?format=pdf" data-bind-href="experience.resume_pdf" download="Yashwanth_Pandi_Resume.pdf">PDF <span>.pdf</span></a></li>
+          <li><a href="https://docs.google.com/document/d/1sSmgIuFysQsX43NZrhy8fRxy6_P7pqySGvY8-53p054/export?format=docx" data-bind-href="experience.resume_docx" download="Yashwanth_Pandi_Resume.docx">Word <span>.docx</span></a></li>
+        </ul>
+      </div>
+      <div class="props" data-spec="Contact">
+        <div class="props__head"><span class="props__name">&lt;<b>Contact</b>&gt;</span></div>
+        <table class="props__table">
+          <tbody>
+            <tr><th scope="row">email</th><td><a href="mailto:pandiyashwanth@gmail.com" data-bind-href="mailto:hero.email" data-bind="hero.email">pandiyashwanth@gmail.com</a></td></tr>
+            <tr><th scope="row">phone</th><td><a href="tel:8055015991" data-bind-href="experience.phone_href" data-bind="experience.phone">(805) 501-5991</a></td></tr>
+            <tr><th scope="row">linkedin</th><td><a href="https://www.linkedin.com/in/yashwanthpandi" data-bind-href="hero.linkedin_url" rel="noopener">yashwanthpandi</a></td></tr>
+            <tr><th scope="row">location</th><td data-bind="hero.location">San Francisco, CA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="btn" href="/schedule/">Book a call</a>
+      <button class="btn" type="button" onclick="window.print()">Print this page</button>
+    </aside>
+  </div>
+</div>

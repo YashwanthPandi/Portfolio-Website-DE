@@ -1,0 +1,103 @@
+<header class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Content admin</h1>
+    <p class="page-head__lede">Edit posts, projects, and page data. Changes go live as soon as you save.</p>
+  </div>
+</header>
+
+<div class="wrap section admin" style="padding-top: var(--s-6);">
+  <div class="status" id="admin-status" role="status" aria-live="polite" hidden></div>
+
+  <section data-view="signed-out" hidden>
+    <p>Sign in with the Google account that owns this site.</p>
+    <button class="btn btn--primary" type="button" id="sign-in">Sign in with Google</button>
+  </section>
+
+  <section data-view="signed-in" hidden>
+    <div class="toolbar">
+      <div class="segmented" role="group" aria-label="Section">
+        <button type="button" data-tab="posts" aria-pressed="true">Posts</button>
+        <button type="button" data-tab="projects" aria-pressed="false">Projects</button>
+        <button type="button" data-tab="site" aria-pressed="false">Page data</button>
+        <button type="button" data-tab="setup" aria-pressed="false">Setup</button>
+      </div>
+      <div class="admin__who"><span class="muted" id="who"></span> <button class="btn btn--sm btn--ghost" type="button" id="sign-out">Sign out</button></div>
+    </div>
+
+    <!-- Posts / projects -->
+    <div data-panel="entries">
+      <div class="admin__split">
+        <div class="admin__list">
+          <button class="btn btn--primary btn--sm" type="button" id="new-entry">New post</button>
+          <ul class="index" role="list" id="entry-list"></ul>
+        </div>
+
+        <form class="form admin__editor" id="entry-form" novalidate hidden>
+          <div class="form__row">
+            <div class="field"><label for="f-title">Title</label><input class="field-input" id="f-title" name="title" required></div>
+            <div class="field"><label for="f-slug">Slug <span class="field__hint">· part of the URL</span></label><input class="field-input" id="f-slug" name="slug" pattern="[a-z0-9-]+" required></div>
+          </div>
+          <div class="form__row">
+            <div class="field"><label for="f-date">Date</label><input class="field-input" id="f-date" name="date" type="date" required></div>
+            <div class="field"><label for="f-tags">Tags <span class="field__hint">· comma separated</span></label><input class="field-input" id="f-tags" name="tags"></div>
+          </div>
+          <div class="field"><label for="f-description">Description <span class="field__hint">· shown in lists and search results</span></label><textarea class="field-input" id="f-description" name="description" rows="2"></textarea></div>
+
+          <fieldset class="admin__project" data-project-only hidden>
+            <legend>Project details</legend>
+            <div class="form__row">
+              <div class="field"><label for="f-tagline">Tagline</label><input class="field-input" id="f-tagline" name="tagline"></div>
+              <div class="field"><label for="f-project_type">Type</label><input class="field-input" id="f-project_type" name="project_type"></div>
+            </div>
+            <div class="field"><label for="f-summary">Summary</label><textarea class="field-input" id="f-summary" name="summary" rows="2"></textarea></div>
+            <div class="form__row">
+              <div class="field"><label for="f-status">Status</label><input class="field-input" id="f-status" name="status"></div>
+              <div class="field"><label for="f-modified">Last updated</label><input class="field-input" id="f-modified" name="modified" type="date"></div>
+            </div>
+            <div class="field"><label for="f-modules">Modules <span class="field__hint">· comma separated, first 4 show on the card</span></label><input class="field-input" id="f-modules" name="modules"></div>
+            <div class="form__row">
+              <div class="field"><label for="f-external_url">Live app URL</label><input class="field-input" id="f-external_url" name="external_url" type="url"></div>
+              <div class="field"><label for="f-github_url">Source URL</label><input class="field-input" id="f-github_url" name="github_url" type="url"></div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <div class="admin__bodyhead">
+              <label for="f-body">Body <span class="field__hint">· Markdown</span></label>
+              <div class="admin__bodytools">
+                <label class="btn btn--sm btn--ghost">Insert image<input type="file" accept="image/*" id="f-image" class="visually-hidden"></label>
+                <button class="btn btn--sm btn--ghost" type="button" id="toggle-preview" aria-pressed="false">Preview</button>
+              </div>
+            </div>
+            <textarea class="field-input admin__body" id="f-body" name="body" rows="22" spellcheck="true"></textarea>
+            <div class="prose admin__preview" id="preview" hidden></div>
+          </div>
+
+          <label class="admin__check"><input type="checkbox" id="f-published" name="published"> Published <span class="field__hint">· unpublished entries are visible only here</span></label>
+
+          <div class="form__actions">
+            <button type="submit" class="btn btn--primary" id="save-entry">Save</button>
+            <a class="btn" id="view-entry" href="/" target="_blank" rel="noopener" hidden>View on site</a>
+            <button type="button" class="btn btn--ghost admin__danger" id="delete-entry">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Page data -->
+    <div data-panel="site" hidden>
+      <p class="muted">Each block is the JSON for one page section. The Experience block also holds the resume download links.</p>
+      <div id="site-forms"></div>
+    </div>
+
+    <!-- Setup -->
+    <div data-panel="setup" hidden>
+      <h2 class="section__title">Import starter content</h2>
+      <p>Copies the current page data and the Timber Dynamics project from <code>data/seed.json</code> into Firestore. Run this once after setting up the project. Documents that already exist are left alone unless you tick the box.</p>
+      <label class="admin__check"><input type="checkbox" id="overwrite"> Overwrite existing documents</label>
+      <div class="form__actions"><button class="btn btn--primary" type="button" id="import-seed">Import starter content</button></div>
+    </div>
+  </section>
+</div>
+
+<script type="module" src="/assets/js/admin.js?v={{version}}"></script>

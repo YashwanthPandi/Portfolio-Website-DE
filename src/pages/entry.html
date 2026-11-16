@@ -1,0 +1,50 @@
+<article class="article h-entry" data-entry aria-busy="true" hidden>
+  <header class="page-head">
+    <div class="wrap">
+      <a class="component-tag" href="/blog/" data-entry-back>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>All writing</span>
+      </a>
+      <h1 class="page-head__title page-head__title--entry p-name" data-entry-title>{{entryTitle}}</h1>
+      <p class="page-head__lede" data-entry-desc hidden></p>
+      <div class="page-head__meta" data-entry-meta></div>
+      <div class="page-head__actions" data-entry-actions hidden></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="article__layout">
+      <div class="prose e-content" data-entry-body></div>
+      <aside class="article__aside" data-entry-aside>
+        <div data-entry-labels hidden>
+          <h2>Filed under</h2>
+          <ul class="chips" role="list"></ul>
+        </div>
+        <div data-toc-wrap>
+          <h2 class="toc-title">On this page</h2>
+          <ol class="toc" data-toc role="list"></ol>
+        </div>
+      </aside>
+    </div>
+    <footer class="article__foot">
+      <nav class="pager" aria-label="More posts" data-entry-pager hidden></nav>
+    </footer>
+  </div>
+</article>
+
+<section class="wrap notfound" data-notfound hidden>
+  <p class="notfound__code">404 · route not found</p>
+  <h1>This page doesn't exist, or it moved.</h1>
+  <p>The link may be out of date. Everything on this site can be reached from these pages.</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="/">Home</a>
+    <a class="btn" href="/projects/">Projects</a>
+    <a class="btn" href="/blog/">Writing</a>
+    <a class="btn btn--ghost" href="/resume/">Resume</a>
+  </div>
+</section>
+
+<div class="wrap entry-loading" data-entry-loading>
+  <p class="muted">Loading…</p>
+</div>
+
+<!-- @include closing-call -->
